@@ -1,0 +1,94 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "name": "France",
+      "code_iso": "FR",
+      "region": "Europe",
+      "active": true,
+      "sources": [
+        {
+          "id": 101,
+          "type": "rss",
+          "url": "https://www.lemonde.fr/rss/une.xml",
+          "name": "Le Monde RSS",
+          "active": true
+        },
+        {
+          "id": 102,
+          "type": "reddit",
+          "url": "https://www.reddit.com/r/france/.rss",
+          "name": "Reddit France",
+          "active": true
+        },
+        {
+          "id": 103,
+          "type": "news",
+          "url": "https://www.france24.com/fr/rss",
+          "name": "France 24",
+          "active": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "United States",
+      "code_iso": "US",
+      "region": "North America",
+      "active": true,
+      "sources": [
+        {
+          "id": 201,
+          "type": "rss",
+          "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+          "name": "New York Times RSS",
+          "active": true
+        },
+        {
+          "id": 202,
+          "type": "reddit",
+          "url": "https://www.reddit.com/r/news/.rss",
+          "name": "Reddit News",
+          "active": true
+        },
+        {
+          "id": 203,
+          "type": "forum",
+          "url": "https://news.ycombinator.com/rss",
+          "name": "Hacker News",
+          "active": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Japan",
+      "code_iso": "JP",
+      "region": "Asia-Pacific",
+      "active": true,
+      "sources": [
+        {
+          "id": 301,
+          "type": "rss",
+          "url": "https://www3.nhk.or.jp/rss/news/cat0.xml",
+          "name": "NHK RSS",
+          "active": true
+        },
+        {
+          "id": 302,
+          "type": "news",
+          "url": "https://www.japantimes.co.jp/feed/",
+          "name": "The Japan Times",
+          "active": true
+        },
+        {
+          "id": 303,
+          "type": "twitter",
+          "url": "https://x.com/nhk_news",
+          "name": "NHK News X",
+          "active": false
+        }
+      ]
+    }
+  ]
+}

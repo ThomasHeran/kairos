@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5efe4;
+  --foreground: #1d1a17;
+  --surface: rgba(255, 250, 241, 0.78);
+  --surface-strong: #fffaf1;
+  --border: rgba(93, 67, 38, 0.14);
+  --muted: #61584e;
+  --accent: #dd6b20;
+  --accent-soft: rgba(221, 107, 32, 0.12);
+  --grid: rgba(89, 73, 52, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-plex-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(237, 160, 80, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(13, 148, 136, 0.12), transparent 22%),
+    linear-gradient(180deg, #fbf6ed 0%, #f2eadb 100%);
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-manrope), sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(221, 107, 32, 0.18);
+}
+
+.grid-panel {
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--surface);
+  background-size: 28px 28px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-plex-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
