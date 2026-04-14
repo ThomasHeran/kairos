@@ -11,21 +11,56 @@
           "id": 101,
           "type": "rss",
           "url": "https://www.lemonde.fr/rss/une.xml",
-          "name": "Le Monde RSS",
+          "name": "Le Monde",
           "active": true
         },
         {
           "id": 102,
-          "type": "reddit",
-          "url": "https://www.reddit.com/r/france/.rss",
-          "name": "Reddit France",
+          "type": "rss",
+          "url": "https://www.lefigaro.fr/rss/figaro_actualites.xml",
+          "name": "Le Figaro",
           "active": true
         },
         {
           "id": 103,
-          "type": "news",
-          "url": "https://www.france24.com/fr/rss",
-          "name": "France 24",
+          "type": "rss",
+          "url": "https://www.liberation.fr/arc/outboundfeeds/rss/",
+          "name": "Libération",
+          "active": true
+        },
+        {
+          "id": 104,
+          "type": "rss",
+          "url": "https://www.bfmtv.com/rss/news-24-7/",
+          "name": "BFM TV",
+          "active": true
+        },
+        {
+          "id": 105,
+          "type": "rss",
+          "url": "https://www.francetvinfo.fr/titres.rss",
+          "name": "France Info",
+          "active": true
+        },
+        {
+          "id": 106,
+          "type": "rss",
+          "url": "https://www.lequipe.fr/rss/actu_rss.xml",
+          "name": "L'Équipe",
+          "active": true
+        },
+        {
+          "id": 107,
+          "type": "rss",
+          "url": "https://www.20minutes.fr/feeds/rss-une.xml",
+          "name": "20 Minutes",
+          "active": true
+        },
+        {
+          "id": 108,
+          "type": "rss",
+          "url": "https://www.mediapart.fr/articles/feed",
+          "name": "Mediapart",
           "active": true
         }
       ]
