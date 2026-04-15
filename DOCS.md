@@ -40,3 +40,38 @@
 - Étendre le même pattern de persistance aux autres types d’agents (`reddit`, `twitter`, `forum`, `news`) ou factoriser un orchestrateur DB partagé.
 - Ajouter le scheduling périodique effectif côté plateforme/external cron.
 - Ajouter des tests automatisés sur le parsing RSS et sur les endpoints de scrape.
+
+---
+
+## Schéma canonique inter-couches C1→C2→C3→C4→C5 (2026-04-15)
+
+### Fichiers créés
+- `config/taxonomy_v1.json` — Taxonomie fermée Kairos v1 : 10 catégories, 55 sous-types. Source de vérité pour les champs `cat_id`/`subtype_id` dans tout le pipeline.
+- `docs/CANONICAL_SCHEMA.md` — Documentation complète des 5 JSON Schemas (C1 article brut, C2 event qualifié, C3 arc causal, C4 analyse, C5 prédiction), avec exemples et tableau des 18 drivers.
+- `db/schema_v2.sql` — Migration SQL complète : 10 tables nouvelles (event_taxonomy, events, drivers, causal_arcs, event_driver_lookup, historical_episodes, asset_sensitivity, analyses, predictions, feedback_records) + seeds taxonomy + seeds drivers.
+
+### Architecture des tables
+```
+event_taxonomy (cat_id, subtype_id) PK
+  ↑ FK de: events, event_driver_lookup, historical_episodes, analyses
+
+drivers (driver_id) PK
+  ↑ FK de: causal_arcs(source_driver, target_driver), asset_sensitivity(driver_id)
+
+events (event_id) → analyses (analysis_id) → predictions (prediction_id) → feedback_records
+```
+
+### Principe taxonomie fermée
+- Tout event C2 DOIT avoir `cat_id` ∈ {CAT-01..CAT-10} et `subtype_id` issu de `taxonomy_v1.json`.
+- Les champs sont des FK vers `event_taxonomy(cat_id, subtype_id)`.
+- Le script de migration inclut un seed complet des 55 sous-types.
+
+### Migration
+Appliquer `db/schema_v2.sql` après `db/schema.sql` via `psql $DATABASE_URL < db/schema_v2.sql`.
+
+### Points de reprise suivants
+- Appliquer `schema_v2.sql` sur la base Neon de prod (migration pas encore exécutée).
+- Implémenter le worker C2 de qualification (classify articles → events avec cat_id/subtype_id).
+- Implémenter le worker C3 (graphe causal) et seeder les arcs initiaux dans `causal_arcs`.
+- Implémenter le worker C4 (moteur de raisonnement, asset_scores).
+- Implémenter le worker C5 (archivage prédictions + boucle feedback).

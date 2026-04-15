@@ -9,17 +9,21 @@ async function main() {
     throw new Error("DATABASE_URL is not configured.");
   }
 
-  const schemaPath = path.join(process.cwd(), "db", "schema.sql");
-  const schemaSql = await readFile(schemaPath, "utf8");
-
   const pool = new Pool({
     connectionString,
     ssl: { rejectUnauthorized: false },
   });
 
+  const migrations = ["schema.sql", "schema_v2.sql"];
+
   try {
-    await pool.query(schemaSql);
-    console.log("Schema migration applied successfully.");
+    for (const filename of migrations) {
+      const schemaPath = path.join(process.cwd(), "db", filename);
+      const schemaSql = await readFile(schemaPath, "utf8");
+      await pool.query(schemaSql);
+      console.log(`✓ ${filename} applied.`);
+    }
+    console.log("All migrations applied successfully.");
   } finally {
     await pool.end();
   }

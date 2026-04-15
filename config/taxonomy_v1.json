@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/07/schema",
+  "version": "1.0.0",
+  "description": "Taxonomie fermée Kairos — 10 catégories macro, ~55 sous-types. Chaque event C2 doit porter un cat_id et un subtype_id issus de cette liste.",
+  "categories": [
+    {
+      "cat_id": "CAT-01",
+      "category": "MONETARY_POLICY",
+      "label_fr": "Politique monétaire",
+      "description": "Décisions et communications des banques centrales affectant les taux, la liquidité et les conditions financières.",
+      "subtypes": [
+        { "subtype_id": "rate_decision_hike",       "label": "Hausse de taux directeur",          "description": "Relèvement du taux directeur par une banque centrale." },
+        { "subtype_id": "rate_decision_cut",        "label": "Baisse de taux directeur",           "description": "Réduction du taux directeur par une banque centrale." },
+        { "subtype_id": "rate_decision_hold",       "label": "Maintien du taux directeur",         "description": "Confirmation du statu quo sur les taux directeurs." },
+        { "subtype_id": "qe_launch",                "label": "Lancement d'assouplissement quantitatif", "description": "Annonce ou démarrage d'un programme d'achats d'actifs." },
+        { "subtype_id": "qt_launch",                "label": "Lancement de resserrement quantitatif",  "description": "Annonce ou démarrage d'une réduction du bilan." },
+        { "subtype_id": "forward_guidance_dovish",  "label": "Guidance accommodante",             "description": "Signal explicite vers des taux plus bas ou politique plus souple." },
+        { "subtype_id": "forward_guidance_hawkish", "label": "Guidance restrictive",              "description": "Signal explicite vers des taux plus élevés ou politique plus stricte." },
+        { "subtype_id": "emergency_action",         "label": "Action d'urgence banque centrale",  "description": "Intervention non planifiée : crise de liquidité, intervention change, etc." }
+      ]
+    },
+    {
+      "cat_id": "CAT-02",
+      "category": "FISCAL_POLICY",
+      "label_fr": "Politique budgétaire",
+      "description": "Mesures gouvernementales affectant les dépenses publiques, la fiscalité et la dette.",
+      "subtypes": [
+        { "subtype_id": "budget_announcement",      "label": "Annonce budgétaire",                "description": "Présentation officielle du budget annuel ou pluriannuel." },
+        { "subtype_id": "spending_increase",        "label": "Hausse des dépenses publiques",     "description": "Plan de stimulus, relance ou investissement public significatif." },
+        { "subtype_id": "spending_cut",             "label": "Réduction des dépenses publiques",  "description": "Austérité, consolidation budgétaire ou coupe budgétaire majeure." },
+        { "subtype_id": "tax_hike",                 "label": "Hausse fiscale",                    "description": "Augmentation d'impôts ou de taxes (revenu, société, TVA...)." },
+        { "subtype_id": "tax_cut",                  "label": "Baisse fiscale",                    "description": "Réduction d'impôts ou de taxes, crédit fiscal." },
+        { "subtype_id": "debt_issuance",            "label": "Émission de dette souveraine",      "description": "Adjudication ou annonce d'emprunt d'État majeur." },
+        { "subtype_id": "debt_ceiling_crisis",      "label": "Crise du plafond de la dette",      "description": "Risque ou négociation autour du plafond d'endettement légal." }
+      ]
+    },
+    {
+      "cat_id": "CAT-03",
+      "category": "INFLATION",
+      "label_fr": "Inflation / Prix",
+      "description": "Données et dynamiques de prix à la consommation, à la production et anticipations d'inflation.",
+      "subtypes": [
+        { "subtype_id": "cpi_release_above",        "label": "CPI supérieur aux attentes",        "description": "Publication IPC (CPI) dépassant le consensus." },
+        { "subtype_id": "cpi_release_below",        "label": "CPI inférieur aux attentes",        "description": "Publication IPC (CPI) sous le consensus." },
+        { "subtype_id": "cpi_release_inline",       "label": "CPI conforme aux attentes",         "description": "Publication IPC (CPI) dans les marges du consensus." },
+        { "subtype_id": "ppi_release",              "label": "Publication IPP",                   "description": "Données d'inflation à la production (PPI/IPP)." },
+        { "subtype_id": "pce_release",              "label": "Publication PCE",                   "description": "Données PCE (mesure Fed de l'inflation core)." },
+        { "subtype_id": "inflation_expectations",   "label": "Anticipations d'inflation",         "description": "Changement notable des breakevens ou surveys d'anticipations." },
+        { "subtype_id": "energy_price_shock",       "label": "Choc de prix énergétiques",         "description": "Mouvement brutal du pétrole/gaz répercuté sur l'IPC." }
+      ]
+    },
+    {
+      "cat_id": "CAT-04",
+      "category": "GROWTH_ACTIVITY",
+      "label_fr": "Croissance / Activité économique",
+      "description": "Indicateurs de la santé économique réelle : PIB, emploi, production, confiance.",
+      "subtypes": [
+        { "subtype_id": "gdp_release_above",        "label": "PIB supérieur aux attentes",        "description": "Croissance PIB battant le consensus." },
+        { "subtype_id": "gdp_release_below",        "label": "PIB inférieur aux attentes",        "description": "Croissance PIB décevante par rapport au consensus." },
+        { "subtype_id": "pmi_manufacturing",        "label": "PMI manufacturier",                 "description": "Publication de l'indice PMI du secteur manufacturier." },
+        { "subtype_id": "pmi_services",             "label": "PMI services",                      "description": "Publication de l'indice PMI du secteur des services." },
+        { "subtype_id": "employment_strong",        "label": "Données emploi solides",            "description": "Créations d'emplois/taux de chômage meilleures que prévu." },
+        { "subtype_id": "employment_weak",          "label": "Données emploi faibles",            "description": "Créations d'emplois/taux de chômage décevantes." },
+        { "subtype_id": "retail_sales",             "label": "Ventes au détail",                  "description": "Publication des données de consommation des ménages." },
+        { "subtype_id": "recession_signal",         "label": "Signal de récession",               "description": "Indicateur ou annonce officielle de récession technique ou effective." }
+      ]
+    },
+    {
+      "cat_id": "CAT-05",
+      "category": "FINANCIAL_STABILITY",
+      "label_fr": "Stabilité financière",
+      "description": "Risques systémiques, stress bancaire, crises de liquidité et régulation prudentielle.",
+      "subtypes": [
+        { "subtype_id": "bank_failure",             "label": "Faillite / résolution bancaire",    "description": "Effondrement ou résolution forcée d'un établissement bancaire." },
+        { "subtype_id": "credit_crunch",            "label": "Resserrement du crédit",            "description": "Retrait significatif de l'offre de crédit bancaire." },
+        { "subtype_id": "systemic_risk_warning",    "label": "Alerte risque systémique",          "description": "Publication de rapport ou déclaration sur un risque systémique." },
+        { "subtype_id": "sovereign_debt_stress",    "label": "Stress dette souveraine",           "description": "Spreads ou CDS souverains en hausse significative." },
+        { "subtype_id": "financial_regulation",     "label": "Nouvelle réglementation financière","description": "Adoption de Bâle, Dodd-Frank, DORA, ou autre règle prudentielle majeure." },
+        { "subtype_id": "currency_crisis",          "label": "Crise de change",                   "description": "Dépréciation brutale ou attaque spéculative sur une devise." }
+      ]
+    },
+    {
+      "cat_id": "CAT-06",
+      "category": "GEOPOLITICAL_RISK",
+      "label_fr": "Risque géopolitique",
+      "description": "Événements politiques, conflits, sanctions et élections affectant les marchés financiers.",
+      "subtypes": [
+        { "subtype_id": "military_conflict",        "label": "Conflit armé / escalade militaire", "description": "Déclenchement ou escalade d'un conflit armé à impact macro." },
+        { "subtype_id": "sanctions_imposed",        "label": "Sanctions économiques imposées",    "description": "Nouvelles sanctions contre un pays ou secteur." },
+        { "subtype_id": "sanctions_lifted",         "label": "Levée de sanctions",                "description": "Annonce de levée partielle ou totale de sanctions." },
+        { "subtype_id": "election_result",          "label": "Résultat électoral majeur",         "description": "Résultat d'élection avec impact sur la politique économique." },
+        { "subtype_id": "trade_war_escalation",     "label": "Escalade guerre commerciale",       "description": "Nouveaux tarifs, représailles douanières ou rupture d'accord." },
+        { "subtype_id": "trade_war_de_escalation",  "label": "Désescalade guerre commerciale",    "description": "Accord commercial, trêve tarifaire ou levée de barrières." },
+        { "subtype_id": "political_crisis",         "label": "Crise politique intérieure",        "description": "Instabilité gouvernementale, coup d'État, dissolution parlementaire." },
+        { "subtype_id": "energy_supply_shock",      "label": "Choc d'approvisionnement énergétique", "description": "Coupure ou menace sur les flux de pétrole/gaz à portée géo." }
+      ]
+    },
+    {
+      "cat_id": "CAT-07",
+      "category": "CORPORATE_EARNINGS",
+      "label_fr": "Résultats d'entreprises",
+      "description": "Publications de résultats, révisions de guidance et restructurations d'entreprises cotées.",
+      "subtypes": [
+        { "subtype_id": "earnings_beat",            "label": "Résultats supérieurs aux attentes", "description": "Publication de résultats EPS/CA dépassant le consensus." },
+        { "subtype_id": "earnings_miss",            "label": "Résultats inférieurs aux attentes", "description": "Publication de résultats EPS/CA décevants par rapport au consensus." },
+        { "subtype_id": "guidance_upgrade",         "label": "Révision à la hausse des prévisions","description": "Relèvement de la guidance annuelle ou trimestrielle." },
+        { "subtype_id": "guidance_downgrade",       "label": "Révision à la baisse des prévisions","description": "Abaissement de la guidance annuelle ou trimestrielle." },
+        { "subtype_id": "merger_acquisition",       "label": "Fusion / Acquisition",              "description": "Annonce d'un M&A significatif affectant la valorisation sectorielle." },
+        { "subtype_id": "restructuring",            "label": "Restructuration / Plan social",     "description": "Annonce de réduction d'effectifs, cession d'actifs ou refonte stratégique." }
+      ]
+    },
+    {
+      "cat_id": "CAT-08",
+      "category": "COMMODITY_MARKETS",
+      "label_fr": "Marchés des matières premières",
+      "description": "Dynamiques de prix et d'offre/demande sur les commodities énergétiques, agricoles et métaux.",
+      "subtypes": [
+        { "subtype_id": "oil_price_surge",          "label": "Flambée des prix du pétrole",       "description": "Hausse rapide et significative du prix du Brent/WTI." },
+        { "subtype_id": "oil_price_drop",           "label": "Effondrement des prix du pétrole",  "description": "Baisse rapide et significative du prix du Brent/WTI." },
+        { "subtype_id": "opec_decision",            "label": "Décision OPEC/OPEC+",               "description": "Modification des quotas de production OPEC ou OPEC+." },
+        { "subtype_id": "gas_supply_disruption",    "label": "Perturbation gaz naturel",          "description": "Coupure, pénurie ou choc de prix sur le gaz naturel." },
+        { "subtype_id": "metals_price_move",        "label": "Mouvement prix métaux",             "description": "Variation forte sur l'or, le cuivre ou autres métaux industriels." },
+        { "subtype_id": "agricultural_shock",       "label": "Choc agricole",                     "description": "Perturbation de l'offre ou des prix des matières premières agricoles." }
+      ]
+    },
+    {
+      "cat_id": "CAT-09",
+      "category": "TRADE_FLOWS",
+      "label_fr": "Flux commerciaux / Balance des paiements",
+      "description": "Données et événements liés aux échanges commerciaux internationaux et balances des paiements.",
+      "subtypes": [
+        { "subtype_id": "trade_balance_release",    "label": "Publication balance commerciale",   "description": "Données officielles de balance commerciale (excédent/déficit)." },
+        { "subtype_id": "current_account_release",  "label": "Publication balance courante",      "description": "Données de balance courante (compte de transactions courantes)." },
+        { "subtype_id": "tariff_imposition",        "label": "Imposition de droits de douane",   "description": "Annonce ou entrée en vigueur de nouveaux tarifs douaniers." },
+        { "subtype_id": "trade_agreement",          "label": "Accord commercial",                 "description": "Signature ou ratification d'un accord de libre-échange." },
+        { "subtype_id": "supply_chain_disruption",  "label": "Rupture de chaîne d'approvisionnement","description": "Perturbation majeure des flux logistiques mondiaux." }
+      ]
+    },
+    {
+      "cat_id": "CAT-10",
+      "category": "MARKET_STRUCTURE",
+      "label_fr": "Structure de marché / Régulation / Technologie",
+      "description": "Changements structurels des marchés financiers : régulation, innovation, IPO, infrastructure.",
+      "subtypes": [
+        { "subtype_id": "ipo_major",                "label": "IPO / Introduction en bourse majeure","description": "Entrée en bourse d'une entreprise à impact sectoriel ou macro." },
+        { "subtype_id": "market_circuit_breaker",   "label": "Coupe-circuit de marché",           "description": "Déclenchement d'un mécanisme d'arrêt des cotations." },
+        { "subtype_id": "exchange_regulation",      "label": "Nouvelle régulation marchés",       "description": "Règle SEC, AMF, ESMA ou autre affectant la structure des marchés." },
+        { "subtype_id": "crypto_regulatory",        "label": "Régulation crypto / actifs numériques","description": "Décision réglementaire sur les crypto-actifs (ETF, interdiction, etc.)." },
+        { "subtype_id": "central_bank_digital",     "label": "CBDC / Monnaie numérique banque centrale","description": "Annonce ou lancement d'une monnaie numérique de banque centrale." },
+        { "subtype_id": "ai_tech_disruption",       "label": "Disruption IA / Technologie",       "description": "Annonce technologique majeure à impact sur les valorisations sectorielles." }
+      ]
+    }
+  ],
+  "metadata": {
+    "total_categories": 10,
+    "total_subtypes": 55,
+    "created_at": "2026-04-15",
+    "notes": "Taxonomie fermée v1. Tout event C2 DOIT avoir un cat_id et subtype_id issus de cette liste. Les valeurs sont des FK vers la table event_taxonomy en base."
+  }
+}
