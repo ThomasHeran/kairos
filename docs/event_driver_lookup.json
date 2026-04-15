@@ -1,0 +1,4739 @@
+{
+  "MONETARY_POLICY.rate_decision_hike": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "rate_decision_hike",
+    "label": "Rate Decision — Hike",
+    "primary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.9,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "immediate"
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_growth": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN",
+      "GLOBAL"
+    ],
+    "conflict_note": "If QT already in progress, intensity_credit may be amplified"
+  },
+  "MONETARY_POLICY.rate_decision_cut": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "rate_decision_cut",
+    "label": "Rate Decision — Cut",
+    "primary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.9,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "immediate"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_growth": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN",
+      "GLOBAL"
+    ],
+    "conflict_note": "If cutting into inflation, gold may diverge bullish"
+  },
+  "MONETARY_POLICY.rate_decision_hold": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "rate_decision_hold",
+    "label": "Rate Decision — Hold",
+    "primary_drivers": [],
+    "secondary_drivers": [
+      {
+        "driver": "anticipations_inflation",
+        "dir": 0,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": 0,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_growth": "neutral"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN"
+    ],
+    "conflict_note": "Pure hold has minimal impact; dominant signal is the statement tone"
+  },
+  "MONETARY_POLICY.forward_guidance_hawkish": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "forward_guidance_hawkish",
+    "label": "Forward Guidance — Hawkish",
+    "primary_drivers": [
+      {
+        "driver": "anticipations_inflation",
+        "dir": -1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.16,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.16,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_growth": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP"
+    ],
+    "conflict_note": "Signal strength depends on market positioning; surprise factor amplifies"
+  },
+  "MONETARY_POLICY.forward_guidance_dovish": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "forward_guidance_dovish",
+    "label": "Forward Guidance — Dovish",
+    "primary_drivers": [
+      {
+        "driver": "anticipations_inflation",
+        "dir": 1,
+        "intensity": 0.3
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.16,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": -1,
+        "intensity": 0.16,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_growth": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP"
+    ],
+    "conflict_note": "If dovish pivot occurs amid high inflation, equities may rally but bonds less"
+  },
+  "MONETARY_POLICY.qe_announcement": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "qe_announcement",
+    "label": "QE Announcement",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": 1,
+        "intensity": 0.9
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": -1,
+        "intensity": 0.9,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.9,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_growth": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP"
+    ],
+    "conflict_note": "Diminishing returns on successive QE rounds; currency wars risk in multi-CB context"
+  },
+  "MONETARY_POLICY.qt_announcement": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "qt_announcement",
+    "label": "QT Announcement",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "liquidite_bancaire",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_growth": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Pace matters: $60bn vs $95bn/month has very different transmission speed"
+  },
+  "MONETARY_POLICY.tapering": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "tapering",
+    "label": "Tapering",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "neutral",
+      "gold": "bearish",
+      "equities_growth": "neutral"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ"
+    ],
+    "conflict_note": "Taper tantrum risk if unexpected; well-telegraphed tapers have limited impact"
+  },
+  "MONETARY_POLICY.emergency_action_easing": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "emergency_action_easing",
+    "label": "Emergency Action — Easing",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": 1,
+        "intensity": 0.95
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.95,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": -1,
+        "intensity": 0.95,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_growth": "bullish_short_term"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "EM"
+    ],
+    "conflict_note": "Emergency actions signal CB sees a crisis; may paradoxically increase fear short-term"
+  },
+  "MONETARY_POLICY.emergency_action_tightening": {
+    "cat_id": "CAT-01",
+    "category": "MONETARY_POLICY",
+    "subtype_id": "emergency_action_tightening",
+    "label": "Emergency Action — Tightening",
+    "primary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.85,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "mixed",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_growth": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EM",
+      "UK",
+      "TR"
+    ],
+    "conflict_note": "May signal currency stress; sovereign spread reaction depends on credibility"
+  },
+  "MACRO_DATA_RELEASE.inflation_cpi_above": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "inflation_cpi_above",
+    "label": "CPI — Above Expectations",
+    "primary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.9
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": 1,
+        "intensity": 0.7
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.469,
+        "delay": "immediate"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "mixed",
+      "equities_growth": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN"
+    ],
+    "conflict_note": "If driven by energy alone, core inflation may diverge; central bank response varies"
+  },
+  "MACRO_DATA_RELEASE.inflation_cpi_below": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "inflation_cpi_below",
+    "label": "CPI — Below Expectations",
+    "primary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": -1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": -1,
+        "intensity": 0.26,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_growth": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN"
+    ],
+    "conflict_note": "Deflation risk context changes asset reaction: equities may sell if deflationary spiral feared"
+  },
+  "MACRO_DATA_RELEASE.inflation_cpi_inline": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "inflation_cpi_inline",
+    "label": "CPI — In Line with Expectations",
+    "primary_drivers": [],
+    "secondary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_growth": "neutral"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Minimal price action; markets move on core vs headline divergence"
+  },
+  "MACRO_DATA_RELEASE.gdp_above": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "gdp_above",
+    "label": "GDP — Above Expectations",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "consommation",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.36,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_cyclical": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN"
+    ],
+    "conflict_note": "Strong GDP raises rate expectations; may be net negative for equities in inflation context"
+  },
+  "MACRO_DATA_RELEASE.gdp_below": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "gdp_below",
+    "label": "GDP — Below Expectations",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.36,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_cyclical": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN"
+    ],
+    "conflict_note": "Recession + high inflation = stagflation; bonds may also sell"
+  },
+  "MACRO_DATA_RELEASE.gdp_revision_up": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "gdp_revision_up",
+    "label": "GDP Revision — Upward",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_cyclical": "neutral"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Revisions rarely move markets unless magnitude is large"
+  },
+  "MACRO_DATA_RELEASE.gdp_revision_down": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "gdp_revision_down",
+    "label": "GDP Revision — Downward",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_cyclical": "neutral"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Downward revisions confirming recession fears more impactful"
+  },
+  "MACRO_DATA_RELEASE.nfp_above": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "nfp_above",
+    "label": "NFP — Above Expectations",
+    "primary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": -1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "consommation",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_growth": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US"
+    ],
+    "conflict_note": "Strong jobs in soft-landing scenario bullish equities; in inflation scenario bearish"
+  },
+  "MACRO_DATA_RELEASE.nfp_below": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "nfp_below",
+    "label": "NFP — Below Expectations",
+    "primary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.5
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.2,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_growth": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US"
+    ],
+    "conflict_note": "Weak jobs + high inflation = stagflation risk"
+  },
+  "MACRO_DATA_RELEASE.unemployment_rise": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "unemployment_rise",
+    "label": "Unemployment — Rising",
+    "primary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.75
+      },
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.503,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.3,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_cyclical": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Sahm Rule crossing 0.5% signals recession with high historical accuracy"
+  },
+  "MACRO_DATA_RELEASE.unemployment_fall": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "unemployment_fall",
+    "label": "Unemployment — Falling",
+    "primary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": -1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "consommation",
+        "dir": 1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.22,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.28,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_cyclical": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Tight labor market signals wage pressure → inflation risk"
+  },
+  "MACRO_DATA_RELEASE.pmi_expansion": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "pmi_expansion",
+    "label": "PMI — Expansion",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      },
+      {
+        "driver": "emploi_chomage",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_cyclical": "bullish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN",
+      "GLOBAL"
+    ],
+    "conflict_note": "Leading indicator; actual GDP print may diverge"
+  },
+  "MACRO_DATA_RELEASE.pmi_contraction": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "pmi_contraction",
+    "label": "PMI — Contraction",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_cyclical": "bearish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK",
+      "JP",
+      "CN",
+      "GLOBAL"
+    ],
+    "conflict_note": "Manufacturing vs Services divergence is key; services PMI more predictive in modern economy"
+  },
+  "MACRO_DATA_RELEASE.trade_balance_deficit_widen": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "trade_balance_deficit_widen",
+    "label": "Trade Balance — Deficit Widening",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "usd_strength",
+        "dir": -1,
+        "intensity": 0.26,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.26,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bearish",
+      "gold": "neutral",
+      "equities_growth": "neutral"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "EZ"
+    ],
+    "conflict_note": "Trade deficit can be positive (strong domestic demand) or negative (structural weakness)"
+  },
+  "MACRO_DATA_RELEASE.consumer_confidence_rise": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "consumer_confidence_rise",
+    "label": "Consumer Confidence — Rising",
+    "primary_drivers": [
+      {
+        "driver": "consommation",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "bearish",
+      "equities_consumer": "bullish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.65,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "Soft data; actual retail sales print is more actionable"
+  },
+  "MACRO_DATA_RELEASE.consumer_confidence_fall": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "consumer_confidence_fall",
+    "label": "Consumer Confidence — Falling",
+    "primary_drivers": [
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_consumer": "bearish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.65,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "UK"
+    ],
+    "conflict_note": "University of Michigan vs Conference Board have different leading properties"
+  },
+  "MACRO_DATA_RELEASE.retail_sales_above": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "retail_sales_above",
+    "label": "Retail Sales — Above Expectations",
+    "primary_drivers": [
+      {
+        "driver": "consommation",
+        "dir": 1,
+        "intensity": 0.7
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.28,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.469,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_consumer": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "EZ"
+    ],
+    "conflict_note": "Control group retail sales (ex-auto, gas, food) most predictive for GDP"
+  },
+  "MACRO_DATA_RELEASE.retail_sales_below": {
+    "cat_id": "CAT-02",
+    "category": "MACRO_DATA_RELEASE",
+    "subtype_id": "retail_sales_below",
+    "label": "Retail Sales — Below Expectations",
+    "primary_drivers": [
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.7
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.469,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities_consumer": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "EZ"
+    ],
+    "conflict_note": "One-month miss often weather/seasonal; trend over 3m more meaningful"
+  },
+  "GEOPOLITICAL_SHOCK.armed_conflict_start": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "armed_conflict_start",
+    "label": "Armed Conflict — Start",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.95
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.95,
+        "delay": "immediate"
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.636,
+        "delay": "immediate"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.636,
+        "delay": "immediate"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.95,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.95,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "mixed",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish",
+      "energy": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "EU",
+      "ME",
+      "EE"
+    ],
+    "conflict_note": "UST safe haven bid competes with inflation/fiscal fear; depends on US involvement"
+  },
+  "GEOPOLITICAL_SHOCK.armed_conflict_escalation": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "armed_conflict_escalation",
+    "label": "Armed Conflict — Escalation",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.75
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.503,
+        "delay": "immediate"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.503,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "mixed",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "EU",
+      "ME"
+    ],
+    "conflict_note": "Escalation effects diminish with market fatigue; first event most impactful"
+  },
+  "GEOPOLITICAL_SHOCK.armed_conflict_ceasefire": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "armed_conflict_ceasefire",
+    "label": "Armed Conflict — Ceasefire",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": -1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": -1,
+        "intensity": 0.469,
+        "delay": "immediate"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": -1,
+        "intensity": 0.28,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bearish",
+      "gold": "bearish",
+      "equities": "bullish",
+      "energy": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "EU",
+      "ME"
+    ],
+    "conflict_note": "Credibility of ceasefire key; fragile truces have limited lasting market impact"
+  },
+  "GEOPOLITICAL_SHOCK.sanctions_announcement": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "sanctions_announcement",
+    "label": "Sanctions — New Package Announced",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "mixed",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_target_country": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "RU",
+      "IR",
+      "CN"
+    ],
+    "conflict_note": "Secondary sanctions and implementation speed determine market impact magnitude"
+  },
+  "GEOPOLITICAL_SHOCK.sanctions_lifted": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "sanctions_lifted",
+    "label": "Sanctions — Lifted or Eased",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": 1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "prix_petrole",
+        "dir": -1,
+        "intensity": 0.5
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bearish",
+      "gold": "bearish",
+      "energy": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL"
+    ],
+    "conflict_note": "Oil supply addition from sanctions lifting depends on target country capacity"
+  },
+  "GEOPOLITICAL_SHOCK.diplomatic_crisis": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "diplomatic_crisis",
+    "label": "Diplomatic Crisis",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.4
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.16,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities": "slightly_bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "US",
+      "CN",
+      "EU",
+      "RU"
+    ],
+    "conflict_note": "Diplomatic crises rarely move markets substantially unless escalation risk is high"
+  },
+  "GEOPOLITICAL_SHOCK.regime_change_unstable": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "regime_change_unstable",
+    "label": "Regime Change — Destabilizing",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.8
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.536,
+        "delay": "immediate"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.32,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign_em": "bearish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_local": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EM",
+      "ME",
+      "AF",
+      "LATAM"
+    ],
+    "conflict_note": "EM contagion depends on country size and financial linkages"
+  },
+  "GEOPOLITICAL_SHOCK.regime_change_stable": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "regime_change_stable",
+    "label": "Regime Change — Stabilizing",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": -1,
+        "intensity": 0.35
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": -1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_local": "bullish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EM",
+      "LATAM",
+      "AF"
+    ],
+    "conflict_note": "Market reaction depends on pre-existing risk premium compression"
+  },
+  "GEOPOLITICAL_SHOCK.major_terrorism": {
+    "cat_id": "CAT-03",
+    "category": "GEOPOLITICAL_SHOCK",
+    "subtype_id": "major_terrorism",
+    "label": "Major Terrorism Event",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.8
+      },
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.26,
+        "delay": "immediate"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.436,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "US",
+      "EU",
+      "ME"
+    ],
+    "conflict_note": "Recovery typically fast (days); 9/11 exception due to systemic disruption scale"
+  },
+  "ENERGY_COMMODITY_SHOCK.opec_cut": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "opec_cut",
+    "label": "OPEC+ Production Cut",
+    "primary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.603,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.36,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_energy": "bullish",
+      "equities_broad": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "ME"
+    ],
+    "conflict_note": "Compliance rate and global demand outlook modulate magnitude of oil price move"
+  },
+  "ENERGY_COMMODITY_SHOCK.opec_increase": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "opec_increase",
+    "label": "OPEC+ Production Increase",
+    "primary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": -1,
+        "intensity": 0.75
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": -1,
+        "intensity": 0.503,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bearish",
+      "equities_energy": "bearish",
+      "equities_consumer": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "ME"
+    ],
+    "conflict_note": "Demand destruction context may limit price relief effect"
+  },
+  "ENERGY_COMMODITY_SHOCK.oil_supply_disruption": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "oil_supply_disruption",
+    "label": "Oil Supply Disruption",
+    "primary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.9,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.36,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_energy": "bullish",
+      "equities_airline": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "ME",
+      "AF"
+    ],
+    "conflict_note": "SPR releases can offset short-term; duration depends on reserve buffer vs outage"
+  },
+  "ENERGY_COMMODITY_SHOCK.oil_demand_revision_up": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "oil_demand_revision_up",
+    "label": "Oil Demand Revision — Upward",
+    "primary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.26,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_energy": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "CN"
+    ],
+    "conflict_note": "Agency revisions are lagging; market often already priced move"
+  },
+  "ENERGY_COMMODITY_SHOCK.oil_demand_revision_down": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "oil_demand_revision_down",
+    "label": "Oil Demand Revision — Downward",
+    "primary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bearish",
+      "gold": "bearish",
+      "equities_energy": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL"
+    ],
+    "conflict_note": "Long-term EV transition demand destruction = structural not cyclical"
+  },
+  "ENERGY_COMMODITY_SHOCK.gas_supply_disruption": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "gas_supply_disruption",
+    "label": "Natural Gas Supply Disruption",
+    "primary_drivers": [
+      {
+        "driver": "prix_gaz",
+        "dir": 1,
+        "intensity": 0.9
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.9,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.603,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "eur": "bearish",
+      "gold": "bullish",
+      "equities_europe": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EZ",
+      "EU",
+      "UK"
+    ],
+    "conflict_note": "European economy particularly sensitive; industrial curtailment = GDP drag"
+  },
+  "ENERGY_COMMODITY_SHOCK.gas_storage_alert": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "gas_storage_alert",
+    "label": "Gas Storage — Critical Alert",
+    "primary_drivers": [
+      {
+        "driver": "prix_gaz",
+        "dir": 1,
+        "intensity": 0.7
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.469,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.28,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "eur": "bearish",
+      "gold": "neutral",
+      "equities_europe": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EZ",
+      "UK",
+      "EU"
+    ],
+    "conflict_note": "EU 80% refill target is market anchor"
+  },
+  "ENERGY_COMMODITY_SHOCK.agricultural_drought": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "agricultural_drought",
+    "label": "Agricultural — Major Drought",
+    "primary_drivers": [
+      {
+        "driver": "prix_agricoles",
+        "dir": 1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "anticipations_inflation",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_agri": "bullish",
+      "equities_food": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "BR",
+      "AU",
+      "UA",
+      "IN"
+    ],
+    "conflict_note": "Food inflation particularly impactful in EM where food weight in CPI is higher"
+  },
+  "ENERGY_COMMODITY_SHOCK.agricultural_surplus": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "agricultural_surplus",
+    "label": "Agricultural — Surplus / Bumper Harvest",
+    "primary_drivers": [
+      {
+        "driver": "prix_agricoles",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_agri": "bearish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.65,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "BR",
+      "AR"
+    ],
+    "conflict_note": "Disinflation from food prices modest in DM where food weight is low"
+  },
+  "ENERGY_COMMODITY_SHOCK.metals_shortage": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "metals_shortage",
+    "label": "Critical Metals — Shortage",
+    "primary_drivers": [
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.34,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "bullish",
+      "equities_mining": "bullish",
+      "equities_ev": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "CN",
+      "DRC"
+    ],
+    "conflict_note": "Critical minerals shortage increasingly geopolitical — China export controls risk"
+  },
+  "ENERGY_COMMODITY_SHOCK.metals_surplus": {
+    "cat_id": "CAT-04",
+    "category": "ENERGY_COMMODITY_SHOCK",
+    "subtype_id": "metals_surplus",
+    "label": "Critical Metals — Surplus",
+    "primary_drivers": [
+      {
+        "driver": "prix_metaux",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.26,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "bearish",
+      "equities_mining": "bearish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.65,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "CN"
+    ],
+    "conflict_note": "Chinese demand signal is primary driver of metals surplus/deficit cycle"
+  },
+  "TRADE_POLICY.tariff_hike": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "tariff_hike",
+    "label": "Tariff — New or Increased",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.436,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_exporter": "bearish",
+      "equities_domestic": "mixed"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "EU"
+    ],
+    "conflict_note": "Retaliation risk amplifies impact; affected sectors (autos, agri, tech) diverge"
+  },
+  "TRADE_POLICY.tariff_cut": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "tariff_cut",
+    "label": "Tariff — Cut or Removal",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": 1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": -1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bearish",
+      "gold": "bearish",
+      "equities_exporter": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "UK",
+      "EU"
+    ],
+    "conflict_note": "Impact depends on magnitude and strategic significance of goods targeted"
+  },
+  "TRADE_POLICY.tariff_threat": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "tariff_threat",
+    "label": "Tariff — Threat or Warning",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "slightly_bullish",
+      "gold": "neutral",
+      "equities": "slightly_bearish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "EU"
+    ],
+    "conflict_note": "Markets increasingly desensitized to repeated threats"
+  },
+  "TRADE_POLICY.trade_agreement_signed": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "trade_agreement_signed",
+    "label": "Trade Agreement — Signed",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "bearish",
+      "equities_exporter": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "US",
+      "EU",
+      "ASIA"
+    ],
+    "conflict_note": "Markets often price in deal before signing; announcement effect may be limited"
+  },
+  "TRADE_POLICY.trade_agreement_collapsed": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "trade_agreement_collapsed",
+    "label": "Trade Agreement — Collapsed",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.436,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bullish",
+      "gold": "neutral",
+      "equities_exporter": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "UK"
+    ],
+    "conflict_note": "Uncertainty premium added; renegotiation risk vs clean break"
+  },
+  "TRADE_POLICY.export_restriction_tech": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "export_restriction_tech",
+    "label": "Export Restriction — Technology",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_semiconductor_cn": "bearish",
+      "equities_semiconductor_us": "mixed"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "NL",
+      "JP"
+    ],
+    "conflict_note": "Long-term supply chain restructuring impact dominates short-term"
+  },
+  "TRADE_POLICY.export_restriction_commodity": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "export_restriction_commodity",
+    "label": "Export Restriction — Commodity",
+    "primary_drivers": [
+      {
+        "driver": "prix_agricoles",
+        "dir": 1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.469,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_agri": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "IN",
+      "RU",
+      "CN",
+      "AU"
+    ],
+    "conflict_note": "Particularly inflationary for food-importing EM countries"
+  },
+  "TRADE_POLICY.currency_manipulation_accused": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "currency_manipulation_accused",
+    "label": "Currency Manipulation — Accusation",
+    "primary_drivers": [
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.4
+      },
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bullish",
+      "gold": "neutral",
+      "equities_cn": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "CN",
+      "VN",
+      "KR"
+    ],
+    "conflict_note": "Accusation rarely leads to formal action; political signaling dominates"
+  },
+  "TRADE_POLICY.trade_war_escalation": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "trade_war_escalation",
+    "label": "Trade War — Escalation",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.8
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "mixed",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "EU"
+    ],
+    "conflict_note": "Global supply chain disruption adds persistence to impact"
+  },
+  "TRADE_POLICY.trade_war_deescalation": {
+    "cat_id": "CAT-05",
+    "category": "TRADE_POLICY",
+    "subtype_id": "trade_war_deescalation",
+    "label": "Trade War — De-escalation",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": 1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": 1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bearish",
+      "gold": "bearish",
+      "equities": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "EU"
+    ],
+    "conflict_note": "Partial deals may boost sentiment without fundamentally resolving tensions"
+  },
+  "FISCAL_REGULATORY_POLICY.fiscal_stimulus_major": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "fiscal_stimulus_major",
+    "label": "Fiscal Stimulus — Major",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.57,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "taux_directeurs",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.436,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "emploi_chomage",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "mixed",
+      "gold": "bullish",
+      "equities_cyclical": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "CN"
+    ],
+    "conflict_note": "Multiplier depends on output gap; stimulus in full employment = inflation not growth"
+  },
+  "FISCAL_REGULATORY_POLICY.fiscal_stimulus_minor": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "fiscal_stimulus_minor",
+    "label": "Fiscal Stimulus — Minor",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.45
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_targeted": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "UK"
+    ],
+    "conflict_note": "Narrow impact; sector-specific rather than macro"
+  },
+  "FISCAL_REGULATORY_POLICY.fiscal_austerity": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "fiscal_austerity",
+    "label": "Fiscal Austerity",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "dette_publique",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EZ",
+      "UK",
+      "EM"
+    ],
+    "conflict_note": "Expansionary austerity theory empirically weak; typically contractionary short-term"
+  },
+  "FISCAL_REGULATORY_POLICY.tax_hike_corporate": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "tax_hike_corporate",
+    "label": "Corporate Tax Hike",
+    "primary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.26,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "dette_publique",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_corporate": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "EZ"
+    ],
+    "conflict_note": "Market impact front-runs effective date; actual vs proposed rate matters"
+  },
+  "FISCAL_REGULATORY_POLICY.tax_cut_corporate": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "tax_cut_corporate",
+    "label": "Corporate Tax Cut",
+    "primary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.7
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.28,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bearish",
+      "equities_corporate": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "IE"
+    ],
+    "conflict_note": "Buyback activity surge often first market signal of corporate tax cuts"
+  },
+  "FISCAL_REGULATORY_POLICY.tax_hike_consumer": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "tax_hike_consumer",
+    "label": "Consumer Tax Hike",
+    "primary_drivers": [
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.469,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_consumer": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "JP",
+      "UK",
+      "EZ",
+      "FR"
+    ],
+    "conflict_note": "Japan VAT hikes historically triggered mini-recessions"
+  },
+  "FISCAL_REGULATORY_POLICY.financial_regulation_tighten": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "financial_regulation_tighten",
+    "label": "Financial Regulation — Tightening",
+    "primary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "liquidite_bancaire",
+        "dir": -1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_banks": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "GLOBAL"
+    ],
+    "conflict_note": "Long implementation timelines; financial stocks react to announcement"
+  },
+  "FISCAL_REGULATORY_POLICY.financial_regulation_ease": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "financial_regulation_ease",
+    "label": "Financial Regulation — Easing",
+    "primary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.55
+      },
+      {
+        "driver": "liquidite_bancaire",
+        "dir": 1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_credit",
+        "dir": -1,
+        "intensity": 0.22,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_banks": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU"
+    ],
+    "conflict_note": "Moral hazard risk; short-term positive for banks, long-term systemic risk increase"
+  },
+  "FISCAL_REGULATORY_POLICY.sovereign_downgrade": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "sovereign_downgrade",
+    "label": "Sovereign Credit Downgrade",
+    "primary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bearish_if_us",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EZ",
+      "EM"
+    ],
+    "conflict_note": "US downgrade paradoxically can trigger UST rally (safe haven demand)"
+  },
+  "FISCAL_REGULATORY_POLICY.sovereign_upgrade": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "sovereign_upgrade",
+    "label": "Sovereign Credit Upgrade",
+    "primary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": -1,
+        "intensity": 0.7
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.28,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_local": "bullish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EZ",
+      "EM"
+    ],
+    "conflict_note": "Often partially priced in; surprise upgrades have more impact"
+  },
+  "FISCAL_REGULATORY_POLICY.debt_ceiling_crisis": {
+    "cat_id": "CAT-06",
+    "category": "FISCAL_REGULATORY_POLICY",
+    "subtype_id": "debt_ceiling_crisis",
+    "label": "Debt Ceiling Crisis",
+    "primary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.8
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish_t_bills",
+      "usd": "bearish",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US"
+    ],
+    "conflict_note": "T-bills near X-date trade at big discount; resolution produces sharp V-shaped reversal"
+  },
+  "FINANCIAL_STABILITY.bank_failure": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "bank_failure",
+    "label": "Bank Failure",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_bancaire",
+        "dir": -1,
+        "intensity": 0.9
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.9,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_banks": "bearish",
+      "equities_broad": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU"
+    ],
+    "conflict_note": "Contagion speed amplified by social media bank run dynamics (SVB 2023)"
+  },
+  "FINANCIAL_STABILITY.bank_rescue": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "bank_rescue",
+    "label": "Bank Rescue / Bailout",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": 1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "liquidite_bancaire",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "bearish",
+      "equities_banks": "mixed"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "UK"
+    ],
+    "conflict_note": "Rescue credibility depends on firepower; equity shareholders typically wiped out"
+  },
+  "FINANCIAL_STABILITY.credit_event_sovereign": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "credit_event_sovereign",
+    "label": "Credit Event — Sovereign Default",
+    "primary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.95
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.95,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EM",
+      "EZ"
+    ],
+    "conflict_note": "Orderly restructuring vs disorderly default has very different contagion dynamics"
+  },
+  "FINANCIAL_STABILITY.credit_event_corporate": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "credit_event_corporate",
+    "label": "Credit Event — Corporate Default",
+    "primary_drivers": [
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.57,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "neutral",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "EU"
+    ],
+    "conflict_note": "Sector contagion model matters: real estate vs crypto vs finance"
+  },
+  "FINANCIAL_STABILITY.market_crash": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "market_crash",
+    "label": "Market Crash",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.95
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "US"
+    ],
+    "conflict_note": "Circuit breakers may pause market; Fed put probability high in severe crashes"
+  },
+  "FINANCIAL_STABILITY.flash_crash": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "flash_crash",
+    "label": "Flash Crash",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bullish",
+      "gold": "neutral",
+      "equities": "bearish_momentary"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "US"
+    ],
+    "conflict_note": "Flash crashes typically fully reverse; persistent fear signal if partial recovery only"
+  },
+  "FINANCIAL_STABILITY.contagion_spread_widening": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "contagion_spread_widening",
+    "label": "Contagion — Spread Widening",
+    "primary_drivers": [
+      {
+        "driver": "spreads_souverains",
+        "dir": 1,
+        "intensity": 0.85
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.85,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign_core": "bullish",
+      "bonds_sovereign_periph": "bearish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EZ",
+      "EM",
+      "GLOBAL"
+    ],
+    "conflict_note": "Draghi 'whatever it takes' showed CB can arrest contagion"
+  },
+  "FINANCIAL_STABILITY.systemic_risk_warning": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "systemic_risk_warning",
+    "label": "Systemic Risk Warning",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities": "slightly_bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL"
+    ],
+    "conflict_note": "Official warnings often lagging; BIS early warnings more prescient"
+  },
+  "FINANCIAL_STABILITY.liquidity_crisis": {
+    "cat_id": "CAT-07",
+    "category": "FINANCIAL_STABILITY",
+    "subtype_id": "liquidity_crisis",
+    "label": "Liquidity Crisis",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.9
+      },
+      {
+        "driver": "liquidite_bancaire",
+        "dir": -1,
+        "intensity": 0.85
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.85,
+        "delay": "immediate"
+      },
+      {
+        "driver": "conditions_credit",
+        "dir": -1,
+        "intensity": 0.9,
+        "delay": "immediate"
+      },
+      {
+        "driver": "usd_strength",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "mixed",
+      "usd": "bullish",
+      "gold": "mixed",
+      "equities": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "GLOBAL"
+    ],
+    "conflict_note": "Fed/ECB/BoE backstop credibility determines duration; swap lines resolve dollar shortage"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.port_blockage": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "port_blockage",
+    "label": "Port Blockage",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_shipping": "bullish",
+      "equities_retail": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "EZ",
+      "CN"
+    ],
+    "conflict_note": "Suez blockage added ~$200bn/week in supply chain delays"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.shipping_disruption": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "shipping_disruption",
+    "label": "Shipping Disruption",
+    "primary_drivers": [
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.5
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_agricoles",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "bullish",
+      "gold": "neutral",
+      "equities_shipping": "bullish",
+      "equities_consumer": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "ME"
+    ],
+    "conflict_note": "Drewry composite freight index is primary real-time indicator"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.factory_shutdown_major": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "factory_shutdown_major",
+    "label": "Major Factory Shutdown",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.45
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_sector": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "CN",
+      "JP",
+      "US",
+      "TW"
+    ],
+    "conflict_note": "TSMC concentration risk = potential single-point failure for global semiconductor supply"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.semiconductor_shortage": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "semiconductor_shortage",
+    "label": "Semiconductor Shortage",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.5
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "balance_commerciale",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bearish",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_auto": "bearish",
+      "equities_semiconductor": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "TW",
+      "KR",
+      "US"
+    ],
+    "conflict_note": "Lead times 12-18m in automotive; capex super-cycle creates future oversupply risk"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.critical_material_shortage": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "critical_material_shortage",
+    "label": "Critical Material Shortage",
+    "primary_drivers": [
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.7
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.22,
+        "delay": "6m+"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "bullish",
+      "equities_mining": "bullish",
+      "equities_ev_tech": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "CN",
+      "DRC",
+      "GLOBAL"
+    ],
+    "conflict_note": "Energy transition creates structural demand for Li, Co, Ni, rare earths through 2040+"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.logistics_bottleneck": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "logistics_bottleneck",
+    "label": "Logistics Bottleneck",
+    "primary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.4
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_logistics": "bullish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UK",
+      "EU"
+    ],
+    "conflict_note": "PMI supply delivery times is best aggregate proxy"
+  },
+  "SUPPLY_CHAIN_DISRUPTION.pandemic_supply_shock": {
+    "cat_id": "CAT-08",
+    "category": "SUPPLY_CHAIN_DISRUPTION",
+    "subtype_id": "pandemic_supply_shock",
+    "label": "Pandemic / Mass Disease Supply Shock",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.9
+      },
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.8
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "consommation",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.6,
+        "delay": "immediate"
+      },
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities": "bearish_initial"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.9,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "CN"
+    ],
+    "conflict_note": "CB/fiscal response determines post-shock inflation trajectory"
+  },
+  "CLIMATE_NATURAL_DISASTER.drought_major": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "drought_major",
+    "label": "Major Drought",
+    "primary_drivers": [
+      {
+        "driver": "prix_agricoles",
+        "dir": 1,
+        "intensity": 0.8
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.536,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "prix_gaz",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_agri": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "AU",
+      "IN",
+      "BR"
+    ],
+    "conflict_note": "Rhine low water impacted German industrial output directly in 2022"
+  },
+  "CLIMATE_NATURAL_DISASTER.flood_major": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "flood_major",
+    "label": "Major Flood",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "prix_agricoles",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_insurance": "bearish",
+      "equities_reconstruction": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "PK",
+      "CN",
+      "EU"
+    ],
+    "conflict_note": "Reconstruction spending partially offsets GDP drag"
+  },
+  "CLIMATE_NATURAL_DISASTER.hurricane_typhoon": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "hurricane_typhoon",
+    "label": "Hurricane / Major Typhoon",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.55
+      },
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.3
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_insurance": "bearish",
+      "equities_energy": "bullish_if_gulf"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "JP",
+      "PH",
+      "CN"
+    ],
+    "conflict_note": "Katrina hit Gulf oil infrastructure; 2022 hurricanes impacted Florida insurance market"
+  },
+  "CLIMATE_NATURAL_DISASTER.earthquake_tsunami": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "earthquake_tsunami",
+    "label": "Major Earthquake / Tsunami",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.55
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      },
+      {
+        "driver": "prix_gaz",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "mixed",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_local": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "JP",
+      "TR",
+      "TW",
+      "US"
+    ],
+    "conflict_note": "Japan repatriated yen post-Fukushima → JPY strength despite disaster"
+  },
+  "CLIMATE_NATURAL_DISASTER.wildfire_major": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "wildfire_major",
+    "label": "Major Wildfire",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "prix_agricoles",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_insurance": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "AU",
+      "CA",
+      "EU"
+    ],
+    "conflict_note": "PG&E bankruptcy from California wildfires shows utility sector tail risk"
+  },
+  "CLIMATE_NATURAL_DISASTER.climate_policy_new": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "climate_policy_new",
+    "label": "Major Climate Policy Announced",
+    "primary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_green": "bullish",
+      "equities_fossil": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU",
+      "UK",
+      "GLOBAL"
+    ],
+    "conflict_note": "IRA $369bn triggered massive capex reallocation to US green manufacturing"
+  },
+  "CLIMATE_NATURAL_DISASTER.carbon_tax_announced": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "carbon_tax_announced",
+    "label": "Carbon Tax / ETS Announced",
+    "primary_drivers": [
+      {
+        "driver": "inflation_headline",
+        "dir": 1,
+        "intensity": 0.4
+      },
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.3
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-6m"
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_carbon_intensive": "bearish",
+      "equities_clean_energy": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EU",
+      "CA",
+      "UK"
+    ],
+    "conflict_note": "Carbon border adjustment (CBAM) creates new trade policy dimension"
+  },
+  "CLIMATE_NATURAL_DISASTER.green_deal_regulation": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "green_deal_regulation",
+    "label": "Green Deal / ESG Regulation",
+    "primary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_esg_compliant": "bullish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EU",
+      "US"
+    ],
+    "conflict_note": "Compliance costs vs capital reallocation; long lag to economic impact"
+  },
+  "CLIMATE_NATURAL_DISASTER.energy_transition_target": {
+    "cat_id": "CAT-09",
+    "category": "CLIMATE_NATURAL_DISASTER",
+    "subtype_id": "energy_transition_target",
+    "label": "Energy Transition Target Announced",
+    "primary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.35
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_utilities": "bullish",
+      "equities_oil_major": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.75,
+    "horizon_primary": "1-6m",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "EU",
+      "US",
+      "UK",
+      "CN"
+    ],
+    "conflict_note": "Target credibility depends on policy mechanism; EU has binding targets"
+  },
+  "TECHNOLOGY_STRUCTURAL.ai_breakthrough_major": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "ai_breakthrough_major",
+    "label": "Major AI Breakthrough",
+    "primary_drivers": [
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.8
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.32,
+        "delay": "6m+"
+      },
+      {
+        "driver": "emploi_chomage",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      },
+      {
+        "driver": "prix_metaux",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_tech": "bullish",
+      "equities_semiconductor": "bullish",
+      "equities_labor_intensive": "bearish"
+    },
+    "typical_confidence_floor": "medium",
+    "authority_floor": 0.8,
+    "horizon_primary": "1-4w",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN",
+      "GLOBAL"
+    ],
+    "conflict_note": "Productivity shock potential: general purpose technology multiplier ~5-10x direct effect"
+  },
+  "TECHNOLOGY_STRUCTURAL.tech_antitrust_action": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "tech_antitrust_action",
+    "label": "Tech Antitrust Action",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.35
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.3
+      }
+    ],
+    "secondary_drivers": [],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_targeted_tech": "bearish",
+      "equities_broad_tech": "slightly_bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "EU"
+    ],
+    "conflict_note": "EU DMA/DSA more impactful than US antitrust due to faster enforcement"
+  },
+  "TECHNOLOGY_STRUCTURAL.tech_export_ban": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "tech_export_ban",
+    "label": "Technology Export Ban",
+    "primary_drivers": [
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.65
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_semiconductor_cn": "bearish",
+      "equities_semiconductor_us": "mixed"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "CN"
+    ],
+    "conflict_note": "NVIDIA H100/H800 controls most impactful for AI supply chain globally"
+  },
+  "TECHNOLOGY_STRUCTURAL.productivity_shock_positive": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "productivity_shock_positive",
+    "label": "Positive Productivity Shock",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "inflation_core",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      },
+      {
+        "driver": "investissement",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "1-6m"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "bullish",
+      "gold": "neutral",
+      "equities_tech": "bullish",
+      "equities_broad": "bullish"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.7,
+    "horizon_primary": "6m+",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "GLOBAL"
+    ],
+    "conflict_note": "Productivity shocks have long lags; market prices future earnings"
+  },
+  "TECHNOLOGY_STRUCTURAL.cyber_attack_critical_infra": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "cyber_attack_critical_infra",
+    "label": "Cyber Attack — Critical Infrastructure",
+    "primary_drivers": [
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "risque_geopolitique",
+        "dir": 1,
+        "intensity": 0.6
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "prix_petrole",
+        "dir": 1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "1-4w"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_cyber_security": "bullish",
+      "equities_targeted": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "US",
+      "UA",
+      "EU"
+    ],
+    "conflict_note": "Colonial Pipeline: +30% east coast fuel prices in days"
+  },
+  "TECHNOLOGY_STRUCTURAL.cyber_attack_financial": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "cyber_attack_financial",
+    "label": "Cyber Attack — Financial System",
+    "primary_drivers": [
+      {
+        "driver": "liquidite_bancaire",
+        "dir": -1,
+        "intensity": 0.6
+      },
+      {
+        "driver": "sentiment_marche",
+        "dir": -1,
+        "intensity": 0.65
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "liquidite_globale",
+        "dir": -1,
+        "intensity": 0.402,
+        "delay": "immediate"
+      },
+      {
+        "driver": "spreads_credit",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "immediate"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "bullish",
+      "usd": "bullish",
+      "gold": "bullish",
+      "equities_banks": "bearish"
+    },
+    "typical_confidence_floor": "high",
+    "authority_floor": 0.85,
+    "horizon_primary": "immediate",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "GLOBAL",
+      "US"
+    ],
+    "conflict_note": "Payment system disruption most systemic; SWIFT alternatives reduce concentration risk"
+  },
+  "TECHNOLOGY_STRUCTURAL.demographic_structural_shift": {
+    "cat_id": "CAT-10",
+    "category": "TECHNOLOGY_STRUCTURAL",
+    "subtype_id": "demographic_structural_shift",
+    "label": "Demographic Structural Shift",
+    "primary_drivers": [
+      {
+        "driver": "croissance_pib",
+        "dir": -1,
+        "intensity": 0.3
+      }
+    ],
+    "secondary_drivers": [
+      {
+        "driver": "dette_publique",
+        "dir": 1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      },
+      {
+        "driver": "investissement",
+        "dir": -1,
+        "intensity": 0.24,
+        "delay": "6m+"
+      }
+    ],
+    "asset_bias_fast": {
+      "bonds_sovereign": "neutral",
+      "usd": "neutral",
+      "gold": "neutral",
+      "equities_healthcare": "bullish",
+      "equities_real_estate": "mixed"
+    },
+    "typical_confidence_floor": "low",
+    "authority_floor": 0.65,
+    "horizon_primary": "6m+",
+    "horizon_secondary": "1-6m",
+    "typical_geography": [
+      "JP",
+      "CN",
+      "EU",
+      "US"
+    ],
+    "conflict_note": "Ultra-long horizon (decades); markets price via yield curve shape"
+  }
+}
