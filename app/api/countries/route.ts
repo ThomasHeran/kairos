@@ -1,4 +1,4 @@
-import { listCountries } from "@/api/countries";
+import { listCountries } from "@/services/countries";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

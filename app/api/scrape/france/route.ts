@@ -1,4 +1,4 @@
-import { scrapeFranceRssFeeds } from "@/api/scrape-france";
+import { scrapeFranceRssFeeds } from "@/services/scrape-france";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

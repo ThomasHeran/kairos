@@ -1,4 +1,4 @@
-import { scrapeMacroSource } from "@/api/scrape-macro";
+import { scrapeMacroSource } from "@/services/scrape-macro";
 import { type MacroSourceId, getMacroSourceById } from "@/config/macro-sources";
 
 export const runtime = "nodejs";

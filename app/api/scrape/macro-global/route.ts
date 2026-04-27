@@ -1,4 +1,4 @@
-import { scrapeMacroGlobalSources } from "@/api/scrape-macro";
+import { scrapeMacroGlobalSources } from "@/services/scrape-macro";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -1,4 +1,4 @@
-import { getHealthPayload } from "@/api/health";
+import { getHealthPayload } from "@/services/health";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -1,4 +1,4 @@
-import { listNews } from "@/api/news";
+import { listNews } from "@/services/news";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
