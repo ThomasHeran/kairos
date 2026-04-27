@@ -11,13 +11,15 @@ CREATE TABLE IF NOT EXISTS countries (
 CREATE TABLE IF NOT EXISTS sources (
   id BIGSERIAL PRIMARY KEY,
   country_id BIGINT NOT NULL REFERENCES countries(id) ON DELETE CASCADE,
-  type TEXT NOT NULL CHECK (type IN ('rss', 'twitter', 'reddit', 'forum', 'news')),
+  type TEXT NOT NULL CHECK (type IN ('rss', 'twitter', 'reddit', 'forum', 'news', 'scraping', 'api')),
+  slug TEXT,
   url TEXT NOT NULL,
   name TEXT NOT NULL,
   active BOOLEAN NOT NULL DEFAULT TRUE,
   last_scraped_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  UNIQUE (country_id, url)
+  UNIQUE (country_id, url),
+  UNIQUE (slug)
 );
 
 CREATE TABLE IF NOT EXISTS articles (
@@ -31,6 +33,11 @@ CREATE TABLE IF NOT EXISTS articles (
   scraped_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   lang VARCHAR(12),
   tags TEXT[] NOT NULL DEFAULT '{}',
+  news_type TEXT NOT NULL DEFAULT 'general',
+  release_type TEXT,
+  is_scheduled_release BOOLEAN NOT NULL DEFAULT FALSE,
+  authority_score NUMERIC(4,3) NOT NULL DEFAULT 0.500 CHECK (authority_score >= 0 AND authority_score <= 1),
+  canonical JSONB NOT NULL DEFAULT '{}'::jsonb,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 

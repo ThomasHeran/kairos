@@ -9,7 +9,7 @@ type RouteContext = {
 
 export async function GET(_request: Request, context: RouteContext) {
   const { country } = await context.params;
-  const payload = await listNews(country);
+  const payload = await listNews({ country });
 
   return Response.json(payload);
 }

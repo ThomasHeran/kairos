@@ -13,40 +13,72 @@ type ArticleRow = {
   country_code: string;
   country_name: string;
   source_name: string;
+  source_slug: string | null;
   source_type: string;
+  news_type: string;
+  release_type: string | null;
+  is_scheduled_release: boolean;
+  authority_score: string | null;
+  canonical: Record<string, unknown> | null;
 };
 
-export async function listNews(countrySlug?: string) {
-  const filters = countrySlug ? { country: countrySlug } : undefined;
+type ListNewsFilters = {
+  country?: string;
+  type?: string;
+  source?: string;
+  release_type?: string;
+};
+
+export async function listNews(filters: ListNewsFilters = {}) {
+  const resolvedFilters = Object.fromEntries(
+    Object.entries(filters).filter(([, value]) => value !== undefined && value !== ""),
+  );
 
   if (!hasDatabaseUrl()) {
     return {
       articles: [],
       total: 0,
-      filters,
+      filters: Object.keys(resolvedFilters).length > 0 ? resolvedFilters : undefined,
       source: "database_unconfigured",
     };
   }
 
-  const country = countrySlug ? getCountryBySlug(countrySlug) : undefined;
+  const country = filters.country ? getCountryBySlug(filters.country) : undefined;
 
-  if (countrySlug && !country) {
+  if (filters.country && !country) {
     return {
       articles: [],
       total: 0,
-      filters,
+      filters: Object.keys(resolvedFilters).length > 0 ? resolvedFilters : undefined,
       source: "database",
       warning: "unknown_country",
     };
   }
 
   const params: Array<number | string> = [];
-  let whereClause = "";
+  const whereClauses: string[] = [];
 
   if (country) {
     params.push(country.code_iso);
-    whereClause = `WHERE c.code_iso = $${params.length}`;
+    whereClauses.push(`c.code_iso = $${params.length}`);
   }
+
+  if (filters.type) {
+    params.push(filters.type);
+    whereClauses.push(`a.news_type = $${params.length}`);
+  }
+
+  if (filters.source) {
+    params.push(filters.source);
+    whereClauses.push(`(s.slug = $${params.length} OR s.name ILIKE $${params.length})`);
+  }
+
+  if (filters.release_type) {
+    params.push(filters.release_type);
+    whereClauses.push(`a.release_type = $${params.length}`);
+  }
+
+  const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(" AND ")}` : "";
 
   try {
     const result = await query<ArticleRow>(
@@ -63,7 +95,13 @@ export async function listNews(countrySlug?: string) {
           c.code_iso AS country_code,
           c.name AS country_name,
           s.name AS source_name,
-          s.type AS source_type
+          s.slug AS source_slug,
+          s.type AS source_type,
+          a.news_type,
+          a.release_type,
+          a.is_scheduled_release,
+          a.authority_score::text,
+          a.canonical
         FROM articles a
         INNER JOIN countries c ON c.id = a.country_id
         INNER JOIN sources s ON s.id = a.source_id
@@ -77,14 +115,14 @@ export async function listNews(countrySlug?: string) {
     return {
       articles: result.rows,
       total: result.rowCount ?? result.rows.length,
-      filters,
+      filters: Object.keys(resolvedFilters).length > 0 ? resolvedFilters : undefined,
       source: "database",
     };
   } catch (error) {
     return {
       articles: [],
       total: 0,
-      filters,
+      filters: Object.keys(resolvedFilters).length > 0 ? resolvedFilters : undefined,
       source: "database",
       error: error instanceof Error ? error.message : "Unknown database error",
     };

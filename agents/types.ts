@@ -1,4 +1,4 @@
-export type SourceType = "rss" | "twitter" | "reddit" | "forum" | "news";
+export type SourceType = "rss" | "twitter" | "reddit" | "forum" | "news" | "scraping" | "api";
 
 export type SourceConfig = {
   id: number;

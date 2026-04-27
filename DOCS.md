@@ -140,3 +140,85 @@ Appliquer `db/schema_v2.sql` après `db/schema.sql` via `psql $DATABASE_URL < db
 - Implémenter le worker C3 (graphe causal) et seeder les arcs initiaux dans `causal_arcs`.
 - Implémenter le worker C4 (moteur de raisonnement, asset_scores).
 - Implémenter le worker C5 (archivage prédictions + boucle feedback).
+
+---
+
+## Macro Global C1 (2026-04-27)
+
+### Exploration
+
+- `node_modules` était absent au début de cette tâche; `npm ci` a été nécessaire avant toute lecture de la doc Next.js locale exigée par `AGENTS.md`.
+- La doc pertinente Next.js 16 lue pour les endpoints est toujours `node_modules/next/dist/docs/01-app/01-getting-started/15-route-handlers.md`, complétée par `node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/route.md`.
+- Les flux Fed (`press_all.xml`, `press_monetary.xml`), ECB (`press.html`, `statpress.html`, `pub.html`), BOE (`/rss/news`), BIS (`/doclist/cbspeeches.rss?paging_length=15`), BLS (`/feed/bls_latest.rss`) et l’Atom custom Eurostat sont accessibles côté serveur et parsables.
+- Le lien BOJ fourni dans la tâche (`https://www.boj.or.jp/en/rss/`) ne renvoie pas un flux exploitable; le flux RSS officiel fonctionnel est `https://www.boj.or.jp/en/rss/whatsnew.xml?id=1002`.
+- Le lien BIS fourni dans la tâche (`https://www.bis.org/doclist/all_speeches.rss`) renvoie une 404; le feed officiel fonctionnel découvert via `https://www.bis.org/rss/index.htm` est `https://www.bis.org/doclist/cbspeeches.rss?paging_length=15`.
+- Eurostat n’expose pas un RSS simple depuis la page HTML, mais la page `news/euro-indicators` contient un export Atom exploitable via `p_p_resource_id=atom`.
+- IMF `https://www.imf.org/en/News/rss` renvoie une coquille HTML Next.js plutôt qu’un XML utile; la page `https://www.imf.org/en/news` contient toutefois une liste SSR `Latest News` exploitable en scraping HTML simple.
+- OECD `https://www.oecd.org/newsroom/rss.xml` répond actuellement en `403` / challenge Cloudflare depuis un client serveur simple; le source handler est branché mais reste en échec best effort tant qu’un endpoint officiel sans challenge n’est pas identifié.
+- `scripts/migrate.ts` échouait sur cette base Neon car `schema_v2.sql` avait déjà été appliqué dans une variante plus ancienne (`event_taxonomy` présent sans colonnes attendues par le fichier actuel); le script saute désormais `schema_v2.sql` si les tables taxonomy existent déjà.
+- `db/schema.sql` n’était pas idempotent sur une base déjà migrée une fois les colonnes macro ajoutées en V3, car il créait des index sur des colonnes absentes; les index macro ont été déplacés en pratique vers `schema_v3.sql`.
+
+### Changements réalisés
+
+- Ajout d’un parseur de feed partagé `lib/feed.ts` réutilisable par les flux RSS/Atom/RDF, avec support explicite des feeds RSS 1.0 utilisés par BIS.
+- Extension du modèle source côté TypeScript pour accepter `scraping` et `api` en plus des types existants.
+- Ajout de `config/macro-sources.ts` avec 9 sources macro C1: `fed`, `ecb`, `imf`, `bis`, `eurostat`, `oecd`, `bls`, `boe`, `boj`.
+- Ajout du service métier `api/scrape-macro.ts`:
+  - collecte multi-sources,
+  - scraping HTML dédié IMF,
+  - extraction multi-publications depuis le flux BLS latest numbers,
+  - normalisation C1 canonique en JSON,
+  - détection `release_type` (`rate_decision`, `cpi`, `gdp`, `pmi`, `nfp`, `speech`, `report`),
+  - enrichissement `is_scheduled_release`, `authority_score`, `news_type=macro_global`,
+  - upsert DB dans `countries`, `sources`, `articles`, `scrape_jobs`.
+- Ajout des endpoints:
+  - `POST /api/scrape/macro-global`
+  - `POST /api/scrape/macro/[source_id]`
+- Extension de `GET /api/news` pour supporter les filtres:
+  - `?type=macro_global`
+  - `?source=<slug>`
+  - `?release_type=<type>`
+- Extension du schéma SQL:
+  - `sources.slug`
+  - nouveaux types `scraping` / `api`
+  - `articles.news_type`
+  - `articles.release_type`
+  - `articles.is_scheduled_release`
+  - `articles.authority_score`
+  - `articles.canonical` (`jsonb`)
+- Ajout de `db/schema_v3.sql` et mise à jour de `scripts/migrate.ts` pour appliquer cette migration de façon additive et idempotente.
+- Correction des heuristiques de classification après observation réelle:
+  - `address` dans un texte long ne classe plus à tort un article en `speech`
+  - `interest rate statistics` ECB ne classe plus à tort un article en `rate_decision`
+
+### Vérifications réalisées
+
+- `npm run db:migrate`
+- `npx tsc --noEmit`
+- `npm run lint` (reste 2 warnings historiques hors périmètre dans le moteur de scénarios)
+- `npm run build`
+- Exécutions directes validées:
+  - `fed` → success, 31 articles
+  - `ecb` → success, 44 articles
+  - `imf` → success, 8 articles
+  - `bis` → success, 25 articles
+  - `eurostat` → success, 11 articles
+  - `bls` → success, 6 articles
+  - `boe` → success, 50 articles
+  - `boj` → success, 48 articles
+  - `oecd` → failed, `403`
+- Vérifications HTTP locales via Next App Router:
+  - `POST /api/scrape/macro/fed`
+  - `POST /api/scrape/macro-global`
+  - `GET /api/news?type=macro_global&source=fed`
+  - `GET /api/news?type=macro_global&source=ecb`
+- Vérification DB directe:
+  - des articles `macro_global` Fed et ECB sont présents en base,
+  - avec `source_slug`, `release_type`, `is_scheduled_release`, `authority_score` et `canonical` renseignés.
+
+### Points de reprise
+
+- Trouver un endpoint OECD officiel exploitable sans challenge Cloudflare afin de faire passer la 9e source en succès réel.
+- Étendre la même couche macro à la Banque mondiale, OMC et BEA si le périmètre doit couvrir toute la liste initiale de la tâche.
+- Raffiner encore les heuristiques de `release_type` pour distinguer plus finement `speech` vs `report` et les publications de minutes/comptes rendus de banques centrales.
+- Ajouter des tests automatisés ciblés pour `api/scrape-macro.ts` (par source et par classifieur).

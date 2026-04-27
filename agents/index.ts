@@ -12,6 +12,8 @@ const registry = {
   twitter: new TwitterAgent(),
   forum: new ForumAgent(),
   news: new NewsAgent(),
+  scraping: new NewsAgent(),
+  api: new NewsAgent(),
 } satisfies Record<SourceType, BaseSourceAgent>;
 
 export function getAgentForType(type: SourceType) {
