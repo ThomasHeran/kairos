@@ -1,5 +1,23 @@
 # DOCS
 
+## Re-push vers ThomasHeran/kairos (2026-04-27)
+
+### Exploration
+
+- La branche locale active est `main`, propre et alignée sur `origin/main` au moment de l'inspection.
+- Le remote existant observé avant transfert est uniquement `origin -> git@github.com:nanocorp-hq/kairon.git`.
+- Le HEAD local inspecté avant le nouveau push est `feb53c3` (`docs: add git transfer diagnostic`).
+- Le commit métier de référence demandé dans la tâche (`b90f058` — `feat: add C3 knowledge base v1 seed`) est bien présent dans l'historique récent.
+- Les dossiers/fichiers majeurs confirmés dans le repo incluent `agents/`, `api/`, `app/`, `config/`, `db/`, `docs/`, `engine/`, `lib/`, `scheduler/`, `scripts/`, `package.json`, `next.config.ts` et `README.md`.
+- Les artefacts métier attendus sont bien présents côté repo worker: `config/taxonomy_v1.json`, `config/knowledge_base_v1.json`, `db/schema_v2.sql`, `db/seed_knowledge_base_v1.sql`, `scripts/generate_knowledge_base_v1.py`, `engine/scenario_tree_engine.py`.
+- Divergences constatées par rapport à la structure cible fournie dans la tâche:
+- `docs/event_driver_lookup.json` existe, mais pas `config/event_driver_lookup.json`.
+- Il n'existe pas de dossier `pipeline/` autonome; la logique C2 vit principalement dans `lib/qualify.ts`, `docs/classification_prompt_v1.md` et les routes/services associés.
+
+### Changements réalisés
+
+- Ajout de cette note d'exécution dans `DOCS.md` pour tracer l'inventaire du repo et l'opération de transfert vers `ThomasHeran/kairos`.
+
 ## Diagnostic Git pour transfert vers ThomasHeran/kairos (2026-04-27)
 
 ### Exploration
