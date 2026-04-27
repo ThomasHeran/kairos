@@ -1,5 +1,22 @@
 # DOCS
 
+## Fix Vercel build collision: /api/ → /services/ (2026-04-27)
+
+### Root Cause
+
+The project had a top-level `/api/` directory containing business logic modules (`news.ts`, `health.ts`, `countries.ts`, `scrape-france.ts`, `scrape-macro.ts`). Vercel auto-detects any top-level `/api/*.ts` files as serverless Functions. Since Next.js App Router also builds `app/api/**` routes as Functions, Vercel tried to create `.vc-config.json` for the same path twice → build collision.
+
+### Fix
+
+- Renamed `/api/` → `/services/` (business logic modules; Vercel ignores this directory)
+- Updated all 7 route files in `app/api/` to import from `@/services/` instead of `@/api/`
+- `npm run build` passes cleanly: 16 App Router routes, 0 collision
+- Committed as `b6455f7`, pushed to `main`
+
+---
+
+# DOCS
+
 ## Fix commit author email on ThomasHeran/kairos (2026-04-27)
 
 ### Exploration
