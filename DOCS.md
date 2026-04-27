@@ -1,5 +1,27 @@
 # DOCS
 
+## Homepage Redesign: Dynamic News Dashboard (2026-04-27)
+
+### Files changed
+- `app/page.tsx` — full rewrite as Client Component
+
+### Features implemented
+- `"use client"` directive + React hooks (`useState`, `useEffect`, `useCallback`)
+- Header: "Kairos / Multi-Country News Intelligence Platform", live stats (countries, sources, articles), last-updated timestamp
+- Dynamic fetch from `/api/countries` → country filter bar with emoji flags and source counts
+- Dynamic fetch from `/api/news?country=XX` → news article feed sorted by recency
+- Article cards: title (linked), source name, flag, time-ago, release_type badge, excerpt
+- Loading spinners for countries, articles, scrape operation
+- Error state and empty state with contextual guidance
+- Manual "Scrape Now" button → `POST /api/scrape/france` → auto-refresh
+- Staggered card entrance animations; hover interactions
+- Preserves existing CSS design system (CSS variables, `.grid-panel`, `.eyebrow`, Tailwind v4)
+- `npm run build` passes cleanly (16 routes, 0 errors)
+- Pushed to `nanocorp-hq/kairon` main and force-pushed to `ThomasHeran/kairos` main
+- Vercel live URL returns HTTP 200 ✓
+
+---
+
 ## Diagnosis: Kairos live deployment "inutilisable" (2026-04-27)
 
 ### Investigation Summary
