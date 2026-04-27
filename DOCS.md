@@ -43,6 +43,71 @@
 
 ---
 
+## Scenario Tree Engine C4 (2026-04-27)
+
+### Fichiers créés
+
+**Python engine/ (standalone + DB)**
+- `engine/probability_calibrator.py` — Lookup table + ajustement contextuel, détection HIGH_UNCERTAINTY (CAT-05/06/08 + importance > 0.75), pruning rules
+- `engine/branch_generator.py` — Génération des branches nœud par nœud, atténuation par profondeur, root node generator
+- `engine/scenario_aggregator.py` — Consensus pondéré, dominant scenario, uncertainty flag, revision factors
+- `engine/scenario_tree_engine.py` — Orchestrateur principal: BFS récursif, extraction paths root→leaf, persistance PostgreSQL
+- `engine/scenario_report_generator.py` — Rapport Markdown via Anthropic Claude API (fallback structuré si API absent)
+
+**Config**
+- `config/probability_calibrations_v1.json` — 10 calibrations historiques: armed_conflict_hormuz, armed_conflict_general, sanctions, oil_supply_disruption, financial_stress, trade_war, energy_supply_shock, sovereign_debt, oil_price_surge, opec_decision
+
+**DB (db/schema_scenario_v1.sql)**
+- `probability_calibrations` — lookup bifurcations (10 seedings)
+- `scenario_trees` — arbre complet par event (status, consensus, dominant_scenario)
+- `scenario_nodes` — nœuds (probability, cumulative, drivers, asset_impacts, depth)
+- `scenario_paths` — chemins root→feuille (terminal scenarios)
+- `scenario_revisions` — tracking des révisions de probabilité
+
+**TypeScript API (Next.js)**
+- `lib/scenarios.ts` — business logic TS: détection HIGH_UNCERTAINTY, calibration lookup, DB queries, consensus computation
+- `app/api/analyze/scenarios/route.ts` — POST /api/analyze/scenarios
+- `app/api/scenarios/[tree_id]/route.ts` — GET /api/scenarios/:tree_id
+- `app/api/scenarios/[tree_id]/path/[path_id]/route.ts` — GET /api/scenarios/:tree_id/path/:path_id
+- `app/api/scenarios/[tree_id]/consensus/route.ts` — GET /api/scenarios/:tree_id/consensus
+
+**Test**
+- `scripts/test_scenario_engine.py` — 7/7 tests E2E passent
+
+### Architecture du moteur
+
+```
+[Event HIGH_UNCERTAINTY: CAT-05/06/08 + importance > 0.75]
+       ↓
+[Root node: drivers primaires depuis event_type]
+       ↓
+[BranchGenerator: lookup calibrations + ajustement contextuel]
+  → 2-4 branches niveau 1, probabilités normalisées
+       ↓
+[Récursion BFS jusqu’à depth=4]
+  → Chaque branche: P_cumul = P_parent × P_branche
+  → Pruning si P_cumul < 0.03 ou coefficient < 0.10
+       ↓
+[extract_paths: root→leaf paths (ScenarioPaths)]
+  → terminal_asset_summary (agrégat pondéré du chemin)
+       ↓
+[ScenarioAggregator: consensus pondéré + dominant + uncertainty_flag]
+       ↓
+[ScenarioReportGenerator: rapport Markdown via LLM ou fallback]
+       ↓
+[Output: ScenarioTree JSON + persistance DB]
+```
+
+### Points de reprise suivants
+- Implémenter le worker C2 (classification LLM → events table) pour tester avec de vrais events DB
+- Connecter le C3 causal graph (causal_arcs) au branch_generator pour des bifurcations dynamiques
+- Ajouter les narratifs LLM via ANTHROPIC_API_KEY (déjà implémenté, utilise `claude-haiku-4-5-20251001`)
+- Implémenter `scenario_revisions` (révision des probabilités quand de nouveaux events arrivent)
+- Ajouter une UI de visualisation de l’arbre (frontend)
+- Écrire les tests d’intégration TypeScript pour les routes API
+
+---
+
 ## Schéma canonique inter-couches C1→C2→C3→C4→C5 (2026-04-15)
 
 ### Fichiers créés
