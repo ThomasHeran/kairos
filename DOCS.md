@@ -222,3 +222,50 @@ Appliquer `db/schema_v2.sql` après `db/schema.sql` via `psql $DATABASE_URL < db
 - Étendre la même couche macro à la Banque mondiale, OMC et BEA si le périmètre doit couvrir toute la liste initiale de la tâche.
 - Raffiner encore les heuristiques de `release_type` pour distinguer plus finement `speech` vs `report` et les publications de minutes/comptes rendus de banques centrales.
 - Ajouter des tests automatisés ciblés pour `api/scrape-macro.ts` (par source et par classifieur).
+
+---
+
+## Knowledge Base C3 v1 (2026-04-27)
+
+### Exploration
+
+- Le repo ne contenait aucun artefact du travail non committe precedemment: pas de `/tmp/gen_kb.py`, pas de branche/commit/stash recuperable contenant `knowledge_base_v1`.
+- `config/taxonomy_v1.json` et `docs/event_driver_lookup.json` sont plus recents que le texte historise dans `db/schema_v2.sql`:
+  - la taxonomie actuelle contient `101` sous-types,
+  - `event_taxonomy` dans Neon contient bien `101` lignes,
+  - certains `subtype_id` effectifs sont `qe_announcement`, `qt_announcement`, `emergency_action_easing`, etc., pas les anciens libelles du commentaire SQL.
+- `docs/event_driver_lookup.json` couvre `101` entrees sur les `10` categories et utilise `22` drivers uniques.
+- La base Neon avant seed contenait deja `drivers=18` (seed historique), `causal_arcs=0`, `historical_episodes=0`, `asset_sensitivity=0`.
+- Choix de design pour `knowledge_base_v1`:
+  - conserver `20` drivers coeur alignes sur les slugs du lookup,
+  - exclure `prix_gaz` et `prix_agricoles` du noyau v1,
+  - verification faite: les `101` entrees du lookup touchent quand meme au moins un driver du noyau v1, donc la couverture par categorie reste complete.
+
+### Fichiers crees
+
+- `config/knowledge_base_v1.json`
+  - `20` drivers coeur,
+  - `50` arcs causaux,
+  - `24` episodes historiques couvrant `CAT-01` a `CAT-10`,
+  - `280` sensibilites d'actifs (`14` drivers principaux x `20` actifs),
+  - metadata de couverture + attenuation Kairos `0.6` par niveau.
+- `db/seed_knowledge_base_v1.sql`
+  - upserts idempotents pour `drivers`, `causal_arcs`, `historical_episodes`, `asset_sensitivity`,
+  - UUID stables pour les arcs et episodes.
+- `scripts/generate_knowledge_base_v1.py`
+  - generateur deterministe des deux livrables ci-dessus.
+
+### Application DB
+
+- Seed applique avec succes via `psql $DATABASE_URL < db/seed_knowledge_base_v1.sql`.
+- Comptes verifies ensuite en Neon:
+  - `drivers=20`
+  - `causal_arcs=50`
+  - `historical_episodes=24`
+  - `asset_sensitivity=280`
+
+### Points de reprise
+
+- Ajouter un KB v2 si Kairos veut faire passer `prix_gaz` et `prix_agricoles` du statut "lookup-only" au statut de drivers coeur seeds en DB.
+- Connecter le moteur C4 (`engine/branch_generator.py` / `lib/scenarios.ts`) a `causal_arcs` et `historical_episodes` pour des chemins dynamiques reels.
+- Ajouter des tests d'integration qui valident la coherence `taxonomy_v1.json` ↔ `event_driver_lookup.json` ↔ `knowledge_base_v1.json` ↔ tables Neon.

@@ -1,0 +1,4781 @@
+{
+  "version": "knowledge_base_v1",
+  "generated_on": "2026-04-27",
+  "propagation": {
+    "attenuation_per_level": 0.6,
+    "note": "Kairos standard attenuation applied at each propagation level."
+  },
+  "coverage": {
+    "taxonomy_categories": {
+      "CAT-01": 10,
+      "CAT-02": 18,
+      "CAT-03": 9,
+      "CAT-04": 11,
+      "CAT-05": 10,
+      "CAT-06": 11,
+      "CAT-07": 9,
+      "CAT-08": 7,
+      "CAT-09": 9,
+      "CAT-10": 7
+    },
+    "lookup_entries": 101,
+    "lookup_entries_touching_core_network": 101,
+    "non_core_lookup_drivers": [
+      "prix_gaz",
+      "prix_agricoles"
+    ],
+    "note": "Core KB v1 keeps 20 pivot drivers while all 101 lookup entries still map into the core network."
+  },
+  "drivers": [
+    {
+      "slug": "taux_directeurs",
+      "label_fr": "Taux directeurs",
+      "label_en": "Policy rates",
+      "name": "Taux directeurs des banques centrales",
+      "category": "monetary",
+      "description": "Niveau du taux directeur implicite pour la zone ou l'economie de reference.",
+      "sources_mesure": [
+        "Fed",
+        "ECB",
+        "BoE",
+        "BoJ",
+        "BIS"
+      ],
+      "frequence": "event-driven / quotidienne",
+      "unite": "%"
+    },
+    {
+      "slug": "liquidite_globale",
+      "label_fr": "Liquidite globale",
+      "label_en": "Global liquidity",
+      "name": "Liquidite globale",
+      "category": "financial",
+      "description": "Conditions globales de bilan des banques centrales et abondance de liquidite en dollars.",
+      "sources_mesure": [
+        "Fed balance sheet",
+        "ECB APP/PEPP",
+        "BIS liquidity indicators"
+      ],
+      "frequence": "hebdomadaire",
+      "unite": "index"
+    },
+    {
+      "slug": "liquidite_bancaire",
+      "label_fr": "Liquidite bancaire",
+      "label_en": "Bank liquidity",
+      "name": "Liquidite du systeme bancaire",
+      "category": "financial",
+      "description": "Disponibilite de collateraux et de depots dans le systeme bancaire.",
+      "sources_mesure": [
+        "Bank reserves",
+        "Funding spreads",
+        "Bank earnings"
+      ],
+      "frequence": "hebdomadaire",
+      "unite": "index"
+    },
+    {
+      "slug": "conditions_credit",
+      "label_fr": "Conditions de credit",
+      "label_en": "Credit conditions",
+      "name": "Conditions de credit",
+      "category": "credit",
+      "description": "Tightening ou easing de l'offre de credit bancaire et de marche.",
+      "sources_mesure": [
+        "SLOOS",
+        "ECB BLS",
+        "Corporate lending surveys"
+      ],
+      "frequence": "mensuelle / trimestrielle",
+      "unite": "index"
+    },
+    {
+      "slug": "spreads_credit",
+      "label_fr": "Spreads de credit",
+      "label_en": "Credit spreads",
+      "name": "Spreads de credit IG/HY",
+      "category": "credit",
+      "description": "Prime de risque demandee sur la dette corporate investment grade et high yield.",
+      "sources_mesure": [
+        "ICE BofA OAS",
+        "CDX",
+        "iTraxx"
+      ],
+      "frequence": "quotidienne",
+      "unite": "bps"
+    },
+    {
+      "slug": "spreads_souverains",
+      "label_fr": "Spreads souverains",
+      "label_en": "Sovereign spreads",
+      "name": "Spreads souverains",
+      "category": "sovereign",
+      "description": "Prime de risque souveraine versus Bund ou Treasury de reference.",
+      "sources_mesure": [
+        "Bloomberg sovereign curves",
+        "CDS sovereign",
+        "ECB"
+      ],
+      "frequence": "quotidienne",
+      "unite": "bps"
+    },
+    {
+      "slug": "inflation_headline",
+      "label_fr": "Inflation headline",
+      "label_en": "Headline inflation",
+      "name": "Inflation headline",
+      "category": "prices",
+      "description": "Variation annuelle du CPI/IPC, incluant energie et alimentation.",
+      "sources_mesure": [
+        "BLS CPI",
+        "Eurostat HICP",
+        "ONS CPI"
+      ],
+      "frequence": "mensuelle",
+      "unite": "% yoy"
+    },
+    {
+      "slug": "inflation_core",
+      "label_fr": "Inflation core",
+      "label_en": "Core inflation",
+      "name": "Inflation core",
+      "category": "prices",
+      "description": "Inflation sous-jacente hors composantes volatiles, plus utile pour la reaction des banques centrales.",
+      "sources_mesure": [
+        "Core CPI",
+        "Core PCE",
+        "Core HICP"
+      ],
+      "frequence": "mensuelle",
+      "unite": "% yoy"
+    },
+    {
+      "slug": "anticipations_inflation",
+      "label_fr": "Anticipations d'inflation",
+      "label_en": "Inflation expectations",
+      "name": "Anticipations d'inflation",
+      "category": "expectations",
+      "description": "Breakevens 5y5y et surveys de menages/entreprises sur l'inflation future.",
+      "sources_mesure": [
+        "5y5y breakevens",
+        "UMich survey",
+        "ECB SPF"
+      ],
+      "frequence": "quotidienne / mensuelle",
+      "unite": "%"
+    },
+    {
+      "slug": "croissance_pib",
+      "label_fr": "Croissance PIB",
+      "label_en": "GDP growth",
+      "name": "Croissance du PIB",
+      "category": "growth",
+      "description": "Impulsion de croissance reelle, proxifiee par PIB et nowcasts.",
+      "sources_mesure": [
+        "GDP releases",
+        "Nowcasts",
+        "OECD CLI"
+      ],
+      "frequence": "trimestrielle",
+      "unite": "% qoq"
+    },
+    {
+      "slug": "emploi_chomage",
+      "label_fr": "Emploi / chomage",
+      "label_en": "Labor market",
+      "name": "Emploi et chomage",
+      "category": "growth",
+      "description": "Solidite du marche du travail via NFP, taux de chomage et job openings.",
+      "sources_mesure": [
+        "BLS jobs report",
+        "Eurostat unemployment",
+        "JOLTS"
+      ],
+      "frequence": "mensuelle",
+      "unite": "%"
+    },
+    {
+      "slug": "investissement",
+      "label_fr": "Investissement",
+      "label_en": "Investment",
+      "name": "Investissement prive",
+      "category": "growth",
+      "description": "FBCF privee et depenses capex cycliques.",
+      "sources_mesure": [
+        "GDP detail",
+        "Capex guidance",
+        "PMI new orders"
+      ],
+      "frequence": "trimestrielle",
+      "unite": "% gdp"
+    },
+    {
+      "slug": "consommation",
+      "label_fr": "Consommation",
+      "label_en": "Consumption",
+      "name": "Consommation des menages",
+      "category": "growth",
+      "description": "Dynamique de demande finale des menages et resilience du revenu reel.",
+      "sources_mesure": [
+        "Retail sales",
+        "Consumption expenditures",
+        "Consumer surveys"
+      ],
+      "frequence": "mensuelle",
+      "unite": "% gdp"
+    },
+    {
+      "slug": "usd_strength",
+      "label_fr": "Force du dollar",
+      "label_en": "USD strength",
+      "name": "Force du dollar",
+      "category": "fx",
+      "description": "Direction du dollar global, captee via DXY et flux refuges.",
+      "sources_mesure": [
+        "DXY",
+        "Broad dollar index",
+        "Cross-asset flows"
+      ],
+      "frequence": "quotidienne",
+      "unite": "index"
+    },
+    {
+      "slug": "prix_petrole",
+      "label_fr": "Prix du petrole",
+      "label_en": "Oil price",
+      "name": "Prix du petrole",
+      "category": "commodity",
+      "description": "Prix spot et futures du Brent/WTI comme choc energetique global.",
+      "sources_mesure": [
+        "WTI",
+        "Brent",
+        "EIA inventories"
+      ],
+      "frequence": "quotidienne",
+      "unite": "USD/bbl"
+    },
+    {
+      "slug": "prix_metaux",
+      "label_fr": "Prix des metaux",
+      "label_en": "Industrial metals prices",
+      "name": "Prix des metaux industriels",
+      "category": "commodity",
+      "description": "Prix du cuivre, aluminium et panier de metaux cycliques.",
+      "sources_mesure": [
+        "LME",
+        "COMEX",
+        "PMI input prices"
+      ],
+      "frequence": "quotidienne",
+      "unite": "index"
+    },
+    {
+      "slug": "sentiment_marche",
+      "label_fr": "Sentiment de marche",
+      "label_en": "Market sentiment",
+      "name": "Sentiment de marche",
+      "category": "market",
+      "description": "Appetit pour le risque / aversion au risque, via VIX, credit et breadth.",
+      "sources_mesure": [
+        "VIX",
+        "MOVE",
+        "Breadth indicators"
+      ],
+      "frequence": "quotidienne",
+      "unite": "index"
+    },
+    {
+      "slug": "risque_geopolitique",
+      "label_fr": "Risque geopolitique",
+      "label_en": "Geopolitical risk",
+      "name": "Risque geopolitique",
+      "category": "market",
+      "description": "Niveau de tension geopolitique a portee macro, militaire ou diplomatique.",
+      "sources_mesure": [
+        "GPR index",
+        "Event tracking",
+        "Commodity shipping stress"
+      ],
+      "frequence": "event-driven",
+      "unite": "index"
+    },
+    {
+      "slug": "dette_publique",
+      "label_fr": "Dette publique",
+      "label_en": "Public debt",
+      "name": "Dette publique",
+      "category": "fiscal",
+      "description": "Charge et trajectoire de dette souveraine rapportee au PIB.",
+      "sources_mesure": [
+        "Treasury statements",
+        "Debt management offices",
+        "IMF WEO"
+      ],
+      "frequence": "trimestrielle",
+      "unite": "% gdp"
+    },
+    {
+      "slug": "balance_commerciale",
+      "label_fr": "Balance commerciale",
+      "label_en": "Trade balance",
+      "name": "Balance commerciale",
+      "category": "trade",
+      "description": "Solde commercial et deterioration / amelioration des flux exterieurs.",
+      "sources_mesure": [
+        "Trade balance releases",
+        "Customs data",
+        "Current account"
+      ],
+      "frequence": "mensuelle",
+      "unite": "USD bn"
+    }
+  ],
+  "causal_arcs": [
+    {
+      "arc_id": "c253f7da-b8ae-5e27-a1a5-40244f14c7aa",
+      "source_driver": "taux_directeurs",
+      "target_driver": "conditions_credit",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.82,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.91,
+      "empirical_justification": "Rate hikes tighten bank lending standards with a short lag."
+    },
+    {
+      "arc_id": "1ac2ea5d-8bb3-5e57-89b0-eb73cd11cb64",
+      "source_driver": "taux_directeurs",
+      "target_driver": "liquidite_globale",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.74,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.88,
+      "empirical_justification": "Balance sheet tightening and higher policy rates drain global dollar liquidity."
+    },
+    {
+      "arc_id": "58d3cbc4-3dee-57a9-b8f7-0f49b48f6bdd",
+      "source_driver": "taux_directeurs",
+      "target_driver": "spreads_credit",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.63,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.86,
+      "empirical_justification": "Higher discount rates lift refinancing stress for corporate issuers."
+    },
+    {
+      "arc_id": "0045ce6f-0d46-5a0d-932d-9255e65b5c7c",
+      "source_driver": "taux_directeurs",
+      "target_driver": "usd_strength",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.58,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.84,
+      "empirical_justification": "Rate differentials support USD through carry and safe-rate demand."
+    },
+    {
+      "arc_id": "47e0a36b-057e-5eb0-a39c-5679960f82fe",
+      "source_driver": "taux_directeurs",
+      "target_driver": "croissance_pib",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.46,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.77,
+      "empirical_justification": "Tighter policy slows activity with a several-quarter lag."
+    },
+    {
+      "arc_id": "283ba451-f451-5d2e-ba3b-573c2985e7fc",
+      "source_driver": "taux_directeurs",
+      "target_driver": "inflation_headline",
+      "direction": -1,
+      "intensity": "low",
+      "coefficient": 0.28,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.72,
+      "empirical_justification": "Disinflation works with a lag via demand destruction and financing costs."
+    },
+    {
+      "arc_id": "bf4ddaa9-c6d4-52cb-a27c-72b2ac49caef",
+      "source_driver": "taux_directeurs",
+      "target_driver": "investissement",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.55,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.81,
+      "empirical_justification": "Capex is rate-sensitive through hurdle rates and credit availability."
+    },
+    {
+      "arc_id": "294e7d73-be91-5693-8b2c-eba2fb96af5b",
+      "source_driver": "liquidite_globale",
+      "target_driver": "spreads_souverains",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.76,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.89,
+      "empirical_justification": "QE-style liquidity compresses sovereign term premia and spreads."
+    },
+    {
+      "arc_id": "098f8e55-dcc0-52aa-b7b9-ab6425b3a348",
+      "source_driver": "liquidite_globale",
+      "target_driver": "conditions_credit",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.78,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.88,
+      "empirical_justification": "Abundant reserves and funding conditions ease bank credit creation."
+    },
+    {
+      "arc_id": "e0f117b3-b88f-5fac-acd5-df988fc4dd4d",
+      "source_driver": "liquidite_globale",
+      "target_driver": "sentiment_marche",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.52,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.8,
+      "empirical_justification": "Liquidity support improves cross-asset risk appetite."
+    },
+    {
+      "arc_id": "ebae0bb5-6dff-508b-a7be-69e3ed2185ba",
+      "source_driver": "liquidite_globale",
+      "target_driver": "usd_strength",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.44,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.76,
+      "empirical_justification": "Dollar liquidity expansion tends to soften the broad USD."
+    },
+    {
+      "arc_id": "ee1a741a-2871-58a4-9458-fb6c3c11b916",
+      "source_driver": "liquidite_bancaire",
+      "target_driver": "conditions_credit",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.81,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.87,
+      "empirical_justification": "Banks with better liquidity buffers lend more readily."
+    },
+    {
+      "arc_id": "313f5b85-7658-5b45-8fb9-b1d0000bc45e",
+      "source_driver": "liquidite_bancaire",
+      "target_driver": "spreads_credit",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.59,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.79,
+      "empirical_justification": "Funding stress relief narrows corporate spread compensation."
+    },
+    {
+      "arc_id": "0e1c1180-a3d1-5f3f-8382-40c058c5513d",
+      "source_driver": "conditions_credit",
+      "target_driver": "investissement",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.72,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.88,
+      "empirical_justification": "Easier bank lending transmits directly into capex."
+    },
+    {
+      "arc_id": "6e07bd67-fa1a-5563-aef1-1dda361ab26c",
+      "source_driver": "conditions_credit",
+      "target_driver": "consommation",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.47,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.76,
+      "empirical_justification": "Consumer credit availability lifts durable goods demand."
+    },
+    {
+      "arc_id": "0488f1fb-2d74-53c8-b0f4-d4a2f69829bb",
+      "source_driver": "conditions_credit",
+      "target_driver": "croissance_pib",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.68,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.86,
+      "empirical_justification": "Broad easing in credit conditions supports aggregate demand."
+    },
+    {
+      "arc_id": "0bf0e97c-6564-5bc8-abbb-683aa495cf73",
+      "source_driver": "conditions_credit",
+      "target_driver": "spreads_credit",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.51,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.78,
+      "empirical_justification": "Looser financing conditions compress IG/HY spreads."
+    },
+    {
+      "arc_id": "7c833b05-cf05-5c82-a744-ed36eabb7802",
+      "source_driver": "spreads_credit",
+      "target_driver": "croissance_pib",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.59,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.83,
+      "empirical_justification": "Wider spreads precede weaker investment and activity."
+    },
+    {
+      "arc_id": "1ba0b530-aa42-5b84-806e-25f278fd0d79",
+      "source_driver": "spreads_credit",
+      "target_driver": "sentiment_marche",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.53,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.82,
+      "empirical_justification": "Credit stress quickly deteriorates risk sentiment."
+    },
+    {
+      "arc_id": "d72394e6-02a5-58ae-a245-97ab373331eb",
+      "source_driver": "spreads_souverains",
+      "target_driver": "conditions_credit",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.42,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.74,
+      "empirical_justification": "Sovereign stress bleeds into domestic bank balance sheets and lending."
+    },
+    {
+      "arc_id": "d7d328ef-1fec-5f96-9ba8-dfcdc7b4f594",
+      "source_driver": "spreads_souverains",
+      "target_driver": "dette_publique",
+      "direction": 1,
+      "intensity": "low",
+      "coefficient": 0.34,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.71,
+      "empirical_justification": "Higher sovereign funding costs worsen debt-service dynamics."
+    },
+    {
+      "arc_id": "0b97922d-7dba-5b78-865e-58340a9e3e36",
+      "source_driver": "inflation_headline",
+      "target_driver": "anticipations_inflation",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.74,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.87,
+      "empirical_justification": "Repeated upside CPI prints re-anchor medium-term expectations higher."
+    },
+    {
+      "arc_id": "7317d943-bc85-5cec-9261-37408d296d74",
+      "source_driver": "inflation_headline",
+      "target_driver": "taux_directeurs",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.69,
+      "delay": "1-4w",
+      "conditions": [
+        {
+          "driver": "inflation_headline",
+          "operator": ">",
+          "threshold": 3.0
+        }
+      ],
+      "confidence": 0.88,
+      "empirical_justification": "Central banks react faster when headline inflation breaches comfort zones."
+    },
+    {
+      "arc_id": "fe39202f-e7e5-50fd-b478-61b0bef92808",
+      "source_driver": "inflation_headline",
+      "target_driver": "consommation",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.36,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.73,
+      "empirical_justification": "Real income compression weighs on household demand."
+    },
+    {
+      "arc_id": "fa1515a3-c819-5db5-8b7a-2abf274449c9",
+      "source_driver": "inflation_headline",
+      "target_driver": "usd_strength",
+      "direction": 1,
+      "intensity": "low",
+      "coefficient": 0.27,
+      "delay": "immediate",
+      "conditions": [
+        {
+          "driver": "taux_directeurs",
+          "operator": ">=",
+          "threshold": 3.0
+        }
+      ],
+      "confidence": 0.68,
+      "empirical_justification": "Inflation surprises can support USD via hawkish repricing."
+    },
+    {
+      "arc_id": "02b51736-53cc-50c2-abce-c74594d0b7c6",
+      "source_driver": "inflation_core",
+      "target_driver": "taux_directeurs",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.77,
+      "delay": "1-4w",
+      "conditions": [
+        {
+          "driver": "inflation_core",
+          "operator": ">",
+          "threshold": 2.5
+        }
+      ],
+      "confidence": 0.9,
+      "empirical_justification": "Persistent core inflation is the most reliable trigger for policy tightening."
+    },
+    {
+      "arc_id": "f58d7d19-cc69-5702-9260-ed2e3b33e813",
+      "source_driver": "inflation_core",
+      "target_driver": "anticipations_inflation",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.61,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.8,
+      "empirical_justification": "Sticky core services inflation shapes medium-term inflation expectations."
+    },
+    {
+      "arc_id": "f29b6c01-47c3-5831-b6ad-898e53819a3d",
+      "source_driver": "anticipations_inflation",
+      "target_driver": "taux_directeurs",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.62,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.81,
+      "empirical_justification": "Breakeven drift higher tightens reaction functions."
+    },
+    {
+      "arc_id": "3022aeaa-004a-5e76-b4b0-45c753b3b3b2",
+      "source_driver": "anticipations_inflation",
+      "target_driver": "spreads_souverains",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.49,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.76,
+      "empirical_justification": "Higher inflation expectations raise nominal term premia."
+    },
+    {
+      "arc_id": "e78f8acc-def5-557c-af10-e1b1e62c684f",
+      "source_driver": "croissance_pib",
+      "target_driver": "emploi_chomage",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.71,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.88,
+      "empirical_justification": "Stronger real activity reduces unemployment with a lag."
+    },
+    {
+      "arc_id": "badbf16f-124f-5ac6-b11a-a73e991d19bf",
+      "source_driver": "croissance_pib",
+      "target_driver": "consommation",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.66,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.82,
+      "empirical_justification": "Growth improves income confidence and spending capacity."
+    },
+    {
+      "arc_id": "b8b4bb89-bb20-5bf4-908f-57843a24f450",
+      "source_driver": "croissance_pib",
+      "target_driver": "investissement",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.74,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.87,
+      "empirical_justification": "Output growth raises capacity utilisation and capex demand."
+    },
+    {
+      "arc_id": "29103714-fe87-542b-9d1c-43a38054aa94",
+      "source_driver": "croissance_pib",
+      "target_driver": "balance_commerciale",
+      "direction": -1,
+      "intensity": "low",
+      "coefficient": 0.29,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.65,
+      "empirical_justification": "Domestic-demand booms often widen import-driven trade deficits."
+    },
+    {
+      "arc_id": "4a2c1304-1ee8-5659-aa19-abad564128c6",
+      "source_driver": "emploi_chomage",
+      "target_driver": "consommation",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.69,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.84,
+      "empirical_justification": "Rising unemployment weakens household confidence and spending."
+    },
+    {
+      "arc_id": "6076db4e-1856-5e6f-a3e0-7fe39d16b438",
+      "source_driver": "investissement",
+      "target_driver": "croissance_pib",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.72,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.84,
+      "empirical_justification": "Capex feeds directly into GDP through domestic demand and productivity."
+    },
+    {
+      "arc_id": "97c17bde-c0f2-501d-a183-034dfa04505e",
+      "source_driver": "consommation",
+      "target_driver": "inflation_core",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.41,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.74,
+      "empirical_justification": "Demand resilience sustains services inflation."
+    },
+    {
+      "arc_id": "ea8f3c86-a1a7-5885-b735-33cf65d077ed",
+      "source_driver": "usd_strength",
+      "target_driver": "inflation_headline",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.39,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.73,
+      "empirical_justification": "A stronger dollar dampens imported inflation."
+    },
+    {
+      "arc_id": "03b9fa39-1d23-5cae-9a11-b4107b89699c",
+      "source_driver": "usd_strength",
+      "target_driver": "balance_commerciale",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.33,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.69,
+      "empirical_justification": "Dollar strength reduces export competitiveness and widens trade deficits."
+    },
+    {
+      "arc_id": "a3f50883-dea5-5336-95f4-1708d2456326",
+      "source_driver": "usd_strength",
+      "target_driver": "prix_metaux",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.45,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.77,
+      "empirical_justification": "Commodity prices often soften when USD funding tightens."
+    },
+    {
+      "arc_id": "e8dd44c9-34c9-5384-80e0-0e3c4d08f23a",
+      "source_driver": "prix_petrole",
+      "target_driver": "inflation_headline",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.83,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.92,
+      "empirical_justification": "Oil shocks pass rapidly into CPI through fuel and transport."
+    },
+    {
+      "arc_id": "53b1c9e0-f2f9-546d-b8f7-3b759e77077f",
+      "source_driver": "prix_petrole",
+      "target_driver": "croissance_pib",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.44,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.8,
+      "empirical_justification": "Energy taxation on consumers and firms slows growth."
+    },
+    {
+      "arc_id": "77bd0e4b-545f-5e13-8378-31270af88f32",
+      "source_driver": "prix_petrole",
+      "target_driver": "balance_commerciale",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.52,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.78,
+      "empirical_justification": "Energy-importing economies see trade balances deteriorate when oil rises."
+    },
+    {
+      "arc_id": "9537f3bf-8684-5fce-994c-e5936f06ce9e",
+      "source_driver": "prix_metaux",
+      "target_driver": "inflation_core",
+      "direction": 1,
+      "intensity": "low",
+      "coefficient": 0.26,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.67,
+      "empirical_justification": "Input-cost pressure from metals can leak into core goods inflation."
+    },
+    {
+      "arc_id": "895db623-65ed-5454-894b-450ddf17882f",
+      "source_driver": "risque_geopolitique",
+      "target_driver": "prix_petrole",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.88,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.93,
+      "empirical_justification": "Conflict near energy routes causes immediate crude risk premia."
+    },
+    {
+      "arc_id": "53901071-89a2-5d8d-8d25-add49727de45",
+      "source_driver": "risque_geopolitique",
+      "target_driver": "sentiment_marche",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.81,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.91,
+      "empirical_justification": "Geopolitical escalation drives fast risk-off positioning."
+    },
+    {
+      "arc_id": "eab594f3-b779-54ba-8cab-742132c2cee1",
+      "source_driver": "risque_geopolitique",
+      "target_driver": "usd_strength",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.73,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.86,
+      "empirical_justification": "Safe-haven flows lift the USD during geopolitical stress."
+    },
+    {
+      "arc_id": "14e9560a-0d00-532b-a709-79efec48f6cd",
+      "source_driver": "risque_geopolitique",
+      "target_driver": "balance_commerciale",
+      "direction": -1,
+      "intensity": "moderate",
+      "coefficient": 0.41,
+      "delay": "1-4w",
+      "conditions": [],
+      "confidence": 0.74,
+      "empirical_justification": "Sanctions and route disruptions impair external trade flows."
+    },
+    {
+      "arc_id": "81202124-21ce-53d7-b741-f183f38b7bf8",
+      "source_driver": "sentiment_marche",
+      "target_driver": "spreads_credit",
+      "direction": -1,
+      "intensity": "strong",
+      "coefficient": 0.67,
+      "delay": "immediate",
+      "conditions": [],
+      "confidence": 0.87,
+      "empirical_justification": "Improving sentiment narrows corporate risk premia."
+    },
+    {
+      "arc_id": "7e93801c-6215-56cd-bd65-93266e4e4b74",
+      "source_driver": "dette_publique",
+      "target_driver": "spreads_souverains",
+      "direction": 1,
+      "intensity": "strong",
+      "coefficient": 0.72,
+      "delay": "1-6m",
+      "conditions": [
+        {
+          "driver": "dette_publique",
+          "operator": ">",
+          "threshold": 90.0
+        }
+      ],
+      "confidence": 0.84,
+      "empirical_justification": "Debt sustainability concerns widen sovereign spreads once debt ratios become elevated."
+    },
+    {
+      "arc_id": "cfb66d02-b8fe-53db-b811-9edb9235c864",
+      "source_driver": "balance_commerciale",
+      "target_driver": "usd_strength",
+      "direction": 1,
+      "intensity": "moderate",
+      "coefficient": 0.36,
+      "delay": "1-6m",
+      "conditions": [],
+      "confidence": 0.7,
+      "empirical_justification": "Persistent external surpluses support currency strength over time."
+    }
+  ],
+  "historical_episodes": [
+    {
+      "episode_id": "c5e116e8-b89e-5f5c-9eb9-e026ce1c4f18",
+      "label": "Volcker shock tightening",
+      "date": "1979-10-06",
+      "cat_id": "CAT-01",
+      "subtype_id": "emergency_action_tightening",
+      "geography": [
+        "US"
+      ],
+      "drivers_impacted": {
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.935,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.66,
+          "delay_days": 0
+        },
+        "spreads_souverains": {
+          "direction": -1,
+          "magnitude": 0.442,
+          "delay_days": 0
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.935,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Policy shock can dominate recession fears in the first phase.",
+        "Cross-asset reaction is strongest when inflation credibility is broken."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -2.6,
+          "horizon_days": 10
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -4.3,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.9,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": -1,
+          "change_pct": -1.8,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "medium",
+      "notes": "Policy shock can dominate recession fears in the first phase. | Cross-asset reaction is strongest when inflation credibility is broken."
+    },
+    {
+      "episode_id": "17542cf6-1120-58c2-aefa-70d3fb94931c",
+      "label": "ECB rate hike into sovereign stress",
+      "date": "2011-04-07",
+      "cat_id": "CAT-01",
+      "subtype_id": "rate_decision_hike",
+      "geography": [
+        "EZ"
+      ],
+      "drivers_impacted": {
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.9,
+          "delay_days": 0
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.9,
+          "delay_days": 14
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        },
+        "spreads_credit": {
+          "direction": 1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        },
+        "usd_strength": {
+          "direction": 1,
+          "magnitude": 0.603,
+          "delay_days": 0
+        },
+        "anticipations_inflation": {
+          "direction": -1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Late-cycle hikes amplify sovereign and bank fragility.",
+        "EUR support is short-lived when credit transmission breaks."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -2.6,
+          "horizon_days": 10
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -4.3,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.9,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": -1,
+          "change_pct": -1.8,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Late-cycle hikes amplify sovereign and bank fragility. | EUR support is short-lived when credit transmission breaks."
+    },
+    {
+      "episode_id": "a13dd3cd-0703-5493-b6ae-508b9ddc00f4",
+      "label": "Fed QE1 expansion",
+      "date": "2009-03-18",
+      "cat_id": "CAT-01",
+      "subtype_id": "qe_announcement",
+      "geography": [
+        "US"
+      ],
+      "drivers_impacted": {
+        "liquidite_globale": {
+          "direction": 1,
+          "magnitude": 0.9,
+          "delay_days": 0
+        },
+        "taux_directeurs": {
+          "direction": -1,
+          "magnitude": 0.6,
+          "delay_days": 0
+        },
+        "spreads_souverains": {
+          "direction": -1,
+          "magnitude": 0.9,
+          "delay_days": 14
+        },
+        "conditions_credit": {
+          "direction": 1,
+          "magnitude": 0.9,
+          "delay_days": 14
+        },
+        "spreads_credit": {
+          "direction": -1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        },
+        "usd_strength": {
+          "direction": -1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Balance-sheet policy compresses sovereign and credit premia quickly.",
+        "USD weakness and gold strength are common first-order effects."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": 1,
+          "change_pct": 2.1,
+          "horizon_days": 10
+        },
+        "equities_us_growth": {
+          "direction": 1,
+          "change_pct": 5.0,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": -1,
+          "change_pct": -1.4,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": 1,
+          "change_pct": 2.7,
+          "horizon_days": 20
+        }
+      },
+      "data_quality": "high",
+      "notes": "Balance-sheet policy compresses sovereign and credit premia quickly. | USD weakness and gold strength are common first-order effects."
+    },
+    {
+      "episode_id": "a8d14835-ceb5-54e0-ab4d-401a113efd25",
+      "label": "Taper Tantrum signal",
+      "date": "2013-05-22",
+      "cat_id": "CAT-01",
+      "subtype_id": "tapering",
+      "geography": [
+        "US",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.578,
+          "delay_days": 0
+        },
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.252,
+          "delay_days": 14
+        },
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.252,
+          "delay_days": 90
+        }
+      },
+      "calibration_lessons": [
+        "Unexpected liquidity withdrawal shocks EM FX before growth data move.",
+        "Communication surprise matters more than the first mechanical flow reduction."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -2.6,
+          "horizon_days": 10
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -4.3,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.9,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": -1,
+          "change_pct": -1.8,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Unexpected liquidity withdrawal shocks EM FX before growth data move. | Communication surprise matters more than the first mechanical flow reduction."
+    },
+    {
+      "episode_id": "6748314c-67a6-5130-a47c-8b15b6112176",
+      "label": "Fed liftoff inflation cycle",
+      "date": "2022-03-16",
+      "cat_id": "CAT-01",
+      "subtype_id": "rate_decision_hike",
+      "geography": [
+        "US",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.9,
+          "delay_days": 0
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.9,
+          "delay_days": 14
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        },
+        "spreads_credit": {
+          "direction": 1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        },
+        "usd_strength": {
+          "direction": 1,
+          "magnitude": 0.603,
+          "delay_days": 0
+        },
+        "anticipations_inflation": {
+          "direction": -1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Rate hikes transmit fastest through duration and USD.",
+        "Credit and growth damage builds with a lag, not on day one."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -2.6,
+          "horizon_days": 10
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -4.3,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.9,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": -1,
+          "change_pct": -1.8,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Rate hikes transmit fastest through duration and USD. | Credit and growth damage builds with a lag, not on day one."
+    },
+    {
+      "episode_id": "55d9e0d6-c240-567c-b141-3b8c71c3722e",
+      "label": "US CPI upside shock",
+      "date": "2022-06-10",
+      "cat_id": "CAT-02",
+      "subtype_id": "inflation_cpi_above",
+      "geography": [
+        "US"
+      ],
+      "drivers_impacted": {
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "anticipations_inflation": {
+          "direction": 1,
+          "magnitude": 0.77,
+          "delay_days": 0
+        },
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.663,
+          "delay_days": 14
+        },
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.516,
+          "delay_days": 0
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.264,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Inflation surprises can reroute the entire rates path in a single session.",
+        "Growth equities underperform before credit does."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -1.8,
+          "horizon_days": 3
+        },
+        "bonds_inflation_linked": {
+          "direction": 1,
+          "change_pct": 0.9,
+          "horizon_days": 5
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -3.1,
+          "horizon_days": 5
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 0.8,
+          "horizon_days": 3
+        }
+      },
+      "data_quality": "high",
+      "notes": "Inflation surprises can reroute the entire rates path in a single session. | Growth equities underperform before credit does."
+    },
+    {
+      "episode_id": "9ff55861-4c5a-5633-a392-de39b6c67ae8",
+      "label": "Pandemic PMI collapse",
+      "date": "2020-03-24",
+      "cat_id": "CAT-02",
+      "subtype_id": "pmi_contraction",
+      "geography": [
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.747,
+          "delay_days": 0
+        },
+        "investissement": {
+          "direction": -1,
+          "magnitude": 0.632,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.462,
+          "delay_days": 0
+        },
+        "emploi_chomage": {
+          "direction": 1,
+          "magnitude": 0.276,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "PMI contractions are powerful early warnings for capex and trade weakness.",
+        "Market pricing moves ahead of GDP releases."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": 1,
+          "change_pct": 1.6,
+          "horizon_days": 5
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -4.8,
+          "horizon_days": 10
+        },
+        "oil_wti": {
+          "direction": -1,
+          "change_pct": -6.5,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": -1,
+          "change_pct": -5.2,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "PMI contractions are powerful early warnings for capex and trade weakness. | Market pricing moves ahead of GDP releases."
+    },
+    {
+      "episode_id": "66b7fc42-5637-56cc-be2c-7cd22901e555",
+      "label": "US payrolls collapse",
+      "date": "2020-04-03",
+      "cat_id": "CAT-02",
+      "subtype_id": "nfp_below",
+      "geography": [
+        "US"
+      ],
+      "drivers_impacted": {
+        "emploi_chomage": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "consommation": {
+          "direction": -1,
+          "magnitude": 0.75,
+          "delay_days": 7
+        },
+        "taux_directeurs": {
+          "direction": -1,
+          "magnitude": 0.684,
+          "delay_days": 14
+        },
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.24,
+          "delay_days": 90
+        }
+      },
+      "calibration_lessons": [
+        "Labor shocks hit consumption immediately even when policy support follows.",
+        "Bond rally is strongest when payroll weakness coincides with falling oil."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": 1,
+          "change_pct": 1.6,
+          "horizon_days": 5
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -4.8,
+          "horizon_days": 10
+        },
+        "oil_wti": {
+          "direction": -1,
+          "change_pct": -6.5,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": -1,
+          "change_pct": -5.2,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Labor shocks hit consumption immediately even when policy support follows. | Bond rally is strongest when payroll weakness coincides with falling oil."
+    },
+    {
+      "episode_id": "cdef0913-69d9-55b0-9678-bd6862c71fe6",
+      "label": "Iraq invades Kuwait",
+      "date": "1990-08-02",
+      "cat_id": "CAT-03",
+      "subtype_id": "armed_conflict_start",
+      "geography": [
+        "MIDDLE_EAST",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "risque_geopolitique": {
+          "direction": 1,
+          "magnitude": 0.95,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.85,
+          "delay_days": 0
+        },
+        "prix_petrole": {
+          "direction": 1,
+          "magnitude": 0.95,
+          "delay_days": 0
+        },
+        "prix_metaux": {
+          "direction": 1,
+          "magnitude": 0.636,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.636,
+          "delay_days": 0
+        },
+        "usd_strength": {
+          "direction": 1,
+          "magnitude": 0.95,
+          "delay_days": 0
+        },
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.95,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Oil and gold react immediately to military escalation near supply routes.",
+        "Safe-haven dollar demand can coexist with weaker global growth expectations."
+      ],
+      "asset_outcomes": {
+        "gold": {
+          "direction": 1,
+          "change_pct": 3.4,
+          "horizon_days": 5
+        },
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 7.8,
+          "horizon_days": 5
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.2,
+          "horizon_days": 5
+        },
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -5.5,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "medium",
+      "notes": "Oil and gold react immediately to military escalation near supply routes. | Safe-haven dollar demand can coexist with weaker global growth expectations."
+    },
+    {
+      "episode_id": "c00e5a83-a948-583e-a0e1-4bf0c9d8f5ee",
+      "label": "Russia invades Ukraine",
+      "date": "2022-02-24",
+      "cat_id": "CAT-03",
+      "subtype_id": "armed_conflict_start",
+      "geography": [
+        "EUROPE",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "risque_geopolitique": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.935,
+          "delay_days": 0
+        },
+        "prix_petrole": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "prix_metaux": {
+          "direction": 1,
+          "magnitude": 0.7,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.7,
+          "delay_days": 0
+        },
+        "usd_strength": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Europe transmits geopolitical energy shocks faster than the US.",
+        "Gas, FX and sovereign spread channels matter alongside crude."
+      ],
+      "asset_outcomes": {
+        "gold": {
+          "direction": 1,
+          "change_pct": 3.4,
+          "horizon_days": 5
+        },
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 7.8,
+          "horizon_days": 5
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.2,
+          "horizon_days": 5
+        },
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -5.5,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Europe transmits geopolitical energy shocks faster than the US. | Gas, FX and sovereign spread channels matter alongside crude."
+    },
+    {
+      "episode_id": "28919111-bd45-591a-b684-1e0cbd4ceb44",
+      "label": "US restores Iran oil sanctions",
+      "date": "2018-11-05",
+      "cat_id": "CAT-03",
+      "subtype_id": "sanctions_announcement",
+      "geography": [
+        "US",
+        "MIDDLE_EAST",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "balance_commerciale": {
+          "direction": -1,
+          "magnitude": 0.7,
+          "delay_days": 0
+        },
+        "prix_petrole": {
+          "direction": 1,
+          "magnitude": 0.6,
+          "delay_days": 0
+        },
+        "usd_strength": {
+          "direction": 1,
+          "magnitude": 0.402,
+          "delay_days": 0
+        },
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.6,
+          "delay_days": 0
+        },
+        "risque_geopolitique": {
+          "direction": 1,
+          "magnitude": 0.402,
+          "delay_days": 0
+        }
+      },
+      "calibration_lessons": [
+        "Sanctions shocks move trade balances and oil before they move GDP.",
+        "USD and sovereign spreads are key spillover channels."
+      ],
+      "asset_outcomes": {
+        "gold": {
+          "direction": 1,
+          "change_pct": 3.4,
+          "horizon_days": 5
+        },
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 7.8,
+          "horizon_days": 5
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.2,
+          "horizon_days": 5
+        },
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -5.5,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Sanctions shocks move trade balances and oil before they move GDP. | USD and sovereign spreads are key spillover channels."
+    },
+    {
+      "episode_id": "1c15045e-ead8-5c0b-8eb8-2fa10cfd340f",
+      "label": "Arab oil embargo",
+      "date": "1973-10-17",
+      "cat_id": "CAT-04",
+      "subtype_id": "oil_supply_disruption",
+      "geography": [
+        "MIDDLE_EAST",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "prix_petrole": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.98,
+          "delay_days": 14
+        },
+        "prix_metaux": {
+          "direction": 1,
+          "magnitude": 0.414,
+          "delay_days": 14
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.462,
+          "delay_days": 0
+        }
+      },
+      "calibration_lessons": [
+        "Supply shocks generate persistent headline inflation and growth drag.",
+        "Energy equities hedge the first-round inflation impulse better than broad equities."
+      ],
+      "asset_outcomes": {
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 12.0,
+          "horizon_days": 20
+        },
+        "bonds_inflation_linked": {
+          "direction": 1,
+          "change_pct": 1.7,
+          "horizon_days": 20
+        },
+        "equities_energy": {
+          "direction": 1,
+          "change_pct": 6.8,
+          "horizon_days": 20
+        },
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -1.1,
+          "horizon_days": 20
+        }
+      },
+      "data_quality": "medium",
+      "notes": "Supply shocks generate persistent headline inflation and growth drag. | Energy equities hedge the first-round inflation impulse better than broad equities."
+    },
+    {
+      "episode_id": "38c9d9cd-7004-5c8d-99ef-75cbb1e0164d",
+      "label": "OPEC+ production cut",
+      "date": "2022-10-05",
+      "cat_id": "CAT-04",
+      "subtype_id": "opec_cut",
+      "geography": [
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "prix_petrole": {
+          "direction": 1,
+          "magnitude": 0.9,
+          "delay_days": 0
+        },
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.603,
+          "delay_days": 14
+        },
+        "anticipations_inflation": {
+          "direction": 1,
+          "magnitude": 0.402,
+          "delay_days": 14
+        },
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.24,
+          "delay_days": 14
+        },
+        "balance_commerciale": {
+          "direction": -1,
+          "magnitude": 0.36,
+          "delay_days": 90
+        }
+      },
+      "calibration_lessons": [
+        "Quota cuts reprice energy inflation quickly even without immediate physical scarcity.",
+        "Market positioning changes the second-round rates move."
+      ],
+      "asset_outcomes": {
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 12.0,
+          "horizon_days": 20
+        },
+        "bonds_inflation_linked": {
+          "direction": 1,
+          "change_pct": 1.7,
+          "horizon_days": 20
+        },
+        "equities_energy": {
+          "direction": 1,
+          "change_pct": 6.8,
+          "horizon_days": 20
+        },
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -1.1,
+          "horizon_days": 20
+        }
+      },
+      "data_quality": "high",
+      "notes": "Quota cuts reprice energy inflation quickly even without immediate physical scarcity. | Market positioning changes the second-round rates move."
+    },
+    {
+      "episode_id": "8289c9d1-3ecc-588d-84fa-f4f11f809e76",
+      "label": "Nord Stream halt and EU gas panic",
+      "date": "2022-09-02",
+      "cat_id": "CAT-04",
+      "subtype_id": "gas_supply_disruption",
+      "geography": [
+        "EZ",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.88,
+          "delay_days": 7
+        },
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.58,
+          "delay_days": 60
+        },
+        "anticipations_inflation": {
+          "direction": 1,
+          "magnitude": 0.442,
+          "delay_days": 14
+        },
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.264,
+          "delay_days": 14
+        },
+        "prix_petrole": {
+          "direction": 1,
+          "magnitude": 0.42,
+          "delay_days": 7
+        }
+      },
+      "calibration_lessons": [
+        "Regional gas shocks can overwhelm local macro despite limited direct US impact.",
+        "Utilities and sovereign curves diverge from US assets in Europe-specific crises."
+      ],
+      "asset_outcomes": {
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 12.0,
+          "horizon_days": 20
+        },
+        "bonds_inflation_linked": {
+          "direction": 1,
+          "change_pct": 1.7,
+          "horizon_days": 20
+        },
+        "equities_energy": {
+          "direction": 1,
+          "change_pct": 6.8,
+          "horizon_days": 20
+        },
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -1.1,
+          "horizon_days": 20
+        }
+      },
+      "data_quality": "high",
+      "notes": "Regional gas shocks can overwhelm local macro despite limited direct US impact. | Utilities and sovereign curves diverge from US assets in Europe-specific crises."
+    },
+    {
+      "episode_id": "0a318b79-fcb4-524d-a401-6d253d48c841",
+      "label": "US-China tariff round",
+      "date": "2018-07-06",
+      "cat_id": "CAT-05",
+      "subtype_id": "trade_war_escalation",
+      "geography": [
+        "US",
+        "CN",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.8,
+          "delay_days": 0
+        },
+        "balance_commerciale": {
+          "direction": -1,
+          "magnitude": 0.65,
+          "delay_days": 0
+        },
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.402,
+          "delay_days": 90
+        },
+        "investissement": {
+          "direction": -1,
+          "magnitude": 0.402,
+          "delay_days": 90
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.24,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Trade policy shocks hit confidence and capex before official trade data roll over.",
+        "EM FX and industrial metals are efficient fast indicators."
+      ],
+      "asset_outcomes": {
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -4.7,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.1,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": -1,
+          "change_pct": -4.2,
+          "horizon_days": 20
+        },
+        "bonds_sovereign_us": {
+          "direction": 1,
+          "change_pct": 1.0,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Trade policy shocks hit confidence and capex before official trade data roll over. | EM FX and industrial metals are efficient fast indicators."
+    },
+    {
+      "episode_id": "d1b91c86-03bd-598a-bebe-2a08f1e615be",
+      "label": "US-China phase one truce",
+      "date": "2020-01-15",
+      "cat_id": "CAT-05",
+      "subtype_id": "trade_war_deescalation",
+      "geography": [
+        "US",
+        "CN",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "sentiment_marche": {
+          "direction": 1,
+          "magnitude": 0.7,
+          "delay_days": 0
+        },
+        "balance_commerciale": {
+          "direction": 1,
+          "magnitude": 0.4,
+          "delay_days": 0
+        },
+        "croissance_pib": {
+          "direction": 1,
+          "magnitude": 0.24,
+          "delay_days": 90
+        },
+        "investissement": {
+          "direction": 1,
+          "magnitude": 0.402,
+          "delay_days": 90
+        }
+      },
+      "calibration_lessons": [
+        "Trade relief improves cyclical beta more than long duration assets.",
+        "FX relief is stronger in EM than in EUR crosses."
+      ],
+      "asset_outcomes": {
+        "equities_em": {
+          "direction": 1,
+          "change_pct": 3.8,
+          "horizon_days": 20
+        },
+        "usd_dxy": {
+          "direction": -1,
+          "change_pct": -0.7,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": 1,
+          "change_pct": 3.0,
+          "horizon_days": 20
+        },
+        "bonds_hy": {
+          "direction": 1,
+          "change_pct": 1.2,
+          "horizon_days": 20
+        }
+      },
+      "data_quality": "high",
+      "notes": "Trade relief improves cyclical beta more than long duration assets. | FX relief is stronger in EM than in EUR crosses."
+    },
+    {
+      "episode_id": "23d54e52-04bf-58bd-b930-03803feb5216",
+      "label": "US debt ceiling and S&P downgrade",
+      "date": "2011-08-05",
+      "cat_id": "CAT-06",
+      "subtype_id": "debt_ceiling_crisis",
+      "geography": [
+        "US",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.935,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.88,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.442,
+          "delay_days": 0
+        },
+        "usd_strength": {
+          "direction": -1,
+          "magnitude": 0.442,
+          "delay_days": 0
+        },
+        "dette_publique": {
+          "direction": 1,
+          "magnitude": 0.264,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Political fiscal brinkmanship widens sovereign premia and damages sentiment.",
+        "USD safe-haven behaviour can offset domestic fiscal stress in the short run."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_ez": {
+          "direction": -1,
+          "change_pct": -2.7,
+          "horizon_days": 10
+        },
+        "equities_banks": {
+          "direction": -1,
+          "change_pct": -6.2,
+          "horizon_days": 10
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 1.0,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": 1,
+          "change_pct": 1.9,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Political fiscal brinkmanship widens sovereign premia and damages sentiment. | USD safe-haven behaviour can offset domestic fiscal stress in the short run."
+    },
+    {
+      "episode_id": "fa2325e8-4166-5a99-8f86-acba20a6a787",
+      "label": "American Rescue Plan",
+      "date": "2021-03-11",
+      "cat_id": "CAT-06",
+      "subtype_id": "fiscal_stimulus_major",
+      "geography": [
+        "US"
+      ],
+      "drivers_impacted": {
+        "croissance_pib": {
+          "direction": 1,
+          "magnitude": 0.85,
+          "delay_days": 0
+        },
+        "dette_publique": {
+          "direction": 1,
+          "magnitude": 0.65,
+          "delay_days": 0
+        },
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.57,
+          "delay_days": 90
+        },
+        "taux_directeurs": {
+          "direction": 1,
+          "magnitude": 0.24,
+          "delay_days": 90
+        },
+        "spreads_souverains": {
+          "direction": 1,
+          "magnitude": 0.436,
+          "delay_days": 14
+        },
+        "emploi_chomage": {
+          "direction": -1,
+          "magnitude": 0.402,
+          "delay_days": 90
+        }
+      },
+      "calibration_lessons": [
+        "Large fiscal stimulus lifts growth, inflation and debt simultaneously.",
+        "Banks and value equities outperform when nominal growth rises."
+      ],
+      "asset_outcomes": {
+        "equities_us_value": {
+          "direction": 1,
+          "change_pct": 4.4,
+          "horizon_days": 20
+        },
+        "equities_banks": {
+          "direction": 1,
+          "change_pct": 5.1,
+          "horizon_days": 20
+        },
+        "bonds_sovereign_us": {
+          "direction": -1,
+          "change_pct": -1.4,
+          "horizon_days": 20
+        },
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 4.0,
+          "horizon_days": 20
+        }
+      },
+      "data_quality": "high",
+      "notes": "Large fiscal stimulus lifts growth, inflation and debt simultaneously. | Banks and value equities outperform when nominal growth rises."
+    },
+    {
+      "episode_id": "11a67ec7-eecb-5d16-9771-fd6f76d912f2",
+      "label": "Lehman bankruptcy",
+      "date": "2008-09-15",
+      "cat_id": "CAT-07",
+      "subtype_id": "bank_failure",
+      "geography": [
+        "US",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "liquidite_bancaire": {
+          "direction": -1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "spreads_credit": {
+          "direction": 1,
+          "magnitude": 0.72,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.72,
+          "delay_days": 0
+        },
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.482,
+          "delay_days": 90
+        }
+      },
+      "calibration_lessons": [
+        "Bank failures propagate instantly via liquidity, credit and confidence.",
+        "Credit spreads and bank equities are the fastest stress barometers."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": 1,
+          "change_pct": 2.4,
+          "horizon_days": 5
+        },
+        "equities_banks": {
+          "direction": -1,
+          "change_pct": -12.0,
+          "horizon_days": 5
+        },
+        "bonds_hy": {
+          "direction": -1,
+          "change_pct": -3.2,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": 1,
+          "change_pct": 2.5,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Bank failures propagate instantly via liquidity, credit and confidence. | Credit spreads and bank equities are the fastest stress barometers."
+    },
+    {
+      "episode_id": "08bb94fd-f56d-5c31-9256-617fa15d42fc",
+      "label": "Silicon Valley Bank collapse",
+      "date": "2023-03-10",
+      "cat_id": "CAT-07",
+      "subtype_id": "bank_failure",
+      "geography": [
+        "US"
+      ],
+      "drivers_impacted": {
+        "liquidite_bancaire": {
+          "direction": -1,
+          "magnitude": 0.9,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.85,
+          "delay_days": 0
+        },
+        "conditions_credit": {
+          "direction": -1,
+          "magnitude": 0.9,
+          "delay_days": 0
+        },
+        "spreads_credit": {
+          "direction": 1,
+          "magnitude": 0.6,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.6,
+          "delay_days": 0
+        },
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.402,
+          "delay_days": 90
+        },
+        "taux_directeurs": {
+          "direction": -1,
+          "magnitude": 0.32,
+          "delay_days": 7
+        }
+      },
+      "calibration_lessons": [
+        "Duration losses can morph into liquidity crises even without immediate credit losses.",
+        "Front-end rates can reverse sharply when financial stability replaces inflation as the policy focus."
+      ],
+      "asset_outcomes": {
+        "bonds_sovereign_us": {
+          "direction": 1,
+          "change_pct": 2.4,
+          "horizon_days": 5
+        },
+        "equities_banks": {
+          "direction": -1,
+          "change_pct": -12.0,
+          "horizon_days": 5
+        },
+        "bonds_hy": {
+          "direction": -1,
+          "change_pct": -3.2,
+          "horizon_days": 10
+        },
+        "gold": {
+          "direction": 1,
+          "change_pct": 2.5,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Duration losses can morph into liquidity crises even without immediate credit losses. | Front-end rates can reverse sharply when financial stability replaces inflation as the policy focus."
+    },
+    {
+      "episode_id": "a42f5378-6e36-5161-976f-2411fe72da40",
+      "label": "Ever Given blocks Suez",
+      "date": "2021-03-23",
+      "cat_id": "CAT-08",
+      "subtype_id": "shipping_disruption",
+      "geography": [
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "balance_commerciale": {
+          "direction": -1,
+          "magnitude": 0.65,
+          "delay_days": 0
+        },
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.5,
+          "delay_days": 0
+        },
+        "prix_metaux": {
+          "direction": 1,
+          "magnitude": 0.24,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Shipping bottlenecks feed inflation faster than they hit GDP.",
+        "Commodity curves react sooner than broad equity indices."
+      ],
+      "asset_outcomes": {
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 4.5,
+          "horizon_days": 10
+        },
+        "gas_ttf": {
+          "direction": 1,
+          "change_pct": 6.1,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": 1,
+          "change_pct": 3.3,
+          "horizon_days": 10
+        },
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -2.9,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Shipping bottlenecks feed inflation faster than they hit GDP. | Commodity curves react sooner than broad equity indices."
+    },
+    {
+      "episode_id": "84433d8b-1681-5b89-b28a-3f90d1a4eccd",
+      "label": "China lockdown supply shock",
+      "date": "2020-02-23",
+      "cat_id": "CAT-08",
+      "subtype_id": "pandemic_supply_shock",
+      "geography": [
+        "CN",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.98,
+          "delay_days": 0
+        },
+        "liquidite_globale": {
+          "direction": -1,
+          "magnitude": 0.88,
+          "delay_days": 0
+        },
+        "emploi_chomage": {
+          "direction": 1,
+          "magnitude": 0.66,
+          "delay_days": 0
+        },
+        "consommation": {
+          "direction": -1,
+          "magnitude": 0.66,
+          "delay_days": 0
+        },
+        "sentiment_marche": {
+          "direction": -1,
+          "magnitude": 0.66,
+          "delay_days": 0
+        },
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.442,
+          "delay_days": 14
+        }
+      },
+      "calibration_lessons": [
+        "Factory shutdowns propagate through inventories, shipping and final goods inflation.",
+        "Growth-sensitive commodities underperform after the initial scarcity spike."
+      ],
+      "asset_outcomes": {
+        "oil_wti": {
+          "direction": 1,
+          "change_pct": 4.5,
+          "horizon_days": 10
+        },
+        "gas_ttf": {
+          "direction": 1,
+          "change_pct": 6.1,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": 1,
+          "change_pct": 3.3,
+          "horizon_days": 10
+        },
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -2.9,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Factory shutdowns propagate through inventories, shipping and final goods inflation. | Growth-sensitive commodities underperform after the initial scarcity spike."
+    },
+    {
+      "episode_id": "b9fa9847-86b1-5e91-b776-8443adca2b1a",
+      "label": "European drought disrupts rivers and crops",
+      "date": "2022-07-20",
+      "cat_id": "CAT-09",
+      "subtype_id": "drought_major",
+      "geography": [
+        "EZ",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.31,
+          "delay_days": 60
+        },
+        "inflation_headline": {
+          "direction": 1,
+          "magnitude": 0.62,
+          "delay_days": 14
+        },
+        "balance_commerciale": {
+          "direction": -1,
+          "magnitude": 0.34,
+          "delay_days": 30
+        }
+      },
+      "calibration_lessons": [
+        "Climate shocks hit agriculture, logistics and power costs simultaneously.",
+        "Inflation linkers and utilities are more resilient than cyclical equities."
+      ],
+      "asset_outcomes": {
+        "gas_ttf": {
+          "direction": 1,
+          "change_pct": 5.7,
+          "horizon_days": 15
+        },
+        "metals_industrial": {
+          "direction": 1,
+          "change_pct": 2.1,
+          "horizon_days": 15
+        },
+        "equities_utilities": {
+          "direction": 1,
+          "change_pct": 1.6,
+          "horizon_days": 15
+        },
+        "bonds_inflation_linked": {
+          "direction": 1,
+          "change_pct": 0.8,
+          "horizon_days": 15
+        }
+      },
+      "data_quality": "medium",
+      "notes": "Climate shocks hit agriculture, logistics and power costs simultaneously. | Inflation linkers and utilities are more resilient than cyclical equities."
+    },
+    {
+      "episode_id": "3b3fd670-ac75-5676-bdc6-5806923c8bdd",
+      "label": "US chip export ban on China",
+      "date": "2022-10-07",
+      "cat_id": "CAT-10",
+      "subtype_id": "tech_export_ban",
+      "geography": [
+        "US",
+        "CN",
+        "GLOBAL"
+      ],
+      "drivers_impacted": {
+        "risque_geopolitique": {
+          "direction": 1,
+          "magnitude": 0.51,
+          "delay_days": 0
+        },
+        "investissement": {
+          "direction": -1,
+          "magnitude": 0.33,
+          "delay_days": 45
+        },
+        "croissance_pib": {
+          "direction": -1,
+          "magnitude": 0.24,
+          "delay_days": 270
+        },
+        "balance_commerciale": {
+          "direction": -1,
+          "magnitude": 0.42,
+          "delay_days": 30
+        }
+      },
+      "calibration_lessons": [
+        "Strategic technology controls behave like a blend of trade and geopolitical shocks.",
+        "Semiconductor restrictions weaken EM equities before they hit top-line trade data."
+      ],
+      "asset_outcomes": {
+        "equities_em": {
+          "direction": -1,
+          "change_pct": -3.4,
+          "horizon_days": 10
+        },
+        "usd_dxy": {
+          "direction": 1,
+          "change_pct": 0.6,
+          "horizon_days": 10
+        },
+        "metals_industrial": {
+          "direction": -1,
+          "change_pct": -2.2,
+          "horizon_days": 10
+        },
+        "equities_us_growth": {
+          "direction": -1,
+          "change_pct": -1.5,
+          "horizon_days": 10
+        }
+      },
+      "data_quality": "high",
+      "notes": "Strategic technology controls behave like a blend of trade and geopolitical shocks. | Semiconductor restrictions weaken EM equities before they hit top-line trade data."
+    }
+  ],
+  "asset_sensitivity": [
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.95
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.87
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": -0.72
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.65
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "bonds_inflation_linked",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.32
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.86
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "equities_us_value",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.48
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.44
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "equities_energy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.21
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.58
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.55
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.68
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.58
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.41
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.64
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "gold",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.52
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "oil_wti",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "months",
+      "sensitivity": -0.17
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "gas_ttf",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "months",
+      "sensitivity": -0.11
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "metals_industrial",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "months",
+      "sensitivity": -0.28
+    },
+    {
+      "driver_id": "taux_directeurs",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": -0.82
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "bonds_sovereign_us",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.43
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.36
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "bonds_ig",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.504
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "bonds_hy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.666
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.162
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "equities_us_growth",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.729
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.621
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.648
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.414
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "equities_utilities",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.198
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "equities_em",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.702
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "usd_dxy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.51
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "eur_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.306
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "jpy_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.261
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "em_fx",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.639
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.28
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.333
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.144
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.567
+    },
+    {
+      "driver_id": "liquidite_globale",
+      "asset_id": "reits",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.558
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.24
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.18
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "bonds_ig",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.73
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "bonds_hy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.87
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.151
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "equities_us_growth",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.68
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.58
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.605
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.386
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "equities_utilities",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.185
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "equities_em",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.655
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "usd_dxy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.353
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "eur_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.286
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "jpy_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.244
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "em_fx",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.596
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "gold",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.202
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.311
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.134
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.529
+    },
+    {
+      "driver_id": "conditions_credit",
+      "asset_id": "reits",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.71
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "bonds_sovereign_us",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.54
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.36
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.82
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.93
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "bonds_inflation_linked",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.12
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.71
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "equities_us_value",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.63
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "equities_banks",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.86
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "equities_energy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.41
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.27
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.76
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.44
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.29
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.36
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.83
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.41
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "oil_wti",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.36
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "gas_ttf",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.14
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "metals_industrial",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.58
+    },
+    {
+      "driver_id": "spreads_credit",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": -0.74
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.21
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.83
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.56
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.64
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "bonds_inflation_linked",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.22
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.31
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "equities_us_value",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.41
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "equities_banks",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.72
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "equities_energy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.17
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.26
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.58
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.39
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.42
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.31
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.63
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.28
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "oil_wti",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.09
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "gas_ttf",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.04
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "metals_industrial",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.29
+    },
+    {
+      "driver_id": "spreads_souverains",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.46
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.82
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.71
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.54
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.34
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.84
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.66
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.22
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.31
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.72
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.24
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.28
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.28
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.18
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.16
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.34
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.63
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.81
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.72
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.46
+    },
+    {
+      "driver_id": "inflation_headline",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.42
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.722
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.625
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.475
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.299
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.739
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": -0.74
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.194
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.37
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.634
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.211
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.246
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.246
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.158
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.141
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.299
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.554
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.52
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.47
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.405
+    },
+    {
+      "driver_id": "inflation_core",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.37
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.64
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.554
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.421
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.265
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.79
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.515
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.172
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.242
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.52
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.187
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.218
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.218
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.14
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.125
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.265
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.72
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.632
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.562
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.359
+    },
+    {
+      "driver_id": "anticipations_inflation",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.328
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.58
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.47
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "bonds_ig",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.31
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "bonds_hy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.63
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.37
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "equities_us_growth",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.54
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.73
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.77
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.59
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.12
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "equities_em",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.69
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.14
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "eur_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.08
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "jpy_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.18
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "em_fx",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.48
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "gold",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.19
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.62
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.28
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.78
+    },
+    {
+      "driver_id": "croissance_pib",
+      "asset_id": "reits",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.41
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "bonds_sovereign_us",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.26
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.19
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.18
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.29
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "bonds_inflation_linked",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.11
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.22
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "equities_us_value",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.09
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "equities_banks",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.06
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "equities_energy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.18
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "equities_utilities",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.04
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.66
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.95
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.87
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.61
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.82
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "gold",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.52
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "oil_wti",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.33
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "gas_ttf",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.21
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "metals_industrial",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.46
+    },
+    {
+      "driver_id": "usd_strength",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.17
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.43
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.39
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.24
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.14
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.58
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.31
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.18
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.12
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.94
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.11
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.07
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.12
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.06
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.04
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.19
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.29
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.98
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.52
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.17
+    },
+    {
+      "driver_id": "prix_petrole",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.23
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.17
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.14
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "bonds_ig",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.09
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "bonds_hy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.23
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.24
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "equities_us_growth",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.18
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.37
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.14
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.11
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "equities_utilities",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.06
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "equities_em",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.42
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "usd_dxy",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.18
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "eur_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.09
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "jpy_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.04
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "em_fx",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.21
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.16
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.12
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.09
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.97
+    },
+    {
+      "driver_id": "prix_metaux",
+      "asset_id": "reits",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.13
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "bonds_sovereign_us",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.38
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.31
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "bonds_ig",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.56
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "bonds_hy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.74
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.18
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "equities_us_growth",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.81
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "equities_us_value",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.69
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "equities_banks",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.72
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.46
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "equities_utilities",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.22
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "equities_em",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.78
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "usd_dxy",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.42
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "eur_usd",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.34
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "jpy_usd",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": 0.29
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "em_fx",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "weeks",
+      "sensitivity": 0.71
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "gold",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "immediate",
+      "sensitivity": -0.24
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.37
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.16
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "metals_industrial",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.63
+    },
+    {
+      "driver_id": "sentiment_marche",
+      "asset_id": "reits",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": 0.62
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "bonds_sovereign_us",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.71
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "bonds_sovereign_ez",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.34
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "bonds_ig",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.37
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "bonds_hy",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.68
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "bonds_inflation_linked",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.12
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "equities_us_growth",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.55
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "equities_us_value",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.47
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "equities_banks",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.73
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "equities_energy",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.64
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "equities_utilities",
+      "direction": 1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": 0.08
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "equities_em",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.82
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "usd_dxy",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.74
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "eur_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.44
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "jpy_usd",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": -0.57
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "em_fx",
+      "direction": -1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": -0.87
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "gold",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.81
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "oil_wti",
+      "direction": 1,
+      "intensity": "strong",
+      "horizon": "immediate",
+      "sensitivity": 0.69
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "gas_ttf",
+      "direction": 1,
+      "intensity": "moderate",
+      "horizon": "immediate",
+      "sensitivity": 0.58
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "metals_industrial",
+      "direction": -1,
+      "intensity": "low",
+      "horizon": "weeks",
+      "sensitivity": -0.18
+    },
+    {
+      "driver_id": "risque_geopolitique",
+      "asset_id": "reits",
+      "direction": -1,
+      "intensity": "moderate",
+      "horizon": "weeks",
+      "sensitivity": -0.38
+    }
+  ]
+}
