@@ -17,6 +17,11 @@
 ### Changements réalisés
 
 - Ajout de cette note d'exécution dans `DOCS.md` pour tracer l'inventaire du repo et l'opération de transfert vers `ThomasHeran/kairos`.
+- Remote `thomas` ajouté sur `https://github.com/ThomasHeran/kairos.git`.
+- Push tenté via `git push thomas main` puis vérification SSH directe; les deux ont échoué faute d'authentification/autorisation sur le repo privé cible.
+- Archive de fallback créée avec l'état courant du dépôt: `/home/worker/kairos_thomasheran_export_2026-04-27.tar.gz`.
+- Taille observée de l'archive de fallback: `281K`.
+- SHA256 de l'archive de fallback: `013fcd4946367ad178e088c8bb66bbd75f248f28cb31badebd1d59350d9eb0f2`.
 
 ## Diagnostic Git pour transfert vers ThomasHeran/kairos (2026-04-27)
 
