@@ -1,5 +1,23 @@
 # DOCS
 
+## Diagnostic Git pour transfert vers ThomasHeran/kairos (2026-04-27)
+
+### Exploration
+
+- Le remote `origin` actuel est `git@github.com:nanocorp-hq/kairon.git`.
+- Le compte GitHub actuel est `nanocorp-hq` et le nom du repo distant est `kairon`.
+- La branche locale active est `main`, suivie par `origin/main`.
+- L'état Git au moment du diagnostic est propre: `nothing to commit, working tree clean`.
+- Les 10 derniers commits observés commencent par `d7b3177 Add C2 qualification pipeline`, `b90f058 feat: add C3 knowledge base v1 seed` et `abb4acc Add macro global C1 scraping pipeline`.
+- Une archive complète hors `.git` et `node_modules` a été créée à `/home/worker/kairos_full_backup.tar.gz`.
+- La taille observée de l'archive est `612K`.
+- L'inventaire complet des fichiers du repo hors `.git` et `node_modules` a été relancé pour préparer un transfert vers un nouveau remote GitHub.
+
+### Changements réalisés
+
+- Aucun fichier applicatif n'a été modifié pour ce diagnostic.
+- `DOCS.md` a été enrichi avec les informations de diagnostic Git et de sauvegarde afin de faciliter la reconfiguration du dépôt vers `ThomasHeran/kairos`.
+
 ## Exploration
 
 - `2026-04-14`: le repo était quasi vide, avec seulement `.git`, `.agents/`, `.claude/` et un `README.md` de cadrage produit.
