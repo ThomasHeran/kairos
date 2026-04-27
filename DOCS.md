@@ -1,5 +1,25 @@
 # DOCS
 
+## Fix commit author email on ThomasHeran/kairos (2026-04-27)
+
+### Exploration
+
+- Repo cible cloné séparément dans `/tmp/kairos-history-fix.iLcnV9/repo` pour éviter toute modification du dépôt NanoCorp local.
+- Le dépôt `ThomasHeran/kairos` ne contient qu'une seule branche distante active: `main`.
+- L'historique inspecté au départ contenait un seul commit avec l'email invalide `thomas@kairos.ai`, et ce commit était le `HEAD` de `main`: `d7dc87921b75d7e427e64c6e8ee43f9394182701`.
+- Tous les autres commits récents utilisaient déjà des adresses `noreply` GitHub ou `users.noreply.github.com`; aucun autre commit n'utilisait `thomas@kairos.ai`.
+- Comme le seul commit fautif était le dernier commit de `main`, une réécriture ciblée par `git commit --amend` suffisait et évitait une réécriture complète et inutile de tout l'historique.
+
+### Changements réalisés
+
+- Réécriture du commit `HEAD` en conservant le contenu et le message, avec auteur et committer définis sur `ThomasHeran <thomas_heran@hotmail.fr>`.
+- Nouveau SHA du commit de tête après réécriture: `b13f63f126e840890b882ca328a85caadfc6431e`.
+- Force-push exécuté avec succès sur `origin/main`: `d7dc879...b13f63f main -> main (forced update)`.
+- Vérification faite sur un clone frais `/tmp/kairos-verify.3PlviP/repo`:
+- `git log --format='%ae' | head -5` commence bien par `thomas_heran@hotmail.fr`.
+- `git log --all --format='%H %ae %ce' | grep 'thomas@kairos.ai'` ne retourne aucun résultat.
+- Le commit réécrit visible à distance est bien `b13f63f126e840890b882ca328a85caadfc6431e ThomasHeran <thomas_heran@hotmail.fr>`.
+
 ## Re-push vers ThomasHeran/kairos (2026-04-27)
 
 ### Exploration
