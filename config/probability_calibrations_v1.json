@@ -1,0 +1,645 @@
+{
+  "version": "v1",
+  "description": "Kairos — Lookup table des bifurcations géopolitiques/macro avec probabilités historiques calibrées",
+  "generated_at": "2026-04-27",
+  "calibrations": [
+    {
+      "bifurcation_id": "armed_conflict_hormuz_impact",
+      "cat_id": "CAT-06",
+      "subtype_id": "military_conflict",
+      "context_description": "Armed conflict involving Iran near Strait of Hormuz — impact on oil shipping",
+      "branches": [
+        {
+          "outcome": "Strait disrupted > 2 weeks",
+          "label": "Perturbation prolongée du Détroit d'Hormuz",
+          "p_historical": 0.35,
+          "p_adjusted": null,
+          "conditioning_factors": ["conflict_duration > 2w", "no_diplomatic_resolution"],
+          "n_historical_episodes": 3,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "strong", "coefficient": 0.85, "range": {"low": 0.20, "central": 0.35, "high": 0.55}, "horizon": "immediate"},
+            {"driver": "inflation_headline", "direction": 1, "intensity": "moderate", "coefficient": 0.55, "range": {"low": 0.01, "central": 0.02, "high": 0.03}, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "bullish", "magnitude_central": "+30%", "range": ["+20%", "+50%"], "horizon": "immediate"},
+            "gold": {"signal": "bullish", "magnitude_central": "+8%", "range": ["+5%", "+15%"], "horizon": "immediate"},
+            "bonds_sovereign_us": {"signal": "mixed", "magnitude_central": "+2%", "horizon": "1-4w"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-8%", "range": ["-5%", "-15%"], "horizon": "1-4w"},
+            "em_fx": {"signal": "bearish", "magnitude_central": "-5%", "horizon": "1-4w"}
+          },
+          "historical_analogies": [
+            {"episode": "Gulf War 1990", "match_score": 0.82, "oil_move": "+120%", "duration_weeks": 26},
+            {"episode": "Guerre Iran-Irak 1980", "match_score": 0.65, "oil_move": "+150%"}
+          ]
+        },
+        {
+          "outcome": "Short spike, strait remains open",
+          "label": "Spike court terme — détroit reste ouvert",
+          "p_historical": 0.45,
+          "p_adjusted": null,
+          "conditioning_factors": ["US naval presence deterrent", "GCC cooperation", "diplomatic resolution < 1w"],
+          "n_historical_episodes": 7,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "moderate", "coefficient": 0.55, "range": {"low": 0.08, "central": 0.15, "high": 0.22}, "horizon": "immediate"},
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "moderate", "coefficient": 0.60, "range": {"low": 0.05, "central": 0.10, "high": 0.20}, "horizon": "immediate"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "bullish", "magnitude_central": "+12%", "range": ["+8%", "+22%"], "horizon": "immediate"},
+            "gold": {"signal": "bullish", "magnitude_central": "+4%", "range": ["+2%", "+8%"], "horizon": "immediate"},
+            "bonds_sovereign_us": {"signal": "bullish", "magnitude_central": "+1%", "horizon": "immediate"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-3%", "range": ["-1%", "-6%"], "horizon": "1-4w"}
+          },
+          "historical_analogies": [
+            {"episode": "Strikes on Houthi 2024", "match_score": 0.70, "oil_move": "+8%", "duration_weeks": 2},
+            {"episode": "Iran nuclear tensions 2012", "match_score": 0.60, "oil_move": "+15%", "duration_weeks": 4}
+          ]
+        },
+        {
+          "outcome": "Regional escalation, multi-actor",
+          "label": "Escalade régionale — proxies + acteurs multiples",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["Iran proxies activation (Hezbollah, Houthis)", "Israeli involvement", "no ceasefire within 2w"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.90, "range": {"low": 0.15, "central": 0.30, "high": 0.50}, "horizon": "immediate"},
+            {"driver": "prix_petrole", "direction": 1, "intensity": "strong", "coefficient": 0.90, "range": {"low": 0.30, "central": 0.50, "high": 0.80}, "horizon": "immediate"},
+            {"driver": "spreads_souverains", "direction": 1, "intensity": "strong", "coefficient": 0.85, "range": {"low": 0.50, "central": 1.50, "high": 3.00}, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "strongly_bullish", "magnitude_central": "+50%", "range": ["+35%", "+90%"], "horizon": "immediate"},
+            "gold": {"signal": "strongly_bullish", "magnitude_central": "+18%", "range": ["+12%", "+30%"], "horizon": "immediate"},
+            "bonds_sovereign_us": {"signal": "bullish", "magnitude_central": "+5%", "horizon": "1-4w"},
+            "equities_us": {"signal": "strongly_bearish", "magnitude_central": "-18%", "range": ["-12%", "-30%"], "horizon": "1-4w"},
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-10%", "range": ["-6%", "-18%"], "horizon": "1-6m"}
+          },
+          "historical_analogies": [
+            {"episode": "Guerre du Kippour 1973", "match_score": 0.72, "oil_move": "+300%", "duration_weeks": 52}
+          ]
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "armed_conflict_general_response",
+      "cat_id": "CAT-06",
+      "subtype_id": "military_conflict",
+      "context_description": "General armed conflict start — macro financial response paths",
+      "branches": [
+        {
+          "outcome": "Localized conflict, contained geographically",
+          "label": "Conflit localisé — contenu géographiquement",
+          "p_historical": 0.50,
+          "p_adjusted": null,
+          "conditioning_factors": ["no major power involvement", "no critical infrastructure hit"],
+          "n_historical_episodes": 12,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "moderate", "coefficient": 0.65, "horizon": "immediate"},
+            {"driver": "prix_petrole", "direction": 1, "intensity": "low", "coefficient": 0.30, "horizon": "immediate"}
+          ],
+          "asset_impacts": {
+            "gold": {"signal": "bullish", "magnitude_central": "+3%", "range": ["+1%", "+7%"], "horizon": "immediate"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-2%", "range": ["-1%", "-5%"], "horizon": "1-4w"},
+            "oil_wti": {"signal": "bullish", "magnitude_central": "+5%", "range": ["+2%", "+10%"], "horizon": "immediate"}
+          }
+        },
+        {
+          "outcome": "Regional escalation with economic disruption",
+          "label": "Escalade régionale avec perturbation économique",
+          "p_historical": 0.35,
+          "p_adjusted": null,
+          "conditioning_factors": ["trade routes affected", "major economy involved"],
+          "n_historical_episodes": 6,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.80, "horizon": "immediate"},
+            {"driver": "prix_petrole", "direction": 1, "intensity": "moderate", "coefficient": 0.65, "horizon": "immediate"},
+            {"driver": "usd_strength", "direction": 1, "intensity": "moderate", "coefficient": 0.55, "horizon": "immediate"}
+          ],
+          "asset_impacts": {
+            "gold": {"signal": "bullish", "magnitude_central": "+10%", "range": ["+6%", "+18%"], "horizon": "immediate"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-8%", "range": ["-5%", "-15%"], "horizon": "1-4w"},
+            "em_fx": {"signal": "bearish", "magnitude_central": "-6%", "horizon": "1-4w"},
+            "oil_wti": {"signal": "bullish", "magnitude_central": "+20%", "range": ["+10%", "+35%"], "horizon": "immediate"}
+          }
+        },
+        {
+          "outcome": "Global systemic shock",
+          "label": "Choc systémique global — crise financière",
+          "p_historical": 0.15,
+          "p_adjusted": null,
+          "conditioning_factors": ["G7/G20 countries involved", "nuclear threat", "global supply chain collapse"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.95, "horizon": "immediate"},
+            {"driver": "liquidite_bancaire", "direction": -1, "intensity": "strong", "coefficient": 0.80, "horizon": "1-4w"},
+            {"driver": "spreads_credit", "direction": 1, "intensity": "strong", "coefficient": 0.90, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "gold": {"signal": "strongly_bullish", "magnitude_central": "+25%", "range": ["+15%", "+50%"], "horizon": "immediate"},
+            "equities_us": {"signal": "strongly_bearish", "magnitude_central": "-25%", "range": ["-15%", "-45%"], "horizon": "1-4w"},
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-15%", "horizon": "1-6m"},
+            "bonds_sovereign_us": {"signal": "strongly_bullish", "magnitude_central": "+10%", "horizon": "1-4w"}
+          }
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "sanctions_regime_impact",
+      "cat_id": "CAT-06",
+      "subtype_id": "sanctions_imposed",
+      "context_description": "New sanctions regime imposed on major economy — economic impact paths",
+      "branches": [
+        {
+          "outcome": "Narrow sanctions, limited economic impact",
+          "label": "Sanctions ciblées — impact économique limité",
+          "p_historical": 0.40,
+          "p_adjusted": null,
+          "conditioning_factors": ["sectoral scope < 5% GDP", "workarounds available", "short duration"],
+          "n_historical_episodes": 8,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "low", "coefficient": 0.30, "horizon": "immediate"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "slightly_bearish", "magnitude_central": "-1%", "horizon": "immediate"}
+          }
+        },
+        {
+          "outcome": "Broad sanctions with commodity market disruption",
+          "label": "Sanctions larges — perturbation marchés de matières premières",
+          "p_historical": 0.45,
+          "p_adjusted": null,
+          "conditioning_factors": ["energy/commodity sector targeted", "allied country compliance"],
+          "n_historical_episodes": 5,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "moderate", "coefficient": 0.60, "horizon": "1-4w"},
+            {"driver": "inflation_headline", "direction": 1, "intensity": "moderate", "coefficient": 0.50, "horizon": "1-6m"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "bullish", "magnitude_central": "+15%", "range": ["+8%", "+25%"], "horizon": "1-4w"},
+            "gold": {"signal": "bullish", "magnitude_central": "+5%", "horizon": "immediate"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-5%", "horizon": "1-4w"}
+          },
+          "historical_analogies": [
+            {"episode": "Russia sanctions 2022", "match_score": 0.80, "oil_move": "+35%", "duration_weeks": 12}
+          ]
+        },
+        {
+          "outcome": "Financial decoupling / reserve currency impact",
+          "label": "Découplage financier — impact devise de réserve",
+          "p_historical": 0.15,
+          "p_adjusted": null,
+          "conditioning_factors": ["SWIFT exclusion", "dollar weaponization concerns", "allied fragmentation"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "usd_strength", "direction": -1, "intensity": "moderate", "coefficient": 0.45, "horizon": "1-6m"},
+            {"driver": "prix_metaux", "direction": 1, "intensity": "moderate", "coefficient": 0.55, "horizon": "1-6m"}
+          ],
+          "asset_impacts": {
+            "gold": {"signal": "strongly_bullish", "magnitude_central": "+20%", "range": ["+12%", "+35%"], "horizon": "1-6m"},
+            "bonds_sovereign_us": {"signal": "bearish", "magnitude_central": "-3%", "horizon": "6m+"}
+          }
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "oil_supply_disruption_response",
+      "cat_id": "CAT-08",
+      "subtype_id": "oil_price_surge",
+      "context_description": "Major oil supply disruption — central bank and macro response paths",
+      "branches": [
+        {
+          "outcome": "Central banks tighten to fight inflation",
+          "label": "BC resserrent — lutte contre inflation importée",
+          "p_historical": 0.40,
+          "p_adjusted": null,
+          "conditioning_factors": ["inflation above target > 6 months", "tight labor market", "inflation expectations unanchored"],
+          "n_historical_episodes": 4,
+          "primary_drivers": [
+            {"driver": "taux_directeurs", "direction": 1, "intensity": "moderate", "coefficient": 0.70, "horizon": "1-6m"},
+            {"driver": "conditions_credit", "direction": -1, "intensity": "moderate", "coefficient": 0.65, "horizon": "1-6m"},
+            {"driver": "croissance_pib", "direction": -1, "intensity": "moderate", "coefficient": 0.55, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "bonds_sovereign_us": {"signal": "bearish", "magnitude_central": "-5%", "range": ["-3%", "-10%"], "horizon": "1-6m"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-12%", "range": ["-8%", "-20%"], "horizon": "1-6m"},
+            "em_fx": {"signal": "bearish", "magnitude_central": "-8%", "horizon": "1-6m"},
+            "gold": {"signal": "mixed", "magnitude_central": "+3%", "horizon": "1-6m"}
+          }
+        },
+        {
+          "outcome": "Central banks on hold — supply shock transitory narrative",
+          "label": "BC en attente — choc transitoire",
+          "p_historical": 0.40,
+          "p_adjusted": null,
+          "conditioning_factors": ["supply shock < 8 weeks", "OPEC+ compensates", "inflation expectations anchored"],
+          "n_historical_episodes": 6,
+          "primary_drivers": [
+            {"driver": "anticipations_inflation", "direction": 1, "intensity": "low", "coefficient": 0.30, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "slightly_bearish", "magnitude_central": "-3%", "horizon": "1-4w"},
+            "bonds_sovereign_us": {"signal": "slightly_bullish", "magnitude_central": "+1%", "horizon": "1-4w"}
+          }
+        },
+        {
+          "outcome": "Stagflation — growth contraction + persistent inflation",
+          "label": "Stagflation — récession + inflation persistante",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["supply shock > 6 months", "BC hike into slowdown", "global synchronized recession"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "croissance_pib", "direction": -1, "intensity": "strong", "coefficient": 0.80, "horizon": "6m+"},
+            {"driver": "inflation_headline", "direction": 1, "intensity": "strong", "coefficient": 0.75, "horizon": "1-6m"},
+            {"driver": "taux_directeurs", "direction": 1, "intensity": "moderate", "coefficient": 0.65, "horizon": "1-6m"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "mixed", "magnitude_central": "+5%", "horizon": "6m+"},
+            "equities_us": {"signal": "strongly_bearish", "magnitude_central": "-25%", "range": ["-18%", "-40%"], "horizon": "6m+"},
+            "bonds_sovereign_us": {"signal": "bearish_mixed", "magnitude_central": "-3%", "horizon": "6m+"},
+            "gold": {"signal": "bullish", "magnitude_central": "+15%", "range": ["+10%", "+30%"], "horizon": "6m+"},
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-12%", "horizon": "6m+"}
+          },
+          "historical_analogies": [
+            {"episode": "Oil shock 1973-74 stagflation", "match_score": 0.75, "duration_weeks": 78}
+          ]
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "financial_system_stress",
+      "cat_id": "CAT-05",
+      "subtype_id": "bank_failure",
+      "context_description": "Major bank failure or financial system stress event",
+      "branches": [
+        {
+          "outcome": "Contained failure, systemic risk averted",
+          "label": "Faillite contenue — risque systémique évité",
+          "p_historical": 0.55,
+          "p_adjusted": null,
+          "conditioning_factors": ["deposit guarantee activated", "FDIC/ESM intervention", "no contagion within 48h"],
+          "n_historical_episodes": 8,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "moderate", "coefficient": 0.70, "horizon": "immediate"},
+            {"driver": "conditions_credit", "direction": -1, "intensity": "low", "coefficient": 0.35, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "bearish", "magnitude_central": "-5%", "range": ["-3%", "-10%"], "horizon": "immediate"},
+            "bonds_sovereign_us": {"signal": "bullish", "magnitude_central": "+3%", "horizon": "immediate"},
+            "gold": {"signal": "bullish", "magnitude_central": "+4%", "horizon": "immediate"},
+            "spreads_credit": {"signal": "bearish", "magnitude_central": "+80bps", "horizon": "1-4w"}
+          },
+          "historical_analogies": [
+            {"episode": "SVB collapse 2023", "match_score": 0.85, "duration_weeks": 3},
+            {"episode": "IndyMac failure 2008", "match_score": 0.65}
+          ]
+        },
+        {
+          "outcome": "Contagion to financial sector",
+          "label": "Contagion au secteur financier",
+          "p_historical": 0.30,
+          "p_adjusted": null,
+          "conditioning_factors": ["interbank exposure high", "confidence crisis", "rating downgrades cascade"],
+          "n_historical_episodes": 4,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.85, "horizon": "immediate"},
+            {"driver": "liquidite_bancaire", "direction": -1, "intensity": "strong", "coefficient": 0.80, "horizon": "1-4w"},
+            {"driver": "spreads_credit", "direction": 1, "intensity": "strong", "coefficient": 0.85, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "strongly_bearish", "magnitude_central": "-15%", "range": ["-10%", "-25%"], "horizon": "1-4w"},
+            "bonds_sovereign_us": {"signal": "strongly_bullish", "magnitude_central": "+8%", "horizon": "immediate"},
+            "gold": {"signal": "bullish", "magnitude_central": "+8%", "range": ["+5%", "+15%"], "horizon": "immediate"},
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-8%", "horizon": "1-4w"}
+          }
+        },
+        {
+          "outcome": "Full systemic crisis requiring CB emergency action",
+          "label": "Crise systémique — intervention d'urgence BC",
+          "p_historical": 0.15,
+          "p_adjusted": null,
+          "conditioning_factors": ["major SIFI threatened", "interbank market freeze", "credit crunch spreading"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "taux_directeurs", "direction": -1, "intensity": "strong", "coefficient": 0.90, "horizon": "immediate"},
+            {"driver": "liquidite_bancaire", "direction": -1, "intensity": "strong", "coefficient": 0.90, "horizon": "immediate"},
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.95, "horizon": "immediate"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "strongly_bearish", "magnitude_central": "-35%", "range": ["-25%", "-55%"], "horizon": "1-4w"},
+            "bonds_sovereign_us": {"signal": "strongly_bullish", "magnitude_central": "+20%", "horizon": "immediate"},
+            "gold": {"signal": "strongly_bullish", "magnitude_central": "+20%", "range": ["+12%", "+40%"], "horizon": "immediate"},
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-20%", "horizon": "1-6m"}
+          },
+          "historical_analogies": [
+            {"episode": "GFC 2008 Lehman collapse", "match_score": 0.88, "duration_weeks": 52}
+          ]
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "trade_war_escalation_paths",
+      "cat_id": "CAT-06",
+      "subtype_id": "trade_war_escalation",
+      "context_description": "Trade war escalation — tariff rounds and retaliation cycles",
+      "branches": [
+        {
+          "outcome": "Limited tariffs, negotiated resolution within months",
+          "label": "Tarifs limités — résolution négociée rapide",
+          "p_historical": 0.35,
+          "p_adjusted": null,
+          "conditioning_factors": ["bilateral talks ongoing", "IMF/WTO mediation", "limited sector scope"],
+          "n_historical_episodes": 5,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "low", "coefficient": 0.35, "horizon": "immediate"},
+            {"driver": "balance_commerciale", "direction": -1, "intensity": "low", "coefficient": 0.25, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "slightly_bearish", "magnitude_central": "-3%", "horizon": "1-4w"}
+          }
+        },
+        {
+          "outcome": "Persistent tariff war — supply chain restructuring",
+          "label": "Guerre tarifaire persistante — restructuration chaînes mondiales",
+          "p_historical": 0.45,
+          "p_adjusted": null,
+          "conditioning_factors": ["retaliation rounds > 3", "FDI decline", "nearshoring acceleration"],
+          "n_historical_episodes": 4,
+          "primary_drivers": [
+            {"driver": "inflation_headline", "direction": 1, "intensity": "moderate", "coefficient": 0.55, "horizon": "1-6m"},
+            {"driver": "croissance_pib", "direction": -1, "intensity": "moderate", "coefficient": 0.50, "horizon": "6m+"},
+            {"driver": "balance_commerciale", "direction": -1, "intensity": "moderate", "coefficient": 0.60, "horizon": "1-6m"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "bearish", "magnitude_central": "-8%", "range": ["-5%", "-15%"], "horizon": "1-6m"},
+            "bonds_sovereign_us": {"signal": "mixed", "magnitude_central": "+1%", "horizon": "1-6m"},
+            "em_fx": {"signal": "bearish", "magnitude_central": "-5%", "horizon": "1-6m"}
+          },
+          "historical_analogies": [
+            {"episode": "US-China trade war 2018-2019", "match_score": 0.85}
+          ]
+        },
+        {
+          "outcome": "Global trade fragmentation — geopolitical blocs",
+          "label": "Fragmentation commerciale mondiale — blocs géopolitiques",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["G7 vs BRICS split", "dollar system questioned", "multilateral institutions weakened"],
+          "n_historical_episodes": 1,
+          "primary_drivers": [
+            {"driver": "croissance_pib", "direction": -1, "intensity": "strong", "coefficient": 0.70, "horizon": "6m+"},
+            {"driver": "usd_strength", "direction": -1, "intensity": "moderate", "coefficient": 0.45, "horizon": "6m+"},
+            {"driver": "prix_metaux", "direction": 1, "intensity": "moderate", "coefficient": 0.60, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "equities_us": {"signal": "strongly_bearish", "magnitude_central": "-20%", "horizon": "6m+"},
+            "gold": {"signal": "strongly_bullish", "magnitude_central": "+25%", "horizon": "6m+"},
+            "em_fx": {"signal": "mixed", "magnitude_central": "0%", "horizon": "6m+"}
+          }
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "energy_supply_shock_cb_response",
+      "cat_id": "CAT-06",
+      "subtype_id": "energy_supply_shock",
+      "context_description": "Energy supply shock (gas/oil) — central bank policy response bifurcation",
+      "branches": [
+        {
+          "outcome": "BC see-through supply shock (transitory)",
+          "label": "BC ignorent le choc — inflation transitoire",
+          "p_historical": 0.45,
+          "p_adjusted": null,
+          "conditioning_factors": ["core inflation stable", "inflation expectations anchored", "shock < 2 months"],
+          "n_historical_episodes": 6,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "moderate", "coefficient": 0.65, "horizon": "immediate"},
+            {"driver": "taux_directeurs", "direction": 0, "intensity": "low", "coefficient": 0.10, "horizon": "1-6m"}
+          ],
+          "asset_impacts": {
+            "bonds_sovereign_us": {"signal": "bullish", "magnitude_central": "+2%", "horizon": "1-4w"},
+            "equities_us": {"signal": "slightly_bearish", "magnitude_central": "-2%", "horizon": "1-4w"}
+          }
+        },
+        {
+          "outcome": "BC forced to hike despite growth slowdown",
+          "label": "BC contraintes à hausser malgré ralentissement",
+          "p_historical": 0.35,
+          "p_adjusted": null,
+          "conditioning_factors": ["inflation > 2x target", "labor market tight", "wage-price spiral risk"],
+          "n_historical_episodes": 3,
+          "primary_drivers": [
+            {"driver": "taux_directeurs", "direction": 1, "intensity": "strong", "coefficient": 0.80, "horizon": "1-6m"},
+            {"driver": "croissance_pib", "direction": -1, "intensity": "moderate", "coefficient": 0.60, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "bonds_sovereign_us": {"signal": "strongly_bearish", "magnitude_central": "-8%", "horizon": "1-6m"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-12%", "range": ["-8%", "-20%"], "horizon": "1-6m"},
+            "gold": {"signal": "mixed", "magnitude_central": "+5%", "horizon": "1-6m"}
+          }
+        },
+        {
+          "outcome": "Emergency energy policy response (price caps, rationing)",
+          "label": "Réponse politique énergétique d'urgence — plafonnement/rationnement",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["political pressure for intervention", "energy poverty risk", "supply < 80% baseline"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "dette_publique", "direction": 1, "intensity": "moderate", "coefficient": 0.55, "horizon": "1-6m"},
+            {"driver": "investissement", "direction": -1, "intensity": "moderate", "coefficient": 0.50, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "bonds_sovereign_us": {"signal": "bearish", "magnitude_central": "-3%", "horizon": "1-6m"},
+            "equities_us": {"signal": "mixed", "magnitude_central": "-3%", "horizon": "1-6m"}
+          },
+          "historical_analogies": [
+            {"episode": "European gas crisis 2022", "match_score": 0.80}
+          ]
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "sovereign_debt_stress_paths",
+      "cat_id": "CAT-05",
+      "subtype_id": "sovereign_debt_stress",
+      "context_description": "Sovereign debt stress — spiral or resolution paths",
+      "branches": [
+        {
+          "outcome": "IMF program / EU bailout — controlled resolution",
+          "label": "Programme FMI/UE — résolution contrôlée",
+          "p_historical": 0.50,
+          "p_adjusted": null,
+          "conditioning_factors": ["political willingness for austerity", "IMF backstop available", "market credibility restored within 6w"],
+          "n_historical_episodes": 7,
+          "primary_drivers": [
+            {"driver": "spreads_souverains", "direction": -1, "intensity": "moderate", "coefficient": 0.60, "horizon": "1-6m"},
+            {"driver": "dette_publique", "direction": 1, "intensity": "low", "coefficient": 0.30, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "bonds_sovereign_us": {"signal": "bullish", "magnitude_central": "+3%", "horizon": "1-4w"},
+            "em_fx": {"signal": "slightly_bearish", "magnitude_central": "-3%", "horizon": "1-4w"}
+          }
+        },
+        {
+          "outcome": "Debt restructuring / haircut",
+          "label": "Restructuration de dette / haircut",
+          "p_historical": 0.30,
+          "p_adjusted": null,
+          "conditioning_factors": ["debt/GDP > 120%", "primary deficit unsustainable", "no political consensus for austerity"],
+          "n_historical_episodes": 4,
+          "primary_drivers": [
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.80, "horizon": "immediate"},
+            {"driver": "spreads_credit", "direction": 1, "intensity": "strong", "coefficient": 0.85, "horizon": "1-4w"},
+            {"driver": "usd_strength", "direction": 1, "intensity": "moderate", "coefficient": 0.60, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "bonds_sovereign_us": {"signal": "strongly_bullish", "magnitude_central": "+8%", "horizon": "immediate"},
+            "gold": {"signal": "bullish", "magnitude_central": "+7%", "horizon": "immediate"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-6%", "horizon": "1-4w"},
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-12%", "horizon": "1-6m"}
+          },
+          "historical_analogies": [
+            {"episode": "Greek sovereign crisis 2012", "match_score": 0.82},
+            {"episode": "Argentina default 2001", "match_score": 0.70}
+          ]
+        },
+        {
+          "outcome": "Contagion to other EM / periphery countries",
+          "label": "Contagion aux autres pays EM/périphérie",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["similar debt profiles in peer countries", "global risk-off", "EM fund outflows"],
+          "n_historical_episodes": 3,
+          "primary_drivers": [
+            {"driver": "spreads_souverains", "direction": 1, "intensity": "strong", "coefficient": 0.85, "horizon": "1-4w"},
+            {"driver": "sentiment_marche", "direction": 1, "intensity": "strong", "coefficient": 0.90, "horizon": "immediate"}
+          ],
+          "asset_impacts": {
+            "em_fx": {"signal": "strongly_bearish", "magnitude_central": "-15%", "horizon": "1-6m"},
+            "gold": {"signal": "strongly_bullish", "magnitude_central": "+15%", "horizon": "immediate"},
+            "bonds_sovereign_us": {"signal": "strongly_bullish", "magnitude_central": "+10%", "horizon": "immediate"}
+          }
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "oil_price_surge_demand_destruction",
+      "cat_id": "CAT-08",
+      "subtype_id": "oil_price_surge",
+      "context_description": "Oil price surge — demand destruction vs sustained high price paths",
+      "branches": [
+        {
+          "outcome": "Demand destruction — price normalizes in 3-6 months",
+          "label": "Destruction de la demande — normalisation 3-6 mois",
+          "p_historical": 0.45,
+          "p_adjusted": null,
+          "conditioning_factors": ["price elasticity kicks in", "economic slowdown reduces consumption", "strategic reserves released"],
+          "n_historical_episodes": 6,
+          "primary_drivers": [
+            {"driver": "consommation", "direction": -1, "intensity": "moderate", "coefficient": 0.55, "horizon": "1-6m"},
+            {"driver": "croissance_pib", "direction": -1, "intensity": "low", "coefficient": 0.35, "horizon": "1-6m"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "mixed", "magnitude_central": "+8%", "horizon": "1-6m"},
+            "equities_us": {"signal": "slightly_bearish", "magnitude_central": "-4%", "horizon": "1-6m"}
+          }
+        },
+        {
+          "outcome": "New price plateau — structural supply deficit",
+          "label": "Nouveau plateau de prix — déficit structurel d'offre",
+          "p_historical": 0.35,
+          "p_adjusted": null,
+          "conditioning_factors": ["CAPEX underinvestment in fossil fuels", "geopolitical supply constraints permanent", "OPEC discipline maintained"],
+          "n_historical_episodes": 3,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "strong", "coefficient": 0.85, "horizon": "6m+"},
+            {"driver": "inflation_headline", "direction": 1, "intensity": "moderate", "coefficient": 0.60, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "strongly_bullish", "magnitude_central": "+35%", "range": ["+20%", "+60%"], "horizon": "6m+"},
+            "equities_us": {"signal": "bearish", "magnitude_central": "-8%", "horizon": "6m+"},
+            "gold": {"signal": "bullish", "magnitude_central": "+12%", "horizon": "6m+"}
+          }
+        },
+        {
+          "outcome": "Accelerated energy transition response",
+          "label": "Accélération de la transition énergétique",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["renewable cost competitiveness reached", "policy support massive", "EV adoption surge"],
+          "n_historical_episodes": 1,
+          "primary_drivers": [
+            {"driver": "investissement", "direction": 1, "intensity": "strong", "coefficient": 0.75, "horizon": "6m+"},
+            {"driver": "prix_petrole", "direction": -1, "intensity": "moderate", "coefficient": 0.55, "horizon": "6m+"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "bearish", "magnitude_central": "-15%", "horizon": "6m+"},
+            "equities_us": {"signal": "mixed", "magnitude_central": "+3%", "horizon": "6m+"}
+          }
+        }
+      ]
+    },
+    {
+      "bifurcation_id": "opec_production_cut_impact",
+      "cat_id": "CAT-08",
+      "subtype_id": "opec_decision",
+      "context_description": "OPEC+ production cut announcement — market impact paths",
+      "branches": [
+        {
+          "outcome": "Cut respected — oil price sustained higher",
+          "label": "Coupe respectée — prix du pétrole soutenus",
+          "p_historical": 0.45,
+          "p_adjusted": null,
+          "conditioning_factors": ["all member compliance > 90%", "no US shale surge response", "demand holds"],
+          "n_historical_episodes": 5,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "moderate", "coefficient": 0.70, "horizon": "1-4w"},
+            {"driver": "inflation_headline", "direction": 1, "intensity": "low", "coefficient": 0.35, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "bullish", "magnitude_central": "+15%", "range": ["+10%", "+25%"], "horizon": "1-4w"},
+            "equities_us": {"signal": "slightly_bearish", "magnitude_central": "-2%", "horizon": "1-4w"},
+            "gold": {"signal": "slightly_bullish", "magnitude_central": "+2%", "horizon": "1-4w"}
+          },
+          "historical_analogies": [
+            {"episode": "OPEC+ cut April 2023", "match_score": 0.80}
+          ]
+        },
+        {
+          "outcome": "Partial cheating — cut less effective than announced",
+          "label": "Tricherie partielle — coupe moins efficace",
+          "p_historical": 0.35,
+          "p_adjusted": null,
+          "conditioning_factors": ["Russia/Iraq historical non-compliance", "US shale fills gap", "global demand weakens"],
+          "n_historical_episodes": 7,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": 1, "intensity": "low", "coefficient": 0.30, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "slightly_bullish", "magnitude_central": "+5%", "horizon": "1-4w"}
+          }
+        },
+        {
+          "outcome": "OPEC+ fracture — price war",
+          "label": "Fracture OPEC+ — guerre des prix",
+          "p_historical": 0.20,
+          "p_adjusted": null,
+          "conditioning_factors": ["Saudi-Russia disagreement escalates", "UAE/Iraq defection", "market share battle"],
+          "n_historical_episodes": 2,
+          "primary_drivers": [
+            {"driver": "prix_petrole", "direction": -1, "intensity": "strong", "coefficient": 0.80, "horizon": "immediate"},
+            {"driver": "inflation_headline", "direction": -1, "intensity": "moderate", "coefficient": 0.50, "horizon": "1-4w"}
+          ],
+          "asset_impacts": {
+            "oil_wti": {"signal": "strongly_bearish", "magnitude_central": "-30%", "range": ["-20%", "-50%"], "horizon": "immediate"},
+            "equities_us": {"signal": "mixed", "magnitude_central": "+2%", "horizon": "1-4w"},
+            "gold": {"signal": "slightly_bearish", "magnitude_central": "-2%", "horizon": "immediate"}
+          },
+          "historical_analogies": [
+            {"episode": "OPEC price war March 2020", "match_score": 0.88, "oil_move": "-50%"}
+          ]
+        }
+      ]
+    }
+  ]
+}
