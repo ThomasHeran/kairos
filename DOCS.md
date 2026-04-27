@@ -269,3 +269,86 @@ Appliquer `db/schema_v2.sql` après `db/schema.sql` via `psql $DATABASE_URL < db
 - Ajouter un KB v2 si Kairos veut faire passer `prix_gaz` et `prix_agricoles` du statut "lookup-only" au statut de drivers coeur seeds en DB.
 - Connecter le moteur C4 (`engine/branch_generator.py` / `lib/scenarios.ts`) a `causal_arcs` et `historical_episodes` pour des chemins dynamiques reels.
 - Ajouter des tests d'integration qui valident la coherence `taxonomy_v1.json` ↔ `event_driver_lookup.json` ↔ `knowledge_base_v1.json` ↔ tables Neon.
+
+---
+
+## C2 Qualification Pipeline (2026-04-27)
+
+### Exploration
+
+- `DATABASE_URL` est bien provisionne localement et sur Vercel, mais `OPENAI_API_KEY` n'est present ni dans l'environnement local d'execution ni dans `nanocorp vercel env list`; le pipeline C2 doit donc tolerer l'absence d'OpenAI et degrader proprement au lieu de casser.
+- La doc locale Next.js 16 impose toujours les Route Handlers dans `app/api/**/route.ts` avec Web `Request`/`Response`; `GET` n'est pas cache par defaut et les params dynamiques sont des `Promise`.
+- `docs/classification_prompt_v1.md` est disponible et decrit la taxonomie fermee Kairos v1 avec `CAT-01..CAT-10`; il faut donc implementer la vraie classification taxonomique et non un fallback generique.
+- La table `event_taxonomy` contient deja `101` lignes, `articles` contient `414` lignes et `events` est encore vide au debut de cette tache.
+- Le schema `events` actuellement en base attend exactement les champs C2 canoniques utiles au pipeline: `raw_article_ids uuid[]`, `dedup_cluster_id`, `cluster_size`, `source_name`, `source_authority`, `cat_id`, `subtype_id`, `confidence`, `geography`, `horizon`, `actors`, `assets_mentioned`, `key_figures`, `importance_score`, `routing`, `text_en_canonical`.
+- Les articles C1 existants n'etaient pas homogenes pour l'identite canonique: seuls `223/414` avaient `canonical.article_id`, alors que `events.raw_article_ids` attend des UUID. Une migration additive est necessaire pour fiabiliser `article_uuid` au niveau SQL.
+- `pgvector` n'etait pas encore active dans Neon, mais `CREATE EXTENSION vector` passe correctement sur cette base.
+- Les articles France RSS existants sont majoritairement de l'actualite generaliste; une part importante du lot doit donc etre archivee comme hors taxonomie macro plutot qu'inseree de force dans `events`.
+
+### Fichiers crees
+
+- `db/schema_v4.sql`
+- `lib/openai.ts`
+- `lib/taxonomy.ts`
+- `lib/qualify.ts`
+- `app/api/qualify/route.ts`
+- `app/api/qualify/batch/route.ts`
+- `app/api/events/route.ts`
+
+### Fichiers modifies
+
+- `scripts/migrate.ts`
+
+### Changements realises
+
+- Ajout d'une migration C2 `db/schema_v4.sql`:
+  - activation `pgvector`,
+  - ajout de `articles.article_uuid` avec backfill depuis `canonical.article_id` quand disponible,
+  - ajout des colonnes de file de qualification `qualification_status`, `qualified_event_id`, `qualified_at`, `qualification_error`,
+  - creation de la table `article_embeddings` en `vector(1536)`,
+  - index sur `events.raw_article_ids` et la file d'articles.
+- Ajout d'un helper taxonomie `lib/taxonomy.ts` qui indexe `taxonomy_v1.json` et expose les metadonnees de sous-types (label, geography typique, authority floor, horizon par defaut).
+- Ajout d'un helper OpenAI `lib/openai.ts`:
+  - appels `chat/completions` et `embeddings` si `OPENAI_API_KEY` est disponible,
+  - fallback deterministic local embedding `1536` dimensions si la cle manque, pour garder la dedup operationnelle.
+- Ajout du service metier `lib/qualify.ts`:
+  - chargement des articles C1 et des events recents,
+  - embeddings + stockage Neon,
+  - clustering semantique sur fenetre `48h` avec seuil cosine `0.92`,
+  - selection de la source la plus autoritaire du cluster,
+  - classification taxonomique via `classification_prompt_v1.md` quand OpenAI est disponible,
+  - fallback heuristique multi-regles quand OpenAI est absent,
+  - extraction NER legere (acteurs, actifs, key figures),
+  - scoring d'autorite, scoring composite d'importance, routage `full_pipeline` / `archive`,
+  - insertion des events C2 dans `events`,
+  - marquage des articles C1 en `pending/qualified/archived/failed`.
+- Ajout des endpoints App Router:
+  - `POST /api/qualify`
+  - `POST /api/qualify/batch`
+  - `GET /api/events`
+
+### Verifications realisees
+
+- `npm run db:migrate`
+- `npx tsc --noEmit`
+- `npm run lint` (reste 2 warnings historiques hors perimetre dans le moteur de scenarios)
+- `npm run build`
+- Verification HTTP locale sur `next start`:
+  - `GET /api/events?limit=5`
+  - `POST /api/qualify`
+  - `POST /api/qualify/batch`
+- Verification DB directe:
+  - le lot de test a cree des events C2 en base,
+  - repartition observee apres tests: `archive=17`, `full_pipeline=1`,
+  - exemple `full_pipeline` observe: article BLS/CPI via `POST /api/qualify/batch` local.
+- Test lot France demande:
+  - execution de `50` articles RSS France,
+  - resultat observe avec les heuristiques finales: `17` events qualifies, `32` archives, `0` echec,
+  - les archives correspondent majoritairement a du sport / culture / actualite generaliste hors taxonomie macro.
+
+### Points de reprise
+
+- Provisionner `OPENAI_API_KEY` localement et sur Vercel pour activer la vraie classification LLM GPT-4o-mini et les embeddings `text-embedding-3-small`; aujourd'hui le pipeline degrade proprement mais repose sur des heuristiques/fallbacks.
+- Raffiner les heuristiques de fallback pour reduire les faux negatifs sur certains macro releases officiels (`unemployment rate`, PPI, reports ECB/BOJ) et les faux positifs geographiques (`US/EZ/ME` parfois trop larges).
+- Enrichir la NER avec un vrai passage structure (LLM ou modele dedie) pour extraire davantage d'acteurs, d'actifs et de chiffres.
+- Ajouter des tests automatisees TypeScript sur `lib/qualify.ts` et sur les trois routes API C2.

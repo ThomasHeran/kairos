@@ -14,7 +14,7 @@ async function main() {
     ssl: { rejectUnauthorized: false },
   });
 
-  const migrations = ["schema.sql", "schema_v2.sql", "schema_v3.sql"];
+  const migrations = ["schema.sql", "schema_v2.sql", "schema_v3.sql", "schema_v4.sql"];
 
   try {
     for (const filename of migrations) {
