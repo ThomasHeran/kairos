@@ -1,5 +1,31 @@
 # DOCS
 
+## Diagnosis: Kairos live deployment "inutilisable" (2026-04-27)
+
+### Investigation Summary
+
+**Live URL**: https://kairos-7b20lwqwt-thomasherans-projects.vercel.app/
+- HTTP status: 401
+- Response: Vercel SSO Authentication wall (redirects to `vercel.com/sso-api`)
+- `/api/health`, `/api/countries`, `/api/news` all return 401 for the same reason
+
+**Root Cause: Vercel Deployment Protection is ON**
+
+The 401 is NOT a code error — it's Vercel's built-in Deployment Protection feature. Any visitor who is not logged into a Vercel account authorized for ThomasHeran's project sees the SSO gate instead of the actual page.
+
+**Code audit result: HEALTHY**
+- `ThomasHeran/kairos` cloned and compared against `nanocorp-hq/kairon` — repos are essentially identical (same code)
+- `app/page.tsx` uses only static config (`getActiveCountries()` from `lib/config.ts`) — no DB dependency, no async crash
+- All `app/api/` routes correctly import from `@/services/` (the prior `/api/` → `/services/` rename is fully applied)
+- `app/layout.tsx` is valid; `globals.css` uses Tailwind v4 with all CSS variables and custom classes defined
+- Local `npm run build` passes cleanly: 16 routes, 0 errors, `/` statically pre-rendered
+
+**Fix required**: ThomasHeran must go to his Vercel Dashboard → Project Settings → Deployment Protection → Disable protection (or set to "Vercel Authentication" only for preview URLs, not all deployments).
+
+**No code changes are needed.** The app is correct and will work once the Vercel protection is disabled.
+
+---
+
 ## Fix Vercel build collision: /api/ → /services/ (2026-04-27)
 
 ### Root Cause
