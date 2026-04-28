@@ -38,6 +38,13 @@ CREATE TABLE IF NOT EXISTS articles (
   is_scheduled_release BOOLEAN NOT NULL DEFAULT FALSE,
   authority_score NUMERIC(4,3) NOT NULL DEFAULT 0.500 CHECK (authority_score >= 0 AND authority_score <= 1),
   canonical JSONB NOT NULL DEFAULT '{}'::jsonb,
+  category VARCHAR(50),
+  category_confidence FLOAT,
+  summary TEXT,
+  importance_score FLOAT,
+  urgency_score FLOAT,
+  market_impact_score FLOAT,
+  analyzed_at TIMESTAMPTZ,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
@@ -57,3 +64,16 @@ CREATE INDEX IF NOT EXISTS idx_articles_source_id ON articles(source_id);
 CREATE INDEX IF NOT EXISTS idx_articles_published_at ON articles(published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_scrape_jobs_country_id ON scrape_jobs(country_id);
 CREATE INDEX IF NOT EXISTS idx_scrape_jobs_status ON scrape_jobs(status);
+
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1
+    FROM information_schema.columns
+    WHERE table_schema = 'public'
+      AND table_name = 'articles'
+      AND column_name = 'analyzed_at'
+  ) THEN
+    EXECUTE 'CREATE INDEX IF NOT EXISTS idx_articles_analyzed_at ON articles(analyzed_at, published_at DESC)';
+  END IF;
+END $$;

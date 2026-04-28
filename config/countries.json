@@ -9,7 +9,7 @@
       "sources": [
         {
           "id": 101,
-          "type": "rss",
+          "type": "news",
           "url": "https://www.lemonde.fr/rss/une.xml",
           "name": "Le Monde",
           "active": true
@@ -62,6 +62,48 @@
           "url": "https://www.mediapart.fr/articles/feed",
           "name": "Mediapart",
           "active": true
+        },
+        {
+          "id": 109,
+          "type": "news",
+          "url": "https://services.lesechos.fr/rss/les-echos-monde.xml",
+          "name": "Les Echos",
+          "active": true
+        },
+        {
+          "id": 110,
+          "type": "news",
+          "url": "https://www.bfmtv.com/rss/economie/",
+          "name": "BFM Business",
+          "active": true
+        },
+        {
+          "id": 111,
+          "type": "reddit",
+          "url": "https://www.reddit.com/r/france.json",
+          "name": "Reddit France",
+          "active": true
+        },
+        {
+          "id": 112,
+          "type": "reddit",
+          "url": "https://www.reddit.com/r/economics.json",
+          "name": "Reddit Economics",
+          "active": true
+        },
+        {
+          "id": 113,
+          "type": "forum",
+          "url": "https://news.ycombinator.com/rss",
+          "name": "Hacker News Top",
+          "active": true
+        },
+        {
+          "id": 114,
+          "type": "forum",
+          "url": "https://hnrss.org/newest?q=economics",
+          "name": "Hacker News Economics",
+          "active": true
         }
       ]
     },
@@ -82,8 +124,8 @@
         {
           "id": 202,
           "type": "reddit",
-          "url": "https://www.reddit.com/r/news/.rss",
-          "name": "Reddit News",
+          "url": "https://www.reddit.com/r/investing.json",
+          "name": "Reddit Investing",
           "active": true
         },
         {
@@ -91,6 +133,20 @@
           "type": "forum",
           "url": "https://news.ycombinator.com/rss",
           "name": "Hacker News",
+          "active": true
+        },
+        {
+          "id": 204,
+          "type": "forum",
+          "url": "https://hnrss.org/newest?q=economics",
+          "name": "Hacker News Economics",
+          "active": true
+        },
+        {
+          "id": 205,
+          "type": "news",
+          "url": "https://feeds.bloomberg.com/markets/news.rss",
+          "name": "Bloomberg Markets",
           "active": true
         }
       ]
@@ -114,6 +170,20 @@
           "type": "news",
           "url": "https://www.japantimes.co.jp/feed/",
           "name": "The Japan Times",
+          "active": true
+        },
+        {
+          "id": 304,
+          "type": "reddit",
+          "url": "https://www.reddit.com/r/japannews.json",
+          "name": "Reddit Japan News",
+          "active": true
+        },
+        {
+          "id": 305,
+          "type": "forum",
+          "url": "https://hnrss.org/newest?q=japan",
+          "name": "Hacker News Japan",
           "active": true
         },
         {

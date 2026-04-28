@@ -1,5 +1,8 @@
 export type SourceType = "rss" | "twitter" | "reddit" | "forum" | "news" | "scraping" | "api";
 
+export type ScrapedArticleCountry = "france" | "us" | "japan" | "global";
+export type ScrapedArticleLanguage = "fr" | "en" | "ja";
+
 export type SourceConfig = {
   id: number;
   type: SourceType;
@@ -19,11 +22,13 @@ export type CountryConfig = {
 
 export type ScrapedArticle = {
   title: string;
-  content?: string;
+  content: string | null;
   url: string;
-  published_at?: string;
-  lang?: string;
-  tags?: string[];
+  published_at: string;
+  source: string;
+  country: ScrapedArticleCountry;
+  tags: string[];
+  lang: ScrapedArticleLanguage;
 };
 
 export type ScrapeResult = {

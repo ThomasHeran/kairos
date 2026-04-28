@@ -1,4 +1,4 @@
-import { RSSAgent } from "@/agents/rss_agent";
+import { getAgentForType } from "@/agents";
 import type { CountryConfig, ScrapedArticle, SourceConfig } from "@/agents/types";
 import { getCountryBySlug } from "@/lib/config";
 import { hasDatabaseUrl, query } from "@/lib/db";
@@ -15,7 +15,6 @@ type JobRow = {
   id: number;
 };
 
-const rssAgent = new RSSAgent();
 const INSERT_CHUNK_SIZE = 50;
 
 function chunk<T>(items: T[], size: number) {
@@ -181,48 +180,72 @@ function getFranceCountryConfig() {
   return country;
 }
 
-export async function scrapeFranceRssFeeds() {
+async function scrapeCountrySources(countrySlug: string) {
   if (!hasDatabaseUrl()) {
     throw new Error("DATABASE_URL is not configured.");
   }
 
-  const country = getFranceCountryConfig();
-  const rssSources = country.sources.filter((source) => source.active && source.type === "rss");
+  const country =
+    countrySlug === "fr" || countrySlug === "france"
+      ? getFranceCountryConfig()
+      : getCountryBySlug(countrySlug);
+
+  if (!country) {
+    throw new Error(`Country config is missing for "${countrySlug}".`);
+  }
+
+  const activeSources = country.sources.filter((source) => source.active);
   const countryRow = await upsertCountry(country);
   const scrapeJob = await createScrapeJob(countryRow.id);
 
   let articlesCollected = 0;
   let sourcesScraped = 0;
-  let hasFailures = false;
+  let sourcesFailed = 0;
+  let sourcesIdle = 0;
 
   try {
-    for (const source of rssSources) {
+    for (const source of activeSources) {
       const sourceRow = await upsertSource(countryRow.id, source);
 
       try {
-        const result = await rssAgent.scrape(country, source);
+        const agent = getAgentForType(source.type);
+        const result = await agent.scrape(country, source);
 
         if (result.status === "failed") {
-          hasFailures = true;
+          sourcesFailed += 1;
+        } else if (result.status === "idle") {
+          sourcesIdle += 1;
         } else {
           articlesCollected += await insertArticles(countryRow.id, sourceRow.id, result.articles);
         }
       } catch {
-        hasFailures = true;
+        sourcesFailed += 1;
       } finally {
         sourcesScraped += 1;
         await touchSource(sourceRow.id);
       }
     }
 
-    await finalizeScrapeJob(scrapeJob.id, hasFailures ? "failed" : "success", articlesCollected);
+    const jobStatus = sourcesFailed === sourcesScraped ? "failed" : "success";
+    await finalizeScrapeJob(scrapeJob.id, jobStatus, articlesCollected);
 
     return {
       articles_collected: articlesCollected,
       sources_scraped: sourcesScraped,
+      sources_failed: sourcesFailed,
+      sources_idle: sourcesIdle,
+      job_status: jobStatus,
     };
   } catch (error) {
     await finalizeScrapeJob(scrapeJob.id, "failed", articlesCollected);
     throw error;
   }
+}
+
+export async function scrapeFranceSources() {
+  return scrapeCountrySources("fr");
+}
+
+export async function scrapeFranceRssFeeds() {
+  return scrapeFranceSources();
 }

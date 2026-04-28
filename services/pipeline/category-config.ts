@@ -1,0 +1,192 @@
+import type { PipelineCategory } from "@/services/pipeline/types";
+
+export const CATEGORY_CONFIG: Record<
+  PipelineCategory,
+  {
+    name: string;
+    keywords: string[];
+    importance: number;
+    marketImpact: number;
+  }
+> = {
+  "CAT-01": {
+    name: "MONETARY_POLICY",
+    keywords: [
+      "central bank",
+      "fed",
+      "ecb",
+      "boe",
+      "boj",
+      "rate",
+      "interest rate",
+      "hike",
+      "cut",
+      "hawkish",
+      "dovish",
+      "qe",
+      "qt",
+    ],
+    importance: 8.5,
+    marketImpact: 9.0,
+  },
+  "CAT-02": {
+    name: "MACRO_DATA_RELEASE",
+    keywords: [
+      "gdp",
+      "cpi",
+      "inflation",
+      "pmi",
+      "payroll",
+      "non-farm",
+      "unemployment",
+      "retail sales",
+      "consumer confidence",
+      "macro data",
+      "industrial production",
+    ],
+    importance: 7.2,
+    marketImpact: 7.8,
+  },
+  "CAT-03": {
+    name: "GEOPOLITICAL_SHOCK",
+    keywords: [
+      "war",
+      "conflict",
+      "invasion",
+      "missile",
+      "attack",
+      "sanction",
+      "ceasefire",
+      "troop",
+      "military",
+      "geopolitical",
+    ],
+    importance: 9.2,
+    marketImpact: 9.2,
+  },
+  "CAT-04": {
+    name: "ENERGY_COMMODITY_SHOCK",
+    keywords: [
+      "oil",
+      "brent",
+      "wti",
+      "gas",
+      "opec",
+      "commodity",
+      "supply outage",
+      "energy shock",
+      "metals",
+      "crop",
+      "harvest",
+    ],
+    importance: 8.1,
+    marketImpact: 8.5,
+  },
+  "CAT-05": {
+    name: "TRADE_POLICY",
+    keywords: [
+      "tariff",
+      "trade war",
+      "trade policy",
+      "export control",
+      "export ban",
+      "trade agreement",
+      "quota",
+      "import duty",
+      "customs",
+    ],
+    importance: 7.5,
+    marketImpact: 7.8,
+  },
+  "CAT-06": {
+    name: "FISCAL_REGULATORY_POLICY",
+    keywords: [
+      "budget",
+      "fiscal",
+      "stimulus",
+      "austerity",
+      "tax",
+      "regulation",
+      "regulatory",
+      "debt ceiling",
+      "sovereign downgrade",
+      "spending plan",
+    ],
+    importance: 7.6,
+    marketImpact: 7.4,
+  },
+  "CAT-07": {
+    name: "FINANCIAL_STABILITY",
+    keywords: [
+      "bank",
+      "bankruptcy",
+      "default",
+      "liquidity",
+      "rescue",
+      "bailout",
+      "systemic",
+      "crash",
+      "credit event",
+      "contagion",
+    ],
+    importance: 9.4,
+    marketImpact: 9.4,
+  },
+  "CAT-08": {
+    name: "SUPPLY_CHAIN_DISRUPTION",
+    keywords: [
+      "supply chain",
+      "shipping",
+      "port",
+      "logistics",
+      "factory shutdown",
+      "semiconductor shortage",
+      "chip shortage",
+      "bottleneck",
+      "red sea",
+      "panama canal",
+    ],
+    importance: 7.1,
+    marketImpact: 7.0,
+  },
+  "CAT-09": {
+    name: "CLIMATE_NATURAL_DISASTER",
+    keywords: [
+      "hurricane",
+      "typhoon",
+      "wildfire",
+      "flood",
+      "earthquake",
+      "drought",
+      "climate",
+      "carbon tax",
+      "renewable",
+      "disaster",
+    ],
+    importance: 6.4,
+    marketImpact: 5.9,
+  },
+  "CAT-10": {
+    name: "TECHNOLOGY_STRUCTURAL",
+    keywords: [
+      "ai",
+      "artificial intelligence",
+      "antitrust",
+      "cyber attack",
+      "cyberattack",
+      "technology",
+      "productivity",
+      "data center",
+      "chipmaker",
+      "demographic",
+    ],
+    importance: 6.7,
+    marketImpact: 6.5,
+  },
+};
+
+export function getCategoryPromptList() {
+  return Object.entries(CATEGORY_CONFIG)
+    .map(([category, config]) => `${category} ${config.name}`)
+    .join(", ");
+}

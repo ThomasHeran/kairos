@@ -14,7 +14,14 @@ async function main() {
     ssl: { rejectUnauthorized: false },
   });
 
-  const migrations = ["schema.sql", "schema_v2.sql", "schema_v3.sql", "schema_v4.sql"];
+  const migrations = [
+    "schema.sql",
+    "schema_v2.sql",
+    "schema_v3.sql",
+    "schema_v4.sql",
+    "schema_v5.sql",
+    "schema_scenario_v1.sql",
+  ];
 
   try {
     for (const filename of migrations) {
@@ -25,6 +32,17 @@ async function main() {
 
         if (existingTaxonomy.rows[0]?.existing) {
           console.log("↷ schema_v2.sql skipped (taxonomy tables already present).");
+          continue;
+        }
+      }
+
+      if (filename === "schema_scenario_v1.sql") {
+        const existingScenario = await pool.query<{ existing: string | null }>(
+          `SELECT to_regclass('public.scenario_trees')::text AS existing`,
+        );
+
+        if (existingScenario.rows[0]?.existing) {
+          console.log("↷ schema_scenario_v1.sql skipped (scenario tables already present).");
           continue;
         }
       }

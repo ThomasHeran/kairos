@@ -46,7 +46,7 @@ export function readText(value: unknown): string | undefined {
 
   const node = value as FeedNode;
 
-  for (const key of ["#text", "__text", "__cdata"]) {
+  for (const key of ["#text", "__text", "__cdata", "@_term", "@_label", "name", "uri"]) {
     const text = readText(node[key]);
     if (text) {
       return text;
